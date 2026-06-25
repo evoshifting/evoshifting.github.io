@@ -3,313 +3,173 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Découvrez le profil de Marc-Antoine Cailloux, fondateur d'evoshifting. Consultant indépendant expert en AMOA, Product Ownership et intégration technologique.">
-  <meta name="keywords" content="Marc-Antoine Cailloux, portrait, consultant informatique, bordeaux, freelance AMOA, product owner">
-  <meta name="author" content="Marc-Antoine Cailloux">
-  <title>evoshifting | Votre Interlocuteur</title>
+  <meta name="description" content="Portrait de Marc-Antoine Cailloux, expert en transformation numérique.[cite: 7]">
+  <title>evoshifting | Portrait[cite: 7]</title>
   
   <style>
-    body, input, select, textarea, button {
-      font-family: "Futura PT", "Futura", "Trebuchet MS", Arial, sans-serif;
+    :root {
+      --primary: #111111;
+      --accent: #68A67A;
+      --bg: #ffffff;
+      --text: #2D3748;
+      --border: #eaeaea;
+      --font-main: "Futura PT", Futura, "Trebuchet MS", Arial, sans-serif;
     }
-    body {
-      margin: 0;
-      padding: 0;
-      color: #1a1a1a;
-      background-color: #ffffff;
-      line-height: 1.5;
-    }
+    body { margin: 0; padding: 0; font-family: var(--font-main); background-color: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+    .evo-container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
+    
+    /* HEADER & FOOTER */
+    .evo-global-header { background: #ffffff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; padding: 15px 20px; }
+    .evo-header-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .evo-logo { font-size: 1.6rem; text-decoration: none; color: var(--primary); letter-spacing: -0.5px; }
+    .evo-logo strong { font-weight: 700; }
+    .evo-nav { display: flex; gap: 25px; }
+    .evo-nav a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.95rem; text-transform: uppercase; transition: color 0.2s; }
+    .evo-nav a:hover { color: var(--accent); }
+    .evo-global-footer { background: #f9f9f9; border-top: 1px solid var(--border); padding: 50px 20px 30px; margin-top: 60px; }
+    .evo-footer-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .evo-footer-links { display: flex; gap: 20px; }
+    .evo-footer-links a { color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+    .evo-footer-links a:hover { color: var(--accent); }
+    .evo-footer-copy { font-size: 0.85rem; color: #888; margin-top: 10px; }
 
-    /* HEADER PREMIUM UNIFORME */
-    .evo-site-header {
-      background-color: #111111;
-      border-bottom: 1px solid #222222;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      padding: 15px 0;
-    }
-    .evo-header-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .evo-logo-link {
-      display: flex;
-      align-items: center;
-    }
-    .evo-header-logo {
-      height: 38px;
-      width: auto;
-      display: block;
-    }
-    .evo-header-nav {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-    .evo-nav-link {
-      color: #cccccc;
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: color 0.2s ease;
-    }
-    .evo-nav-link:hover {
-      color: #ffffff;
-    }
-    .evo-nav-cta {
-      background-color: #68A67A;
-      color: #ffffff !important;
-      padding: 8px 18px;
-      border-radius: 4px;
-      font-weight: 600;
-      transition: background-color 0.2s ease;
-    }
-    .evo-nav-cta:hover {
-      background-color: #568d66;
-    }
+    /* COMPONENTS */
+    .evo-divider { border: 0; height: 1px; background: var(--border); margin: 60px auto; width: 100%; display: block; }
+    .evo-btn { display: inline-block; background-color: var(--primary); color: #ffffff !important; text-decoration: none; padding: 16px 36px; font-weight: 600; border-radius: 4px; transition: background 0.2s ease; }
+    .evo-btn:hover { background-color: var(--accent); }
 
-    /* CONTENEUR PRINCIPAL */
-    .evo-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 60px 20px;
-    }
+    /* PAGE STYLES */
+    .evo-profile-layout { display: grid; grid-template-columns: 280px 1fr; gap: 50px; align-items: start; margin-top: 20px; }
+    .evo-avatar-box { width: 100%; aspect-ratio: 1/1; border-radius: 12px; background-color: #f4f4f4; overflow: hidden; border: 1px solid var(--border); }
+    .evo-avatar-box img { width: 100%; height: 100%; object-fit: cover; }
+    .evo-bio-text h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin: 0 0 8px 0; }
+    .evo-bio-text p { font-size: 1.1rem; line-height: 1.65; color: #444; margin: 0 0 20px 0; }
 
-    /* LAYOUT DOUBLE COLONNE BIOGRAPHIE */
-    .evo-portrait-layout {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 50px;
-      align-items: start;
-    }
-    .evo-portrait-meta {
-      background-color: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 30px;
-      text-align: center;
-    }
-    .evo-avatar-placeholder {
-      width: 120px;
-      height: 120px;
-      background-color: #68A67A;
-      border-radius: 50%;
-      margin: 0 auto 20px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 2rem;
-      font-weight: bold;
-    }
-    .evo-portrait-meta h2 {
-      font-size: 1.4rem;
-      margin: 0 0 5px 0;
-      color: #111111;
-    }
-    .evo-portrait-meta p {
-      font-size: 0.9rem;
-      color: #666666;
-      margin: 0 0 20px 0;
-    }
-    .evo-bio-content h1 {
-      font-size: 2.2rem;
-      color: #111111;
-      margin-top: 0;
-      margin-bottom: 25px;
-    }
-    .evo-bio-content p {
-      font-size: 1.05rem;
-      line-height: 1.7;
-      color: #333333;
-      margin-bottom: 20px;
-    }
+    .evo-section-title { text-align: center; font-size: 1.9rem; font-weight: 700; margin-bottom: 10px; color: var(--primary); }
+    .evo-section-subtitle { text-align: center; font-size: 1.05rem; color: #666; margin-bottom: 45px; text-transform: uppercase; letter-spacing: 1px; }
+    .evo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .evo-card { background: #f9f9f9; padding: 35px 30px; border-radius: 8px; border: 1px solid var(--border); }
+    .evo-card h4 { font-size: 1.3rem; font-weight: 700; color: var(--primary); margin: 0 0 15px 0; }
+    .evo-card p, .evo-card ul { font-size: 1rem; line-height: 1.6; color: #444; margin: 0; }
+    .evo-card ul { padding-left: 20px; }
+    .evo-card ul li { margin-bottom: 8px; }
 
-    .evo-btn {
-      display: inline-block;
-      background-color: #111111;
-      color: #ffffff !important;
-      text-decoration: none;
-      padding: 14px 30px;
-      font-weight: 600;
-      border-radius: 4px;
-      transition: background 0.2s ease;
-    }
-    .evo-btn:hover {
-      background-color: #68A67A;
-    }
-
-    /* FOOTER PREMIUM UNIFORME */
-    .evo-site-footer {
-      background-color: #111111;
-      color: #e2e8f0;
-      padding: 60px 0 30px 0;
-      margin-top: 60px;
-      border-top: 1px solid #222222;
-    }
-    .evo-footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    .evo-footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-    .evo-footer-brand .evo-footer-logo {
-      height: 35px;
-      width: auto;
-      margin-bottom: 15px;
-      display: block;
-    }
-    .evo-footer-tagline {
-      font-size: 0.9rem;
-      color: #a0aec0;
-      line-height: 1.6;
-      max-width: 400px;
-      margin: 0;
-    }
-    .evo-footer-links-col h4, .evo-footer-info-col h4 {
-      font-size: 1.1rem;
-      color: #ffffff;
-      margin-top: 0;
-      margin-bottom: 20px;
-      font-weight: 700;
-    }
-    .evo-footer-links {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .evo-footer-links a {
-      color: #a0aec0;
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s ease;
-    }
-    .evo-footer-links a:hover {
-      color: #ffffff;
-    }
-    .evo-footer-info-col p {
-      font-size: 0.9rem;
-      color: #a0aec0;
-      line-height: 1.6;
-      margin: 0 0 15px 0;
-    }
-    .evo-footer-linkedin {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: #ffffff;
-      background-color: #2d3748;
-      padding: 8px 14px;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background-color 0.2s ease;
-    }
-    .evo-footer-linkedin:hover {
-      background-color: #4a5568;
-    }
-    .evo-footer-bottom {
-      border-top: 1px solid #2d3748;
-      padding-top: 25px;
-      text-align: center;
-    }
-    .evo-footer-bottom p {
-      font-size: 0.85rem;
-      color: #718096;
-      margin: 0;
-    }
+    .evo-testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+    .evo-testimonial-card { background: #ffffff; padding: 35px 30px; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; }
+    .evo-testimonial-text { font-size: 0.95rem; line-height: 1.6; color: #555; font-style: italic; margin-bottom: 25px; flex-grow: 1; }
+    .evo-testimonial-author { font-weight: 700; color: var(--primary); font-size: 1.05rem; margin-bottom: 4px; }
+    .evo-testimonial-role { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; font-weight: 600; }
+    
+    .evo-bottom-cta { text-align: center; padding: 20px 0; }
+    .evo-bottom-cta h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 12px; color: var(--primary); }
 
     @media (max-width: 768px) {
-      .evo-header-inner { flex-direction: column; gap: 15px; }
-      .evo-header-nav { gap: 16px; flex-wrap: wrap; justify-content: center; }
-      .evo-portrait-layout { grid-template-columns: 1fr; gap: 30px; }
-      .evo-footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      .evo-nav { display: none; }
+      .evo-profile-layout { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+      .evo-avatar-box { max-width: 240px; margin: 0 auto; }
+      .evo-grid, .evo-testimonials-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
   <!-- HEADER -->
-  <header class="evo-site-header">
+  <header class="evo-global-header">
     <div class="evo-header-inner">
-      <a href="index.html" class="evo-logo-link">
-        <img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting Logo" class="evo-header-logo">
-      </a>
-      <nav class="evo-header-nav">
-        <a href="index.html" class="evo-nav-link">Accueil</a>
-        <a href="offres.html" class="evo-nav-link">Solutions</a>
-        <a href="portrait.html" class="evo-nav-link">Portrait</a>
-        <a href="references.html" class="evo-nav-link">Références</a>
-        <a href="contact.html" class="evo-nav-link evo-nav-cta">Contact</a>
+      <a href="index.html" class="evo-logo"><strong>evo</strong>shifting</a>
+      <nav class="evo-nav">
+        <a href="index.html">Accueil</a>
+        <a href="portrait.html">Portrait</a>
+        <a href="references.html">Références</a>
+        <a href="offres.html">Offres</a>
+        <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
 
   <div class="evo-container">
-    
-    <div class="evo-portrait-layout">
-      
-      <!-- Bloc d'identité rapide -->
-      <div class="evo-portrait-meta">
-        <div class="evo-avatar-placeholder">MC</div>
-        <h2>M-A. Cailloux</h2>
-        <p>Fondateur d'evoshifting<br>Consultant Indépendant</p>
-        <a href="https://www.linkedin.com/in/ma-clx/" target="_blank" class="evo-btn" style="font-size:0.85rem; padding: 10px 20px;">Voir sur LinkedIn</a>
+    <section class="evo-profile-layout">
+      <div class="evo-avatar-box">
+        <img src="https://www.hebergeur-image.fr/uploads/20260604/ba5840dfa0e815ce86508552b633b605e99d9fd7.png" alt="Marc-Antoine Cailloux[cite: 7]">
       </div>
-
-      <!-- Corps éditorial -->
-      <div class="evo-bio-content">
-        <h1>Aligner la technique sur vos réalités business</h1>
-        <p>Fort d'un parcours transverse combinant gestion de flux applicatifs complexes et direction de projets digitaux, j'ai fondé <strong>evoshifting</strong> pour offrir une alternative pragmatique aux structures d'ingénierie classiques.</p>
-        <p>Mon quotidien consiste à traduire des besoins opérationnels parfois flous ou mouvants en architectures logicielles structurées et robustes. Qu'il s'agisse de piloter des comités d'architecture SaaS ou de concevoir des intégrations d'IA (LLMs), mon prisme d'analyse reste identique : le retour sur investissement et l'autonomie finale de vos équipes métiers.</p>
-        <p>Basé entre Bordeaux et Paris, j'interviens de manière ciblée, soit en phase de cadrage amont (AMOA), soit en renfort d'équipe en tant que Product Owner technique.</p>
+      <div class="evo-bio-text">
+        <h2>Marc-Antoine Cailloux[cite: 7]</h2>
+        <p>Evoluant depuis plus de 10 ans à l'intersection des directions métiers et des DSI. Mon approche privilégie l'alignement des processus métier avec les solutions techniques pour apporter des réponses concrètes et opérationnelles.[cite: 7]</p>
+        <p>Fort d'une expérience couvrant le PXM, le e-commerce, la donnée client et l'order management, je fais le pont entre les enjeux métiers et les capacités techniques. Je permets à mes clients internationaux d'exploiter tout le potentiel de leurs plateformes tout en simplifiant des concepts complexes en stratégies claires et actionnables.[cite: 7]</p>
       </div>
+    </section>
 
-    </div>
+    <hr class="evo-divider">
 
+    <section class="evo-skills">
+      <h2 class="evo-section-title">Compétences & Savoir-être[cite: 7]</h2>
+      <p class="evo-section-subtitle">Transformer la complexité en résultats mesurables[cite: 7]</p>
+      <div class="evo-grid">
+        <div class="evo-card">
+          <h4>Vision Stratégique[cite: 7]</h4>
+          <p>En tant qu'expert de la transformation numérique, j'aide les organisations à transformer des défis complexes en résultats évolutifs. Je conçois et déploie des solutions logicielles sur mesure qui améliorent les performances, optimisent les processus et stimulent la croissance.[cite: 7]</p>
+        </div>
+        <div class="evo-card">
+          <h4>Expertise Clé[cite: 7]</h4>
+          <ul>
+            <li>Implémentation PIM & DAM[cite: 7]</li>
+            <li>E-commerce, Marketplace, OMS, CRM & CDP[cite: 7]</li>
+            <li>Optimisation UX/UI, Search & Discovery, Solutions de paiement & Checkout[cite: 7]</li>
+            <li>Méthodologies Agile & SAFe, Stratégie numérique, Business Development[cite: 7]</li>
+            <li>Gestion du cycle de vente, de projet & Customer Success[cite: 7]</li>
+          </ul>
+        </div>
+        <div class="evo-card">
+          <h4>Savoir-être[cite: 7]</h4>
+          <p>Curieux, proactif et collaboratif, je m'épanouis dans des environnements multiculturels où l'innovation et la confiance sont les moteurs de la réussite. J'accorde une grande importance au dialogue ouvert, à la structuration de la pensée et à l'apprentissage continu.[cite: 7]</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="evo-divider">
+
+    <section class="evo-testimonials">
+      <h2 class="evo-section-title">Recommandations[cite: 7]</h2>
+      <p class="evo-section-subtitle">Ce que disent les professionnels avec qui j'ai collaboré[cite: 7]</p>
+      <div class="evo-testimonials-grid">
+        <div class="evo-testimonial-card">
+          <div class="evo-testimonial-text">« I had the pleasure of working alongside Marco at inriver, where we were both Sales Engineers... I'm confident Marco will bring that same dedication, customer empathy, and collaborative spirit to his consulting work. »[cite: 7]</div>
+          <div class="evo-testimonial-author">Killian Jackson[cite: 7]</div>
+          <div class="evo-testimonial-role">Equipe[cite: 7]</div>
+        </div>
+        <div class="evo-testimonial-card">
+          <div class="evo-testimonial-text">« J'ai le plaisir de recommander Marc Antoine... Il sait allier vision stratégique et pragmatisme opérationnel, ce qui en fait un atout précieux dans des contextes de transformation. »[cite: 7]</div>
+          <div class="evo-testimonial-author">Dominique LIN[cite: 7]</div>
+          <div class="evo-testimonial-role">Equipe[cite: 7]</div>
+        </div>
+        <div class="evo-testimonial-card">
+          <div class="evo-testimonial-text">« I had the pleasure of managing Marc-Antoine ("Marco") during his nearly two years as a Senior Sales Engineer at inriver... Beyond his technical skill, Marco was an exceptional teammate. »[cite: 7]</div>
+          <div class="evo-testimonial-author">David Copeland[cite: 7]</div>
+          <div class="evo-testimonial-role">Manager[cite: 7]</div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="evo-divider">
+
+    <section class="evo-bottom-cta">
+      <h3>Envie de collaborer ou d'échanger sur votre feuille de route ?[cite: 7]</h3>
+      <p style="color: #555; margin-bottom: 30px;">Toujours ouvert pour partager des idées ou explorer de nouvelles opportunités. N'hésitez pas à me contacter.[cite: 7]</p>
+      <div class="evo-cta-wrapper"><a href="contact.html" class="evo-btn">Échanger sur vos enjeux[cite: 7]</a></div>
+    </section>
   </div>
 
   <!-- FOOTER -->
-  <footer class="evo-site-footer">
+  <footer class="evo-global-footer">
     <div class="evo-footer-inner">
-      <div class="evo-footer-grid">
-        <div class="evo-footer-brand">
-          <img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting Logo" class="evo-footer-logo">
-          <p class="evo-footer-tagline">Conseil en systèmes et logiciels informatiques. Cadrage de projets, écosystèmes SaaS et intégration de l'IA.</p>
-        </div>
-        <div class="evo-footer-links-col">
-          <h4>Navigation</h4>
-          <ul class="evo-footer-links">
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="offres.html">Solutions & Cas d'usage</a></li>
-            <li><a href="portrait.html">Portrait</a></li>
-            <li><a href="references.html">Références</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        <div class="evo-footer-info-col">
-          <h4>Contact & Réseau</h4>
-          <p>Marc-Antoine Cailloux<br>Consultant Freelance<br>Bordeaux & Paris</p>
-          <a href="https://www.linkedin.com/in/ma-clx/" target="_blank" class="evo-footer-linkedin">🔗 Profil LinkedIn</a>
-        </div>
+      <div class="evo-logo"><strong>evo</strong>shifting</div>
+      <div class="evo-footer-links">
+        <a href="index.html">Accueil</a>
+        <a href="portrait.html">Portrait</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://www.linkedin.com/in/ma-clx/" target="_blank">LinkedIn</a>
       </div>
-      <div class="evo-footer-bottom">
-        <p>&copy; 2026 evoshifting. Tous droits réservés. Marc-Antoine Cailloux.</p>
-      </div>
+      <div class="evo-footer-copy">© 2026 evoshifting - Marc-Antoine Cailloux. Tous droits réservés.</div>
     </div>
   </footer>
 
