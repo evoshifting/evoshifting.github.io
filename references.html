@@ -14,6 +14,9 @@
       margin: 0;
       padding: 0;
       background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
     .evo-container {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -201,9 +204,85 @@
       .evo-geo-row { flex-direction: column; gap: 10px; }
       .evo-brand-chips { font-size: 0.95rem; }
     }
+
+    /* HEADER & FOOTER GLOBAL STYLES */
+    .evo-header-nav {
+      background-color: #ffffff;
+      border-bottom: 1px solid #eaeaea;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .evo-nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .evo-logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #111111;
+      text-decoration: none;
+    }
+    .evo-logo span {
+      color: #68A67A;
+    }
+    .evo-menu {
+      display: flex;
+      gap: 25px;
+    }
+    .evo-menu-link {
+      text-decoration: none;
+      color: #555555;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .evo-menu-link:hover, .evo-menu-link.active {
+      color: #68A67A;
+    }
+    .evo-footer {
+      background-color: #111111;
+      color: #aaaaaa;
+      padding: 30px 20px;
+      margin-top: auto;
+    }
+    .evo-footer-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+    .evo-footer-credits a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+    @media (max-width: 768px) {
+      .evo-nav-container { flex-direction: column; gap: 15px; text-align: center; }
+      .evo-menu { gap: 15px; flex-wrap: wrap; justify-content: center; }
+      .evo-footer-container { flex-direction: column; gap: 10px; text-align: center; }
+    }
   </style>
 </head>
 <body>
+
+<header class="evo-header-nav">
+  <div class="evo-nav-container">
+    <a href="index.html" class="evo-logo">evo<span>shifting</span></a>
+    <nav class="evo-menu">
+      <a href="index.html" class="evo-menu-link">Accueil</a>
+      <a href="offres.html" class="evo-menu-link">Offres</a>
+      <a href="portrait.html" class="evo-menu-link">Portrait</a>
+      <a href="references.html" class="evo-menu-link active">Références</a>
+      <a href="contact.html" class="evo-menu-link">Contact</a>
+    </nav>
+  </div>
+</header>
 
 <div class="evo-container">
   
@@ -335,7 +414,7 @@
         Modélisation et optimisation des parcours client omnicanaux. Alignement des processus logistiques, de la supply chain et des systèmes d'information pour décloisonner les étapes d'achat, de la réservation en ligne jusqu'au suivi de la relation client multicanal.
       </p>
       <div class="evo-project-footer">
-        <span class="evo-tech-tag">Omnicanal</span>
+        <span class="evo-tech-tag">Omnican</span>
         <span class="evo-tech-tag">Supply Chain</span>
         <span class="evo-tech-tag">Processus</span>
       </div>
@@ -422,10 +501,21 @@
   <div class="evo-cta-block">
     <h3>Votre contexte présente des enjeux de flux similaires ?</h3>
     <p>Sécurisons ensemble vos choix applicatifs et la trajectoire de vos livraisons.</p>
-    <a href="/contact" class="evo-btn">Échanger sur vos enjeux</a>
+    <a href="contact.html" class="evo-btn">Échanger sur vos enjeux</a>
   </div>
 
 </div>
+
+<footer class="evo-footer">
+  <div class="evo-footer-container">
+    <div class="evo-footer-copy">
+      &copy; 2026 evoshifting. Tous droits réservés.
+    </div>
+    <div class="evo-footer-credits">
+      Consultant indépendant par <a href="https://www.linkedin.com/in/ma-clx/" target="_blank">Marc-Antoine Cailloux</a>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
