@@ -3,182 +3,319 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Découvrez les solutions et l'accompagnement evoshifting.[cite: 10]">
-  <title>evoshifting | Nos Offres & Solutions[cite: 10]</title>
+  <meta name="description" content="Découvrez les solutions et l'accompagnement evoshifting : Product Management, IA, e-commerce, omnicanal et gouvernance. Expert freelance sur Bordeaux et Paris.">
+  <meta name="keywords" content="solutions, accompagnement, IA, conseil, bordeaux, paris, freelance, projet, consultant, eCommerce, omnicanal, CRM">
+  <meta name="author" content="Marc-Antoine Cailloux">
+  <title>evoshifting | Accompagnement et solutions IA</title>
   
   <style>
-    :root {
-      --primary: #111111;
-      --accent: #68A67A;
-      --bg: #ffffff;
-      --text: #2D3748;
-      --border: #eaeaea;
-      --font-main: "Futura PT", Futura, "Trebuchet MS", Arial, sans-serif;
-    }
-    body { margin: 0; padding: 0; font-family: var(--font-main); background-color: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
-    .evo-container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
-    
-    /* HEADER & FOOTER */
-    .evo-global-header { background: #ffffff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; padding: 15px 20px; }
-    .evo-header-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .evo-logo { font-size: 1.6rem; text-decoration: none; color: var(--primary); letter-spacing: -0.5px; }
-    .evo-logo strong { font-weight: 700; }
-    .evo-nav { display: flex; gap: 25px; }
-    .evo-nav a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.95rem; text-transform: uppercase; transition: color 0.2s; }
-    .evo-nav a:hover { color: var(--accent); }
-    .evo-global-footer { background: #f9f9f9; border-top: 1px solid var(--border); padding: 50px 20px 30px; margin-top: 60px; }
-    .evo-footer-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-    .evo-footer-links { display: flex; gap: 20px; }
-    .evo-footer-links a { color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
-    .evo-footer-links a:hover { color: var(--accent); }
-    .evo-footer-copy { font-size: 0.85rem; color: #888; margin-top: 10px; }
-
-    /* PAGE STYLES */
-    .evo-hero { text-align: center; max-width: 850px; margin: 0 auto 60px auto; padding-top: 20px; }
-    .evo-hero h1 { font-size: 2.4rem; font-weight: 700; margin-bottom: 20px; color: var(--primary); }
-    .evo-hero p { font-size: 1.2rem; color: #555; line-height: 1.6; }
-
-    .evo-phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; align-items: start; }
-    .evo-phase-block { background: #ffffff; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; }
-    .evo-phase-header { padding: 40px 30px; display: flex; flex-direction: column; align-items: flex-start; background-color: #ffffff; cursor: pointer; min-height: 170px; position: relative; }
-    .evo-phase-number { font-size: 1.1rem; font-weight: 700; color: var(--accent); border: 1px solid var(--accent); width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 50px; background-color: #f7fbf8; margin-bottom: 20px; }
-    .evo-phase-header h2 { font-size: 1.4rem; font-weight: 700; margin: 0 0 8px 0; color: var(--primary); }
-    .evo-phase-role { font-size: 0.8rem; text-transform: uppercase; color: #666; font-weight: 600; }
-    .evo-phase-indicator { position: absolute; bottom: 20px; right: 25px; color: #bbb; transition: transform 0.4s ease; }
-    
-    .evo-phase-content { max-height: 0; opacity: 0; visibility: hidden; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s; background-color: #fafafa; }
-    
-    @media (min-width: 769px) {
-      .evo-phase-block:hover { border-color: var(--accent); box-shadow: 0 12px 30px rgba(104, 166, 122, 0.1); }
-      .evo-phase-block:hover .evo-phase-header { background-color: #fcfdfe; }
-      .evo-phase-block:hover .evo-phase-indicator { transform: rotate(180deg); color: var(--accent); }
-      .evo-phase-block:hover .evo-phase-content { max-height: 2000px; opacity: 1; visibility: visible; border-top: 1px solid var(--border); }
+    /* STYLES GÉNÉRAUX & CONFIGURATION */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1a1a1a;
+      background-color: #ffffff;
     }
 
-    .evo-sub-column { display: flex; flex-direction: column; gap: 20px; padding: 30px 20px; }
-    .evo-spec-card { background: #ffffff; padding: 24px; border-radius: 6px; border: 1px solid #eef0ee; display: flex; flex-direction: column; }
-    .evo-spec-title { font-size: 1.15rem; font-weight: 700; color: var(--primary); margin: 0 0 4px 0; }
-    .evo-spec-context { font-size: 0.8rem; font-style: italic; color: #777; margin-bottom: 12px; }
-    .evo-spec-desc { font-size: 0.9rem; line-height: 1.55; color: #444; margin: 0 0 16px 0; }
-    .evo-tag { font-size: 0.7rem; font-weight: 600; background-color: #f2f7f4; color: #4e825e; padding: 3px 8px; border-radius: 4px; border: 1px solid #e1ebe5; display: inline-block; margin-right: 4px; }
+    .evo-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
 
-    .evo-bottom-cta { text-align: center; padding: 50px 40px; background-color: #fcfdfc; border: 1px dashed #d4e3d9; border-radius: 8px; margin-top: 60px; }
-    .evo-bottom-cta h3 { font-size: 1.5rem; margin-top: 0; margin-bottom: 12px; color: var(--primary); }
-    .evo-btn { display: inline-block; background-color: var(--primary); color: #ffffff !important; text-decoration: none; padding: 16px 36px; font-weight: 600; border-radius: 4px; transition: background 0.2s ease; }
-    .evo-btn:hover { background-color: var(--accent); }
+    /* HERO SECTION */
+    .evo-hero {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+      padding-top: 20px;
+      margin-bottom: 60px;
+    }
+    .evo-hero h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin: 0;
+      color: #111111;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
+    /* EXPERTISE GRID */
+    .evo-expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+    }
+    .evo-exp-card {
+      background: #ffffff;
+      padding: 35px 30px;
+      border-radius: 8px;
+      border: 1px solid #eaeaea;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .evo-exp-card:hover {
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      transform: translateY(-4px);
+      border-color: #68A67A;
+    }
+    .evo-exp-category {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #68A67A;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+    .evo-exp-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #111111;
+      margin: 0 0 10px 0;
+      line-height: 1.3;
+    }
+    .evo-exp-context {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #777777;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .evo-exp-desc {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #444444;
+      margin: 0 0 25px 0;
+      flex-grow: 1;
+    }
+    .evo-exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+    }
+    .evo-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      background-color: #f0f7f2;
+      color: #528b63;
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid #d4e8db;
+    }
+
+    /* BOTTOM CTA SECTION */
+    .evo-bottom-cta {
+      text-align: center;
+      padding: 40px 0 20px 0;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      margin-top: 60px;
+    }
+    .evo-bottom-cta h2 {
+      font-size: 1.6rem;
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: #111111;
+    }
+    .evo-bottom-cta p {
+      font-size: 1.1rem;
+      color: #555555;
+      margin-bottom: 30px;
+    }
+    .evo-btn {
+      display: inline-block;
+      background-color: #111111;
+      color: #ffffff !important;
+      text-decoration: none;
+      padding: 16px 36px;
+      font-weight: 600;
+      border-radius: 4px;
+      transition: background 0.2s ease;
+    }
+    .evo-btn:hover {
+      background-color: #68A67A;
+    }
+
+    /* RESPONSIVE */
     @media (max-width: 768px) {
-      .evo-nav { display: none; }
-      .evo-phase-grid { grid-template-columns: 1fr; }
-      .evo-phase-content { max-height: none !important; opacity: 1 !important; visibility: visible !important; border-top: 1px solid var(--border); }
-      .evo-phase-indicator { display: none; }
+      .evo-container { padding: 30px 15px; }
+      .evo-hero h1 { font-size: 2rem; }
+      .evo-expertise-grid { grid-template-columns: 1fr; gap: 20px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="evo-global-header">
-    <div class="evo-header-inner">
-      <a href="index.html" class="evo-logo"><strong>evo</strong>shifting</a>
-      <nav class="evo-nav">
-        <a href="index.html">Accueil</a>
-        <a href="portrait.html">Portrait</a>
-        <a href="references.html">Références</a>
-        <a href="offres.html">Offres</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
-  </header>
-
   <div class="evo-container">
+    
+    <!-- HERO SECTION -->
     <section class="evo-hero">
-      <h1>Nos Offres & Solutions Métiers[cite: 10]</h1>
-      <p>Survolez l'un de nos trois piliers d'intervention horizontaux pour faire apparaître ses déclinaisons et cas d'usage métiers associés.[cite: 10]</p>
+      <h1>Cas d'usage & Solutions concrètes</h1>
     </section>
 
-    <main class="evo-phase-grid">
-      <div class="evo-phase-block">
-        <div class="evo-phase-header">
-          <div class="evo-phase-number">01[cite: 10]</div>
-          <h2>Cadrer l'opportunité[cite: 10]</h2>
-          <div class="evo-phase-role">Posture Conseil / AMOA[cite: 10]</div>
-          <div class="evo-phase-indicator">▼</div>
-        </div>
-        <div class="evo-phase-content">
-          <div class="evo-sub-column">
-            <div class="evo-spec-card">
-              <h3 class="evo-spec-title">Cadrage Avant-Vente & Appels d'Offres[cite: 10]</h3>
-              <div class="evo-spec-context">Typologie : Édition de logiciels & Intégration[cite: 10]</div>
-              <p class="evo-spec-desc">Accompagnement dans les phases de diagnostic initial. Analyse fine des besoins métiers, pilotage complet des réponses aux appels d'offres (RFP) et préconisations stratégiques d'architectures.[cite: 10]</p>
-              <div class="evo-spec-tags"><span class="evo-tag">Cadrage SI[cite: 10]</span><span class="evo-tag">RFP[cite: 10]</span></div>
-            </div>
-            <!-- More specs... -->
-          </div>
+    <!-- GRILLE D'EXPERTISES -->
+    <section class="evo-expertise-grid">
+      
+      <div class="evo-exp-card">
+        <div class="evo-exp-category">Product Management</div>
+        <h3 class="evo-exp-title">Plateformes eCommerce</h3>
+        <div class="evo-exp-context">Secteur : Grande distribution alimentaire & Retail</div>
+        <p class="evo-exp-desc">Définition de la vision produit globale, construction de feuilles de route stratégiques (roadmaps) et priorisation de backlogs complexes. Cadrage et conception fonctionnelle d'écosystèmes transactionnels (inventaire, CMS, gestion de paniers, SSO).</p>
+        <div class="evo-exp-tags">
+          <span class="evo-tag">eCommerce</span>
+          <span class="evo-tag">Roadmap</span>
+          <span class="evo-tag">Backlog</span>
         </div>
       </div>
 
-      <div class="evo-phase-block">
-        <div class="evo-phase-header">
-          <div class="evo-phase-number">02[cite: 10]</div>
-          <h2>Piloter le produit[cite: 10]</h2>
-          <div class="evo-phase-role">Posture Product Owner[cite: 10]</div>
-          <div class="evo-phase-indicator">▼</div>
-        </div>
-        <div class="evo-phase-content">
-          <div class="evo-sub-column">
-            <div class="evo-spec-card">
-              <h3 class="evo-spec-title">Plateformes eCommerce[cite: 10]</h3>
-              <div class="evo-spec-context">Secteur : Grande distribution alimentaire & Retail[cite: 10]</div>
-              <p class="evo-spec-desc">Définition de la vision produit globale, élaboration de roadmaps fonctionnelles et arbitrage des backlogs de développement. Cadrage d'écosystèmes transactionnels natifs.[cite: 10]</p>
-              <div class="evo-spec-tags"><span class="evo-tag">eCommerce[cite: 10]</span><span class="evo-tag">Roadmap[cite: 10]</span></div>
-            </div>
-            <!-- More specs... -->
-          </div>
+      <div class="evo-exp-card">
+        <div class="evo-exp-category">Expertise Flux</div>
+        <h3 class="evo-exp-title">Systèmes de Paiement & Checkout</h3>
+        <div class="evo-exp-context">Secteur : Commerce connecté & Omnicanal</div>
+        <p class="evo-exp-desc">Conception fonctionnelle de l'étape critique du checkout et des tunnels de paiement. Intégration de solutions transactionnelles sécurisées, automatisation des flux de facturation et optimisation des cinématiques de validation des commandes clients.</p>
+        <div class="evo-exp-tags">
+          <span class="evo-tag">Payment</span>
+          <span class="evo-tag">Checkout</span>
+          <span class="evo-tag">Facturation</span>
         </div>
       </div>
 
-      <div class="evo-phase-block">
-        <div class="evo-phase-header">
-          <div class="evo-phase-number">03[cite: 10]</div>
-          <h2>Sécuriser le déploiement[cite: 10]</h2>
-          <div class="evo-phase-role">Posture PMO[cite: 10]</div>
-          <div class="evo-phase-indicator">▼</div>
-        </div>
-        <div class="evo-phase-content">
-          <div class="evo-sub-column">
-            <div class="evo-spec-card">
-              <h3 class="evo-spec-title">Coordination Transverse IT & Métiers[cite: 10]</h3>
-              <div class="evo-spec-context">Typologie : Écosystèmes multi-acteurs[cite: 10]</div>
-              <p class="evo-spec-desc">Aiguillage et synchronisation des équipes métiers, des pôles techniques de développement, de l'architecture SI et des éditeurs/intégrateurs externes au sein de cadres agiles.[cite: 10]</p>
-              <div class="evo-spec-tags"><span class="evo-tag">Gouvernance[cite: 10]</span><span class="evo-tag">Agile Project[cite: 10]</span></div>
-            </div>
-            <!-- More specs... -->
-          </div>
+      <div class="evo-exp-card">
+        <div class="evo-exp-category">Architecture Métier</div>
+        <h3 class="evo-exp-title">Orchestration OMS Internationale</h3>
+        <div class="evo-exp-context">Secteur : Cosmétique, Beauté & Distribution</div>
+        <p class="evo-exp-desc">Intégration, paramétrage et optimisation de solutions d'Order Management System (IBM Sterling OMS). Modélisation des règles métiers complexes pour la gestion des commandes à l'international, l'allocation intelligente des stocks et les modes de livraison croisés.</p>
+        <div class="evo-exp-tags">
+          <span class="evo-tag">IBM Sterling OMS</span>
+          <span class="evo-tag">Logistique</span>
         </div>
       </div>
-    </main>
 
+      <div class="evo-exp-card">
+        <div class="evo-exp-category">Facilitation</div>
+        <h3 class="evo-exp-title">Design Thinking & Retail Innovant</h3>
+        <div class="evo-exp-context">Secteur : Grande distribution multinationale</div>
+        <p class="evo-exp-desc">Organisation, structuration et facilitation d'ateliers collaboratifs d'envergure réunissant jusqu'à 60 participants. Co-animation de programmes prospectifs visant à repenser les parcours en point de vente physique, définir les besoins et valider l'UX via du prototypage.</p>
+        <div class="evo-exp-tags">
+          <span class="evo-tag">Design Thinking</span>
+          <span class="evo-tag">Ateliers</span>
+          <span class="evo-tag">UX</span>
+        </div>
+      </div>
+
+      <div class="evo-exp-card">
+        <div class="evo-exp-category">AMOA / Conseil</div>
+        <h3 class="evo-exp-title">Cadrage Avant-Vente & Appels d'Offres</h3>
+        <div class="evo-exp-context">Typologie : Édition de logiciels & Intégration</div>
+        <p class="evo-exp-desc">Accompagnement de plus de 80 dossiers complexes dans leurs phases de cadrage initial. Analyse des besoins métiers, pilotage des réponses aux appels d'offres d'envergure (RFP) et élaboration de recommandations stratégiques neutres sur l'architecture logicielle cible.</p>
+        <div class="evo-exp-tags">
+          <span class="evo-tag">Cadrage</span>
+          <span class="evo-tag">RFP</span>
+          <span class="evo-tag">Architecture</span>
+        </div>
+      </div>
+
+      <div class="evo-exp-card">
+        <div class="evo-exp-category">Démonstration Technique</div>
+        <h3 class="evo-exp-title">Pre-Sales & Ingénierie de Solution</h3>
+        <div class="evo-exp-context">Typologie : Écosystèmes PIM, DAM & Marketplace</div>
+        <p class="evo-exp-desc">Intervention en tant que Sales Engineer / Consultant technique. Préparation et animation d'ateliers de démonstration logicielle complexes axés sur la valeur. Traduction des fonctionnalités d'outils types PIM ou DAM face à des décideurs DSI et métiers (C-Level).</p>
+        <div class="evo-exp-tags">
+          <span class="evo-tag">Pre-Sales</span>
+          <span class="evo-tag">Démos</span>
+          <span class="evo-tag">PIM/DAM</span>
+        </div>
+      </div>
+
+      <div class="evo-exp-card">
+        <div class="evo-exp-category">Delivery</div>
+        <h3 class="evo-exp-title">Cadrage Omnicanal & Supply Chain</h3>
+        <div class="evo-exp-context">Secteur : Tourisme, Loisirs & Retail</div>
+        <p class="evo-exp-desc">Modélisation et optimisation des parcours client omnicanaux. Alignement des processus logistiques, de la supply chain et des systèmes d'information pour décloisonner les étapes d'achat, de la réservation en ligne jusqu'au suivi de la relation client multicanal.</p>
+        <div class="evo-exp-tags">
+          <span class="evo-tag">Omnicanal</span>
+          <span class="evo-tag">Supply Chain</span>
+          <span class="evo-tag">Processus</span>
+        </div>
+      </div>
+
+      <div class="evo-exp-card">
+        <div class="evo-exp-category">Gouvernance</div>
+        <h3 class="evo-exp-title">Intégration & Déploiement CRM</h3>
+        <div class="evo-exp-context">Secteur : Services, Tourisme & Industrie</div>
+        <p class="evo-exp-desc">Pilotage fonctionnel de projets d'intégration CRM basés sur les technologies du marché (Salesforce, Microsoft Dynamics 365). Animation des ateliers de spécifications, encadrement des phases de tests fonctionnels et sécurisation des jalons de mise en production (go-live).</p>
+        <div class="evo-exp-tags">
+          <span class="evo-tag">Salesforce</span>
+          <span class="evo-tag">Dynamics 365</span>
+          <span class="evo-tag">Go-Live</span>
+        </div>
+      </div>
+
+      <div class="evo-exp-card">
+        <div class="evo-exp-category">Accompagnement</div>
+        <h3 class="evo-exp-title">Formation & Programme Train-the-Trainer</h3>
+        <div class="evo-exp-context">Typologie : Adoption Technologique</div>
+        <p class="evo-exp-desc">Conception de dispositifs d'accompagnement au changement pour grands comptes. Création complète de supports pédagogiques techniques et animation de sessions de formation dédiées aux référents internes afin de démultiplier la montée en compétences des équipes locales.</p>
+        <div class="evo-exp-tags">
+          <span class="evo-tag">Formation</span>
+          <span class="evo-tag">Adoption</span>
+          <span class="evo-tag">Change Management</span>
+        </div>
+      </div>
+
+      <div class="evo-exp-card">
+        <div class="evo-exp-category">Gouvernance / PMO</div>
+        <h3 class="evo-exp-title">Coordination IT & Métiers Transverse</h3>
+        <div class="evo-exp-context">Typologie : Projets multi-acteurs</div>
+        <p class="evo-exp-desc">Pilotage de la relation et alignement continu entre équipes métiers, équipes de développement technique, pôles d'architecture, cellules QA (Assurance Qualité) et partenaires ou éditeurs externes au sein d'environnements agiles.</p>
+        <div class="evo-exp-tags">
+          <span class="evo-tag">Agilité</span>
+          <span class="evo-tag">QA/Test</span>
+          <span class="evo-tag">Coordination</span>
+        </div>
+      </div>
+
+      <div class="evo-exp-card">
+        <div class="evo-exp-category">Optimisation</div>
+        <h3 class="evo-exp-title">Suivi Post-Déploiement & Performance</h3>
+        <div class="evo-exp-context">Typologie : Amélioration continue</div>
+        <p class="evo-exp-desc">Suivi des indicateurs de performance post-lancement, identification des irritants techniques ou opérationnels rencontrés par les utilisateurs, et mise en place d'actions d'optimisation continue pour sécuriser et pérenniser l'adoption des nouveaux outils numériques.</p>
+        <div class="evo-exp-tags">
+          <span class="evo-tag">Run</span>
+          <span class="evo-tag">KPIs</span>
+          <span class="evo-tag">Résolution</span>
+        </div>
+      </div>
+
+      <div class="evo-exp-card">
+        <div class="evo-exp-category">Cadrage Fonctionnel</div>
+        <h3 class="evo-exp-title">Écosystèmes Moteur de Recherche & Marketplace</h3>
+        <div class="evo-exp-context">Secteur : B2B / B2C Distribution</div>
+        <p class="evo-exp-desc">Analyse et structuration fonctionnelle de moteurs de recherche internes pour l'optimisation de la pertinence produit. Cadrage opérationnel de solutions de places de marché (Marketplace) connectées aux briques de gestion des stocks.</p>
+        <div class="evo-exp-tags">
+          <span class="evo-tag">Search</span>
+          <span class="evo-tag">Marketplace</span>
+          <span class="evo-tag">Flux</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- BOTTOM CTA SECTION -->
     <section class="evo-bottom-cta">
-      <h3>Un projet à structurer, un écosystème SaaS ou une brique IA à intégrer ?[cite: 10]</h3>
-      <p style="color:#555; margin-bottom:20px;">Sécurisons ensemble la trajectoire fonctionnelle et opérationnelle de vos solutions informatiques.[cite: 10]</p>
-      <div class="evo-cta-wrapper"><a href="contact.html" class="evo-btn">Échanger sur vos enjeux[cite: 10]</a></div>
-    </section>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="evo-global-footer">
-    <div class="evo-footer-inner">
-      <div class="evo-logo"><strong>evo</strong>shifting</div>
-      <div class="evo-footer-links">
-        <a href="index.html">Accueil</a>
-        <a href="portrait.html">Portrait</a>
-        <a href="contact.html">Contact</a>
-        <a href="https://www.linkedin.com/in/ma-clx/" target="_blank">LinkedIn</a>
+      <h2>Votre contexte présente des enjeux de flux similaires ?</h2>
+      <p>Sécurisons ensemble vos choix applicatifs et la trajectoire de vos livraisons.</p>
+      <div class="evo-cta-wrapper">
+        <a href="/contact" class="evo-btn">Échanger sur vos enjeux</a>
       </div>
-      <div class="evo-footer-copy">© 2026 evoshifting - Marc-Antoine Cailloux. Tous droits réservés.</div>
-    </div>
-  </footer>
+    </section>
+
+  </div>
 
 </body>
 </html>
