@@ -3,175 +3,274 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portrait de Marc-Antoine Cailloux, expert en transformation numérique.[cite: 7]">
-  <title>evoshifting | Portrait[cite: 7]</title>
-  
+  <meta name="description" content="Portrait de Marc-Antoine Cailloux, expert en transformation numérique, consultant freelance IA et IT. Plus de 10 ans d'expérience entre les métiers et la DSI (Bordeaux, Paris).">
+  <meta name="keywords" content="portrait, IA, conseil, bordeaux, paris, freelance, projet, consultant, transformation numérique, e-commerce, PIM">
+  <meta name="author" content="Marc-Antoine Cailloux">
+  <title>evoshifting | Portrait</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary: #111111;
-      --accent: #68A67A;
-      --bg: #ffffff;
-      --text: #2D3748;
-      --border: #eaeaea;
-      --font-main: "Futura PT", Futura, "Trebuchet MS", Arial, sans-serif;
-    }
-    body { margin: 0; padding: 0; font-family: var(--font-main); background-color: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; padding: 0; font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #1a1a1a; background-color: #ffffff; }
+
+    /* HEADER */
+    .evo-header { position: sticky; top: 0; z-index: 100; background: #ffffff; border-bottom: 1px solid #eaeaea; }
+    .evo-header-inner { max-width: 1100px; margin: 0 auto; padding: 0 20px; height: 70px; display: flex; align-items: center; justify-content: space-between; }
+    .evo-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+    .evo-logo img { height: 36px; width: auto; }
+    .evo-nav { display: flex; align-items: center; gap: 32px; }
+    .evo-nav a { font-size: 0.9rem; font-weight: 600; color: #333333; text-decoration: none; letter-spacing: 0.3px; transition: color 0.2s; }
+    .evo-nav a:hover { color: #68A67A; }
+    .evo-nav a.active { color: #68A67A; }
+    .evo-nav-contact { display: inline-block; background-color: #111111; color: #ffffff !important; text-decoration: none; padding: 10px 22px; font-weight: 600; font-size: 0.9rem; border-radius: 4px; transition: background 0.2s ease; }
+    .evo-nav-contact:hover { background-color: #68A67A !important; }
+    .evo-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .evo-hamburger span { display: block; width: 24px; height: 2px; background: #111111; border-radius: 2px; }
+    .evo-mobile-nav { display: none; flex-direction: column; background: #ffffff; border-top: 1px solid #eaeaea; padding: 20px; gap: 16px; }
+    .evo-mobile-nav.open { display: flex; }
+    .evo-mobile-nav a { font-size: 1rem; font-weight: 600; color: #333333; text-decoration: none; padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
+    .evo-mobile-nav a:last-child { border-bottom: none; }
+    .evo-mobile-nav a:hover { color: #68A67A; }
+    @media (max-width: 768px) { .evo-nav { display: none; } .evo-hamburger { display: flex; } }
+
+    /* FOOTER */
+    .evo-footer { border-top: 1px solid #eaeaea; background: #ffffff; }
+    .evo-footer-inner { max-width: 1100px; margin: 0 auto; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
+    .evo-footer-links { display: flex; gap: 24px; align-items: center; }
+    .evo-footer-links a { color: #555555; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .evo-footer-links a:hover { color: #68A67A; }
+    .evo-footer-legal { font-size: 0.8rem; color: #999999; line-height: 1.5; }
+
+    /* PAGE */
     .evo-container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
-    
-    /* HEADER & FOOTER */
-    .evo-global-header { background: #ffffff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; padding: 15px 20px; }
-    .evo-header-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .evo-logo { font-size: 1.6rem; text-decoration: none; color: var(--primary); letter-spacing: -0.5px; }
-    .evo-logo strong { font-weight: 700; }
-    .evo-nav { display: flex; gap: 25px; }
-    .evo-nav a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.95rem; text-transform: uppercase; transition: color 0.2s; }
-    .evo-nav a:hover { color: var(--accent); }
-    .evo-global-footer { background: #f9f9f9; border-top: 1px solid var(--border); padding: 50px 20px 30px; margin-top: 60px; }
-    .evo-footer-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-    .evo-footer-links { display: flex; gap: 20px; }
-    .evo-footer-links a { color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
-    .evo-footer-links a:hover { color: var(--accent); }
-    .evo-footer-copy { font-size: 0.85rem; color: #888; margin-top: 10px; }
+    .evo-divider { border: 0; height: 1px; background: #e0e0e0; margin: 60px auto; width: 100%; display: block; }
 
-    /* COMPONENTS */
-    .evo-divider { border: 0; height: 1px; background: var(--border); margin: 60px auto; width: 100%; display: block; }
-    .evo-btn { display: inline-block; background-color: var(--primary); color: #ffffff !important; text-decoration: none; padding: 16px 36px; font-weight: 600; border-radius: 4px; transition: background 0.2s ease; }
-    .evo-btn:hover { background-color: var(--accent); }
-
-    /* PAGE STYLES */
-    .evo-profile-layout { display: grid; grid-template-columns: 280px 1fr; gap: 50px; align-items: start; margin-top: 20px; }
-    .evo-avatar-box { width: 100%; aspect-ratio: 1/1; border-radius: 12px; background-color: #f4f4f4; overflow: hidden; border: 1px solid var(--border); }
+    .evo-profile-layout { display: grid; grid-template-columns: 280px 1fr; gap: 50px; align-items: start; margin-top: 40px; }
+    .evo-avatar-box { width: 100%; aspect-ratio: 1 / 1; border-radius: 12px; background-color: #f4f4f4; overflow: hidden; border: 1px solid #eaeaea; }
     .evo-avatar-box img { width: 100%; height: 100%; object-fit: cover; }
-    .evo-bio-text h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin: 0 0 8px 0; }
-    .evo-bio-text p { font-size: 1.1rem; line-height: 1.65; color: #444; margin: 0 0 20px 0; }
+    .evo-bio-text h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; color: #68A67A; margin: 0 0 8px 0; }
+    .evo-bio-text h3 { font-size: 1.8rem; font-weight: 700; color: #111111; margin: 0 0 20px 0; }
+    .evo-bio-text p { font-size: 1.1rem; line-height: 1.65; color: #444444; margin: 0 0 20px 0; }
 
-    .evo-section-title { text-align: center; font-size: 1.9rem; font-weight: 700; margin-bottom: 10px; color: var(--primary); }
-    .evo-section-subtitle { text-align: center; font-size: 1.05rem; color: #666; margin-bottom: 45px; text-transform: uppercase; letter-spacing: 1px; }
+    .evo-section-title { text-align: center; font-size: 1.9rem; font-weight: 700; margin-bottom: 10px; color: #111111; }
+    .evo-section-subtitle { text-align: center; font-size: 1.05rem; color: #666666; margin-bottom: 45px; text-transform: uppercase; letter-spacing: 1px; }
     .evo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-    .evo-card { background: #f9f9f9; padding: 35px 30px; border-radius: 8px; border: 1px solid var(--border); }
-    .evo-card h4 { font-size: 1.3rem; font-weight: 700; color: var(--primary); margin: 0 0 15px 0; }
-    .evo-card p, .evo-card ul { font-size: 1rem; line-height: 1.6; color: #444; margin: 0; }
-    .evo-card ul { padding-left: 20px; }
+    .evo-card { background: #f9f9f9; padding: 35px 30px; border-radius: 8px; border: 1px solid #eaeaea; }
+    .evo-card h4 { font-size: 1.3rem; font-weight: 700; color: #111111; margin: 0 0 15px 0; }
+    .evo-card p { font-size: 1rem; line-height: 1.6; color: #444444; margin: 0; }
+    .evo-card ul { margin: 0; padding-left: 20px; color: #444444; line-height: 1.6; font-size: 1rem; }
     .evo-card ul li { margin-bottom: 8px; }
 
     .evo-testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
-    .evo-testimonial-card { background: #ffffff; padding: 35px 30px; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; }
-    .evo-testimonial-text { font-size: 0.95rem; line-height: 1.6; color: #555; font-style: italic; margin-bottom: 25px; flex-grow: 1; }
-    .evo-testimonial-author { font-weight: 700; color: var(--primary); font-size: 1.05rem; margin-bottom: 4px; }
-    .evo-testimonial-role { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; font-weight: 600; }
-    
+    .evo-testimonial-card { background: #ffffff; padding: 35px 30px; border-radius: 8px; border: 1px solid #eaeaea; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; }
+    .evo-testimonial-text { font-size: 0.95rem; line-height: 1.6; color: #555555; font-style: italic; margin-bottom: 25px; flex-grow: 1; }
+    .evo-testimonial-author { font-weight: 700; color: #111111; font-size: 1.05rem; margin-bottom: 4px; }
+    .evo-testimonial-role { font-size: 0.75rem; color: #68A67A; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+
     .evo-bottom-cta { text-align: center; padding: 20px 0; }
-    .evo-bottom-cta h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 12px; color: var(--primary); }
+    .evo-bottom-cta h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 12px; color: #111111; }
+    .evo-bottom-cta p { font-size: 1.1rem; color: #555555; margin-bottom: 30px; }
+    .evo-btn { display: inline-block; background-color: #111111; color: #ffffff !important; text-decoration: none; padding: 16px 36px; font-weight: 600; border-radius: 4px; transition: background 0.2s ease; font-family: inherit; }
+    .evo-btn:hover { background-color: #68A67A; }
 
     @media (max-width: 768px) {
-      .evo-nav { display: none; }
+      .evo-container { padding: 30px 15px; }
       .evo-profile-layout { grid-template-columns: 1fr; gap: 30px; text-align: center; }
       .evo-avatar-box { max-width: 240px; margin: 0 auto; }
-      .evo-grid, .evo-testimonials-grid { grid-template-columns: 1fr; }
+      .evo-grid, .evo-testimonials-grid { grid-template-columns: 1fr; gap: 20px; }
+      .evo-divider { margin: 40px auto; }
+      .evo-footer-links { flex-direction: column; gap: 12px; }
     }
   </style>
 </head>
 <body>
 
   <!-- HEADER -->
-  <header class="evo-global-header">
+  <header class="evo-header">
     <div class="evo-header-inner">
-      <a href="index.html" class="evo-logo"><strong>evo</strong>shifting</a>
+      <a href="index.html" class="evo-logo">
+        <img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting">
+      </a>
       <nav class="evo-nav">
-        <a href="index.html">Accueil</a>
-        <a href="portrait.html">Portrait</a>
-        <a href="references.html">Références</a>
-        <a href="offres.html">Offres</a>
-        <a href="contact.html">Contact</a>
+        <a href="offres.html">offres</a>
+        <a href="references.html">références</a>
+        <a href="portrait.html" class="active">portrait</a>
+        <a href="contact.html" class="evo-nav-contact">Contact</a>
       </nav>
+      <button class="evo-hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+    <nav class="evo-mobile-nav" id="mobileNav">
+      <a href="offres.html">offres</a>
+      <a href="references.html">références</a>
+      <a href="portrait.html">portrait</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </header>
 
   <div class="evo-container">
+
+    <!-- PROFILE -->
     <section class="evo-profile-layout">
       <div class="evo-avatar-box">
-        <img src="https://www.hebergeur-image.fr/uploads/20260604/ba5840dfa0e815ce86508552b633b605e99d9fd7.png" alt="Marc-Antoine Cailloux[cite: 7]">
+        <img src="https://www.hebergeur-image.fr/uploads/20260604/ba5840dfa0e815ce86508552b633b605e99d9fd7.png" alt="Marc-Antoine Cailloux">
       </div>
       <div class="evo-bio-text">
-        <h2>Marc-Antoine Cailloux[cite: 7]</h2>
-        <p>Evoluant depuis plus de 10 ans à l'intersection des directions métiers et des DSI. Mon approche privilégie l'alignement des processus métier avec les solutions techniques pour apporter des réponses concrètes et opérationnelles.[cite: 7]</p>
-        <p>Fort d'une expérience couvrant le PXM, le e-commerce, la donnée client et l'order management, je fais le pont entre les enjeux métiers et les capacités techniques. Je permets à mes clients internationaux d'exploiter tout le potentiel de leurs plateformes tout en simplifiant des concepts complexes en stratégies claires et actionnables.[cite: 7]</p>
+        <h2>Marc-Antoine Cailloux</h2>
+        <p>
+          Evoluant depuis plus de 10 ans à l'intersection des directions métiers et des DSI. Mon approche privilégie l'alignement des processus métier avec les solutions techniques pour apporter des réponses concrètes et opérationnelles.
+        </p>
+        <p>
+          Fort d'une expérience couvrant le PXM, le e-commerce, la donnée client et l'order management, je fais le pont entre les enjeux métiers et les capacités techniques. Je permets à mes clients internationaux d'exploiter tout le potentiel de leurs plateformes tout en simplifiant des concepts complexes en stratégies claires et actionnables.
+        </p>
       </div>
     </section>
 
     <hr class="evo-divider">
 
+    <!-- SKILLS -->
     <section class="evo-skills">
-      <h2 class="evo-section-title">Compétences & Savoir-être[cite: 7]</h2>
-      <p class="evo-section-subtitle">Transformer la complexité en résultats mesurables[cite: 7]</p>
+      <h2 class="evo-section-title">Compétences & Savoir-être</h2>
+      <p class="evo-section-subtitle">Transformer la complexité en résultats mesurables</p>
       <div class="evo-grid">
         <div class="evo-card">
-          <h4>Vision Stratégique[cite: 7]</h4>
-          <p>En tant qu'expert de la transformation numérique, j'aide les organisations à transformer des défis complexes en résultats évolutifs. Je conçois et déploie des solutions logicielles sur mesure qui améliorent les performances, optimisent les processus et stimulent la croissance.[cite: 7]</p>
+          <h4>Vision Stratégique</h4>
+          <p>En tant qu'expert de la transformation numérique, j'aide les organisations à transformer des défis complexes en résultats évolutifs. Je conçois et déploie des solutions logicielles sur mesure qui améliorent les performances, optimisent les processus et stimulent la croissance.</p>
         </div>
         <div class="evo-card">
-          <h4>Expertise Clé[cite: 7]</h4>
+          <h4>Expertise Clé</h4>
           <ul>
-            <li>Implémentation PIM & DAM[cite: 7]</li>
-            <li>E-commerce, Marketplace, OMS, CRM & CDP[cite: 7]</li>
-            <li>Optimisation UX/UI, Search & Discovery, Solutions de paiement & Checkout[cite: 7]</li>
-            <li>Méthodologies Agile & SAFe, Stratégie numérique, Business Development[cite: 7]</li>
-            <li>Gestion du cycle de vente, de projet & Customer Success[cite: 7]</li>
+            <li>Implémentation PIM & DAM</li>
+            <li>E-commerce, Marketplace, OMS, CRM & CDP</li>
+            <li>Optimisation UX/UI, Search & Discovery, Solutions de paiement & Checkout</li>
+            <li>Méthodologies Agile & SAFe, Stratégie numérique, Business Development</li>
+            <li>Gestion du cycle de vente, de projet & Customer Success</li>
           </ul>
         </div>
         <div class="evo-card">
-          <h4>Savoir-être[cite: 7]</h4>
-          <p>Curieux, proactif et collaboratif, je m'épanouis dans des environnements multiculturels où l'innovation et la confiance sont les moteurs de la réussite. J'accorde une grande importance au dialogue ouvert, à la structuration de la pensée et à l'apprentissage continu.[cite: 7]</p>
+          <h4>Savoir-être</h4>
+          <p>Curieux, proactif et collaboratif, je m'épanouis dans des environnements multiculturels où l'innovation et la confiance sont les moteurs de la réussite. J'accorde une grande importance au dialogue ouvert, à la structuration de la pensée et à l'apprentissage continu.</p>
         </div>
       </div>
     </section>
 
     <hr class="evo-divider">
 
+    <!-- TESTIMONIALS -->
     <section class="evo-testimonials">
-      <h2 class="evo-section-title">Recommandations[cite: 7]</h2>
-      <p class="evo-section-subtitle">Ce que disent les professionnels avec qui j'ai collaboré[cite: 7]</p>
+      <h2 class="evo-section-title">Recommandations</h2>
+      <p class="evo-section-subtitle">Ce que disent les professionnels avec qui j'ai collaboré</p>
       <div class="evo-testimonials-grid">
         <div class="evo-testimonial-card">
-          <div class="evo-testimonial-text">« I had the pleasure of working alongside Marco at inriver, where we were both Sales Engineers... I'm confident Marco will bring that same dedication, customer empathy, and collaborative spirit to his consulting work. »[cite: 7]</div>
-          <div class="evo-testimonial-author">Killian Jackson[cite: 7]</div>
-          <div class="evo-testimonial-role">Equipe[cite: 7]</div>
+          <div class="evo-testimonial-text">« I had the pleasure of working alongside Marco at inriver, where we were both Sales Engineers. What sets Marco apart is his exceptional ability to truly understand a customer's unique challenges and translate complex product capabilities into clear, compelling business value, tailored precisely to the personas who need to hear it most. Marco's product demos weren't generic walkthroughs; they were thoughtfully crafted experiences... I'm confident Marco will bring that same dedication, customer empathy, and collaborative spirit to his consulting work. »</div>
+          <div class="evo-testimonial-author">Killian Jackson</div>
+          <div class="evo-testimonial-role">Equipe</div>
         </div>
         <div class="evo-testimonial-card">
-          <div class="evo-testimonial-text">« J'ai le plaisir de recommander Marc Antoine... Il sait allier vision stratégique et pragmatisme opérationnel, ce qui en fait un atout précieux dans des contextes de transformation. »[cite: 7]</div>
-          <div class="evo-testimonial-author">Dominique LIN[cite: 7]</div>
-          <div class="evo-testimonial-role">Equipe[cite: 7]</div>
+          <div class="evo-testimonial-text">« J'ai le plaisir de recommander Marc Antoine avec qui j'ai eu l'opportunité de travailler au sein du même programme de transformation pour un leader du retail. Marc Antoine se distingue par son engagement sincère à créer des environnements de travail favorisant la collaboration. [...] Il sait allier vision stratégique et pragmatisme opérationnel, ce qui en fait un atout précieux dans des contextes de transformation. »</div>
+          <div class="evo-testimonial-author">Dominique LIN</div>
+          <div class="evo-testimonial-role">Equipe</div>
         </div>
         <div class="evo-testimonial-card">
-          <div class="evo-testimonial-text">« I had the pleasure of managing Marc-Antoine ("Marco") during his nearly two years as a Senior Sales Engineer at inriver... Beyond his technical skill, Marco was an exceptional teammate. »[cite: 7]</div>
-          <div class="evo-testimonial-author">David Copeland[cite: 7]</div>
-          <div class="evo-testimonial-role">Manager[cite: 7]</div>
+          <div class="evo-testimonial-text">« I had the pleasure of managing Marc-Antoine ("Marco") during his nearly two years as a Senior Sales Engineer at inriver. Marco consistently stood out for his strong work ethic, attention to detail, and thorough preparation. He brought a level of professionalism and care to every customer engagement that made him a trusted partner to both sales and technical teams alike. Beyond his technical skill, Marco was an exceptional teammate. »</div>
+          <div class="evo-testimonial-author">David Copeland</div>
+          <div class="evo-testimonial-role">Manager</div>
+        </div>
+        <div class="evo-testimonial-card">
+          <div class="evo-testimonial-text">« J'ai eu la chance de travailler avec Marc-Antoine durant nos années chez Octopia. Nous avons collaboré sur de nombreux dossiers clients, et je peux dire sans hésiter que Marc-Antoine est l'une des personnes avec qui j'ai le plus aimé travailler. Il allie parfaitement rigueur technique et esprit commercial : toujours précis, réactif et orienté solution. »</div>
+          <div class="evo-testimonial-author">Loïc Anslot</div>
+          <div class="evo-testimonial-role">Equipe</div>
+        </div>
+        <div class="evo-testimonial-card">
+          <div class="evo-testimonial-text">« J'ai eu le plaisir de travailler à plusieurs reprises avec Marc-Antoine chez IBM, sur des projets de cadrage, design thinking et implémentation technique. À chaque mission, il s'est distingué par sa grande expertise, sa proactivité et sa fiabilité. Marc-Antoine est un véritable atout pour une équipe : il s'implique pleinement, trouve toujours des solutions face aux défis et veille au respect des délais. »</div>
+          <div class="evo-testimonial-author">Paulina Barbier</div>
+          <div class="evo-testimonial-role">Equipe</div>
+        </div>
+        <div class="evo-testimonial-card">
+          <div class="evo-testimonial-text">« Marco was a pleasure to work with at inriver. He has a great blend of technical knowledge combined with ability to translate it to the business teams. He was also able to not only support France but the greater EMEA region. Strongly recommend him for a sales engineering role. »</div>
+          <div class="evo-testimonial-author">Brad Habansky</div>
+          <div class="evo-testimonial-role">Manager</div>
+        </div>
+        <div class="evo-testimonial-card">
+          <div class="evo-testimonial-text">« Dans un contexte de création d'équipe et de produit, Marc-Antoine a su s'imposer comme un élément majeur du dispositif avant-vente, développant une expertise pointue dans les processus de décision des prospects B2B, avec qui il a toujours su bâtir une relation de confiance réciproque. Sa double compétence business et techno est un atout précieux. »</div>
+          <div class="evo-testimonial-author">Lionel Marcouire</div>
+          <div class="evo-testimonial-role">Manager</div>
+        </div>
+        <div class="evo-testimonial-card">
+          <div class="evo-testimonial-text">« Je recommande vivement Marc-Antoine avec qui j'ai eu le plaisir de collaborer sur deux belles avant-vente victorieuses avec la solution Marketplace Octopia... Marc-Antoine est un professionnel doté d'un sens aigu du business. Sa capacité à comprendre les enjeux et à élaborer des stratégies efficaces a été cruciale pour le succès de ces initiatives. »</div>
+          <div class="evo-testimonial-author">Régis Mongrédien</div>
+          <div class="evo-testimonial-role">Partenaire</div>
+        </div>
+        <div class="evo-testimonial-card">
+          <div class="evo-testimonial-text">« I had the pleasure of working with Marc-Antoine during our time together at inriver and onboarded him in to the Sales Engineering team. Marco is a team player and certainly added a lot of value to our pre-sales organisation. He takes a consultative approach with customers and can present well to both technical and commercial audiences. »</div>
+          <div class="evo-testimonial-author">Jake Branchett</div>
+          <div class="evo-testimonial-role">Equipe</div>
+        </div>
+        <div class="evo-testimonial-card">
+          <div class="evo-testimonial-text">« Je recommande vivement Marc-Antoine Cailloux pour un poste de Consultant : il fait preuve d'une solide capacité d'analyse, se montre toujours orienté résultats, et possède un excellent sens du client allié à un esprit collaboratif. Sa rigueur, son adaptabilité et sa curiosité intellectuelle constituent des atouts majeurs dans un environnement exigeant. »</div>
+          <div class="evo-testimonial-author">Louis de Bréchard</div>
+          <div class="evo-testimonial-role">Equipe</div>
+        </div>
+        <div class="evo-testimonial-card">
+          <div class="evo-testimonial-text">« I'm very happy to recommend Marc-Antoine, who worked as a Pre-Sales Engineer at inriver. From day one, he stood out for his strong technical expertise, great communication skills, and genuine ability to understand customer needs. Marc-Antoine was a key player in helping qualify opportunities, propose the right solutions, and support the sales team... »</div>
+          <div class="evo-testimonial-author">Jérôme Letourneux</div>
+          <div class="evo-testimonial-role">Equipe</div>
+        </div>
+        <div class="evo-testimonial-card">
+          <div class="evo-testimonial-text">« J'ai pu travailler en étroite collaboration avec Marc Antoine sur plusieurs projets de transformation e-commerce notamment. Marc-Antoine fait preuve d'un sens très fin de l'analyse ainsi que d'une grande rigueur et d'un haut niveau d'exigence dans l'ensemble de ses travaux et livrables. Je recommande vivement. »</div>
+          <div class="evo-testimonial-author">Romain Godart</div>
+          <div class="evo-testimonial-role">Equipe</div>
+        </div>
+        <div class="evo-testimonial-card">
+          <div class="evo-testimonial-text">« J'ai eu l'occasion de travailler avec Marc-Antoine et j'en garde une excellente expérience. Son approche est à la fois stratégique et pragmatique, avec une vraie compréhension des enjeux métiers et techniques. Professionnel, à l'écoute et très clair dans sa manière d'aborder les sujets, il a su apporter une vraie valeur ajoutée à notre organisation. »</div>
+          <div class="evo-testimonial-author">Guillaume Bonini</div>
+          <div class="evo-testimonial-role">Equipe</div>
+        </div>
+        <div class="evo-testimonial-card">
+          <div class="evo-testimonial-text">« Marc-Antoine a participé à de multiples projets chez IBM Consulting avec un savoir-faire reconnu. La qualité de son travail et sa gestion des relations humaines ont à de nombreuses reprises été mises en avant par des distinctions. Je retiendrai avant tout une personne de confiance avec qui la collaboration était assez simple. »</div>
+          <div class="evo-testimonial-author">Jean-Marc PAULO</div>
+          <div class="evo-testimonial-role">Manager</div>
+        </div>
+        <div class="evo-testimonial-card">
+          <div class="evo-testimonial-text">« I had the pleasure of working with Marc-Antoine at Inriver where his technical experience and attention to detail shone through, Marc-Antoine is a great team player who enjoys goes out of his way to provide solutions to problems. »</div>
+          <div class="evo-testimonial-author">Karl Morgan</div>
+          <div class="evo-testimonial-role">Equipe</div>
         </div>
       </div>
     </section>
 
     <hr class="evo-divider">
 
+    <!-- CTA -->
     <section class="evo-bottom-cta">
-      <h3>Envie de collaborer ou d'échanger sur votre feuille de route ?[cite: 7]</h3>
-      <p style="color: #555; margin-bottom: 30px;">Toujours ouvert pour partager des idées ou explorer de nouvelles opportunités. N'hésitez pas à me contacter.[cite: 7]</p>
-      <div class="evo-cta-wrapper"><a href="contact.html" class="evo-btn">Échanger sur vos enjeux[cite: 7]</a></div>
+      <h3>Envie de collaborer ou d'échanger sur votre feuille de route ?</h3>
+      <p>Toujours ouvert pour partager des idées ou explorer de nouvelles opportunités. N'hésitez pas à me contacter.</p>
+      <a href="contact.html" class="evo-btn">Échanger sur vos enjeux</a>
     </section>
+
   </div>
 
   <!-- FOOTER -->
-  <footer class="evo-global-footer">
+  <footer class="evo-footer">
     <div class="evo-footer-inner">
-      <div class="evo-logo"><strong>evo</strong>shifting</div>
       <div class="evo-footer-links">
-        <a href="index.html">Accueil</a>
-        <a href="portrait.html">Portrait</a>
-        <a href="contact.html">Contact</a>
-        <a href="https://www.linkedin.com/in/ma-clx/" target="_blank">LinkedIn</a>
+        <a href="http://wa.me/33625544444" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <a href="https://www.linkedin.com/in/ma-clx/" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0077B5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
       </div>
-      <div class="evo-footer-copy">© 2026 evoshifting - Marc-Antoine Cailloux. Tous droits réservés.</div>
+      <p class="evo-footer-legal">evoshifting – SASU au capital de 1 500 € – RCS Bordeaux 992 753 632 – Conseil en systèmes et logiciels informatiques (APE 6202A)</p>
     </div>
   </footer>
 
+  <script>
+    function toggleMenu() { document.getElementById('mobileNav').classList.toggle('open'); }
+  </script>
 </body>
 </html>
