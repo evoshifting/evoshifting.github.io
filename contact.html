@@ -140,4 +140,145 @@
 
     .btn-primary {
       display: inline-block;
-      background-color: var(--primary
+      background-color: var(--primary);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 15px 30px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent);
+    }
+
+    /* =========================================
+       4. LE FOOTER (IDENTIQUE PARTOUT)
+       ========================================= */
+    .site-footer {
+      background-color: #111111;
+      color: #ffffff;
+      padding: 50px 20px 20px;
+      margin-top: auto;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-legal p {
+      font-size: 13px;
+      color: #aaaaaa;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .footer-social a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #333333;
+      padding-top: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #666666;
+    }
+
+    @media (max-width: 768px) {
+      .header-inner { flex-direction: column; gap: 15px; }
+      .header-nav { flex-wrap: wrap; justify-content: center; gap: 15px; }
+      .contact-layout { grid-template-columns: 1fr; gap: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo">
+        <img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting logo">
+      </a>
+      <nav class="header-nav">
+        <a href="index.html">Accueil</a>
+        <a href="offres.html">Offres</a>
+        <a href="portrait.html">Portrait</a>
+        <a href="references.html">Références</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="contact-layout">
+      
+      <div class="contact-info">
+        <h1>Co-construction</h1>
+        <p>Les informations partagées restent strictement confidentielles et servent uniquement à préparer notre premier échange technique.</p>
+        <p><strong>Prochaine étape :</strong></p>
+        <ul>
+          <li>Analyse de votre besoin sous 48h.</li>
+          <li>Qualification de 15-20 min.</li>
+          <li>Proposition de trajectoire.</li>
+        </ul>
+      </div>
+
+      <div class="contact-form">
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS_ICI">
+          
+          <div class="form-group">
+            <label for="name">Nom / Entreprise *</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Votre projet *</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary">Envoyer</button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-legal">
+        <img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting" style="height: 30px; margin-bottom: 15px; filter: brightness(0) invert(1);">
+        <p>evoshifting – SASU au capital de 1 500 € – RCS Bordeaux 992 753 632<br>Conseil en systèmes et logiciels informatiques (APE 6202A)</p>
+      </div>
+      <div class="footer-social">
+        <p style="font-size: 13px; color:#aaa; margin:0 0 10px 0;">Réseau Professionnel</p>
+        <a href="https://www.linkedin.com/in/ma-clx/" target="_blank">LinkedIn↗</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 evoshifting - Marc-Antoine Cailloux. Tous droits réservés.
+    </div>
+  </footer>
+
+</body>
+</html>
