@@ -367,30 +367,42 @@
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="evo-header">
-    <div class="evo-header-inner">
-      <a href="index.html" class="evo-logo">
+  <!-- DRAWER OVERLAY -->
+  <div class="evo-drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+  <!-- DRAWER MENU -->
+  <div class="evo-drawer" id="drawer">
+    <div class="evo-drawer-top">
+      <a href="index.html" class="evo-drawer-logo">
         <img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting">
       </a>
-      <nav class="evo-nav">
-        <a href="offres.html">offres</a>
-        <a href="references.html">références</a>
-        <a href="portrait.html">portrait</a>
-        <a href="contact.html" class="evo-nav-contact">Contact</a>
-      </nav>
-      <button class="evo-hamburger" onclick="toggleMenu()" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="evo-drawer-close" onclick="closeDrawer()" aria-label="Fermer">✕</button>
     </div>
-    <nav class="evo-mobile-nav" id="mobileNav">
+    <nav class="evo-drawer-nav">
       <a href="offres.html">offres</a>
       <a href="references.html">références</a>
       <a href="portrait.html">portrait</a>
-      <a href="contact.html">Contact</a>
     </nav>
-  </header>
+  </div>
 
+  <!-- HEADER -->
+  <header class="evo-header">
+    <div class="evo-header-inner">
+      <div class="evo-header-left">
+        <button class="evo-hamburger" onclick="openDrawer()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="evo-header-center">
+        <a href="index.html" class="evo-logo">
+          <img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting">
+        </a>
+      </div>
+      <div class="evo-header-right">
+        <a href="contact.html" class="evo-nav-contact">Contact</a>
+      </div>
+    </div>
+  </header>
   <div class="evo-container">
     
     <!-- HERO SECTION -->
@@ -529,10 +541,19 @@
   </footer>
 
   <script>
-    function toggleMenu() {
-      const nav = document.getElementById('mobileNav');
-      nav.classList.toggle('open');
+    function openDrawer() {
+      document.getElementById('drawer').classList.add('open');
+      document.getElementById('drawerOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
     }
+    function closeDrawer() {
+      document.getElementById('drawer').classList.remove('open');
+      document.getElementById('drawerOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeDrawer();
+    });
   </script>
 
 </body>

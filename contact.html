@@ -14,25 +14,35 @@
     *, *::before, *::after { box-sizing: border-box; }
     body { margin: 0; padding: 0; font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #2D3748; background-color: #ffffff; }
 
-    /* HEADER */
+        /* HEADER */
     .evo-header { position: sticky; top: 0; z-index: 100; background: #ffffff; border-bottom: 1px solid #eaeaea; }
-    .evo-header-inner { max-width: 1100px; margin: 0 auto; padding: 0 20px; height: 70px; display: flex; align-items: center; justify-content: space-between; }
-    .evo-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
-    .evo-logo img { height: 36px; width: auto; }
-    .evo-nav { display: flex; align-items: center; gap: 32px; }
-    .evo-nav a { font-size: 0.9rem; font-weight: 600; color: #333333; text-decoration: none; letter-spacing: 0.3px; transition: color 0.2s; }
-    .evo-nav a:hover { color: #68A67A; }
-    .evo-nav a.active { color: #68A67A; }
-    .evo-nav-contact { display: inline-block; background-color: #111111; color: #ffffff !important; text-decoration: none; padding: 10px 22px; font-weight: 600; font-size: 0.9rem; border-radius: 4px; transition: background 0.2s ease; }
+    .evo-header-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 24px;
+      height: 76px; display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+    }
+    .evo-header-left { display: flex; align-items: center; }
+    .evo-header-center { display: flex; justify-content: center; align-items: center; }
+    .evo-logo img { height: 47px; width: auto; display: block; }
+    .evo-header-right { display: flex; justify-content: flex-end; align-items: center; }
+    .evo-hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; }
+    .evo-hamburger span { display: block; width: 24px; height: 2px; background: #111111; border-radius: 2px; transition: all 0.3s ease; }
+    .evo-nav-contact { display: inline-block; background-color: #111111; color: #ffffff !important; text-decoration: none; padding: 10px 22px; font-weight: 600; font-size: 0.9rem; border-radius: 4px; transition: background 0.2s ease; white-space: nowrap; }
     .evo-nav-contact:hover { background-color: #68A67A !important; }
-    .evo-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
-    .evo-hamburger span { display: block; width: 24px; height: 2px; background: #111111; border-radius: 2px; }
-    .evo-mobile-nav { display: none; flex-direction: column; background: #ffffff; border-top: 1px solid #eaeaea; padding: 20px; gap: 16px; }
-    .evo-mobile-nav.open { display: flex; }
-    .evo-mobile-nav a { font-size: 1rem; font-weight: 600; color: #333333; text-decoration: none; padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
-    .evo-mobile-nav a:last-child { border-bottom: none; }
-    .evo-mobile-nav a:hover { color: #68A67A; }
-    @media (max-width: 768px) { .evo-nav { display: none; } .evo-hamburger { display: flex; } }
+    .evo-drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 200; }
+    .evo-drawer-overlay.open { display: block; }
+    .evo-drawer { position: fixed; top: 0; left: 0; width: 280px; height: 100vh; background: #ffffff; z-index: 201; transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; box-shadow: 4px 0 20px rgba(0,0,0,0.08); }
+    .evo-drawer.open { transform: translateX(0); }
+    .evo-drawer-top { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid #eaeaea; }
+    .evo-drawer-logo img { height: 30px; width: auto; }
+    .evo-drawer-close { background: none; border: none; cursor: pointer; font-size: 1.4rem; color: #555; padding: 4px; line-height: 1; }
+    .evo-drawer-close:hover { color: #111; }
+    .evo-drawer-nav { display: flex; flex-direction: column; padding: 16px 0; }
+    .evo-drawer-nav a { font-size: 1.05rem; font-weight: 600; color: #222222; text-decoration: none; padding: 14px 24px; border-bottom: 1px solid #f4f4f4; transition: color 0.2s, background 0.2s; }
+    .evo-drawer-nav a:last-child { border-bottom: none; }
+    .evo-drawer-nav a:hover { color: #68A67A; background: #f9fdf9; }
+    .evo-drawer-nav a.active { color: #68A67A; }
 
     /* FOOTER */
     .evo-footer { border-top: 1px solid #eaeaea; background: #ffffff; }
@@ -103,30 +113,42 @@
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="evo-header">
-    <div class="evo-header-inner">
-      <a href="index.html" class="evo-logo">
+  <!-- DRAWER OVERLAY -->
+  <div class="evo-drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+  <!-- DRAWER MENU -->
+  <div class="evo-drawer" id="drawer">
+    <div class="evo-drawer-top">
+      <a href="index.html" class="evo-drawer-logo">
         <img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting">
       </a>
-      <nav class="evo-nav">
-        <a href="offres.html">offres</a>
-        <a href="references.html">références</a>
-        <a href="portrait.html">portrait</a>
-        <a href="contact.html" class="evo-nav-contact active" style="background-color:#68A67A;">Contact</a>
-      </nav>
-      <button class="evo-hamburger" onclick="toggleMenu()" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="evo-drawer-close" onclick="closeDrawer()" aria-label="Fermer">✕</button>
     </div>
-    <nav class="evo-mobile-nav" id="mobileNav">
+    <nav class="evo-drawer-nav">
       <a href="offres.html">offres</a>
       <a href="references.html">références</a>
       <a href="portrait.html">portrait</a>
-      <a href="contact.html">Contact</a>
     </nav>
-  </header>
+  </div>
 
+  <!-- HEADER -->
+  <header class="evo-header">
+    <div class="evo-header-inner">
+      <div class="evo-header-left">
+        <button class="evo-hamburger" onclick="openDrawer()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="evo-header-center">
+        <a href="index.html" class="evo-logo">
+          <img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting">
+        </a>
+      </div>
+      <div class="evo-header-right">
+        <a href="contact.html" class="evo-nav-contact" style="background-color:#68A67A;">Contact</a>
+      </div>
+    </div>
+  </header>
   <div class="evo-advanced-contact" id="contact">
     
     <div class="evo-contact-hero">
@@ -161,7 +183,10 @@
       
       <!-- FORM -->
       <div class="evo-form-card">
-        <form id="evoContactForm" action="#" method="POST">
+        <form id="evoContactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+              <input type="hidden" name="_replyto" value="">
+              <input type="hidden" name="_subject" value="Nouvelle demande evoshifting">
+              <input type="hidden" name="_next" value="">
           <div class="evo-form-section">
             <label class="evo-section-label">1. Quel est votre enjeu principal ?</label>
             <div class="evo-badge-grid">
@@ -252,12 +277,18 @@
   </footer>
 
   <script>
-    function toggleMenu() { document.getElementById('mobileNav').classList.toggle('open'); }
-    document.getElementById('evoContactForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      const thankYouBlock = document.getElementById('evoThankYouMessage');
-      thankYouBlock.style.display = 'flex';
-      this.reset();
+    function openDrawer() {
+      document.getElementById('drawer').classList.add('open');
+      document.getElementById('drawerOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer() {
+      document.getElementById('drawer').classList.remove('open');
+      document.getElementById('drawerOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeDrawer();
     });
   </script>
 </body>
