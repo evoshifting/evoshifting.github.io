@@ -16,6 +16,9 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: #1a1a1a;
       background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     .evo-container {
@@ -222,9 +225,85 @@
       .evo-grid, .evo-testimonials-grid { grid-template-columns: 1fr; gap: 20px; }
       .evo-divider { margin: 40px auto; }
     }
+
+    /* HEADER & FOOTER GLOBAL STYLES */
+    .evo-header-nav {
+      background-color: #ffffff;
+      border-bottom: 1px solid #eaeaea;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .evo-nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .evo-logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #111111;
+      text-decoration: none;
+    }
+    .evo-logo span {
+      color: #68A67A;
+    }
+    .evo-menu {
+      display: flex;
+      gap: 25px;
+    }
+    .evo-menu-link {
+      text-decoration: none;
+      color: #555555;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .evo-menu-link:hover, .evo-menu-link.active {
+      color: #68A67A;
+    }
+    .evo-footer {
+      background-color: #111111;
+      color: #aaaaaa;
+      padding: 30px 20px;
+      margin-top: auto;
+    }
+    .evo-footer-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+    .evo-footer-credits a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+    @media (max-width: 768px) {
+      .evo-nav-container { flex-direction: column; gap: 15px; text-align: center; }
+      .evo-menu { gap: 15px; flex-wrap: wrap; justify-content: center; }
+      .evo-footer-container { flex-direction: column; gap: 10px; text-align: center; }
+    }
   </style>
 </head>
 <body>
+
+  <header class="evo-header-nav">
+    <div class="evo-nav-container">
+      <a href="index.html" class="evo-logo">evo<span>shifting</span></a>
+      <nav class="evo-menu">
+        <a href="index.html" class="evo-menu-link">Accueil</a>
+        <a href="offres.html" class="evo-menu-link">Offres</a>
+        <a href="portrait.html" class="evo-menu-link active">Portrait</a>
+        <a href="references.html" class="evo-menu-link">Références</a>
+        <a href="contact.html" class="evo-menu-link">Contact</a>
+      </nav>
+    </div>
+  </header>
 
   <div class="evo-container">
 
@@ -254,7 +333,7 @@
       <div class="evo-grid">
         <div class="evo-card">
           <h4>Vision Stratégique</h4>
-          <p>En tant qu'expert de la transformation numérique, j'aide les organisations à transformer des défis complexes en résultats évolutifs. Je conçois et déploie des solutions logicielles sur mesure qui améliorent les performances, optimisent les processus et stimulent la croissance.</p>
+          <p>En tant qu'expert de la transformation numérique, j'aide les organisations à transformer des défis complexes en résultats évolutifs. Je conçois et déploie des solutions logicielles sur mesure qui améliorent les performances, optimisent les processus and stimulent la croissance.</p>
         </div>
         
         <div class="evo-card">
@@ -318,7 +397,7 @@
 
         <div class="evo-testimonial-card">
           <div class="evo-testimonial-text">
-            « J'ai eu le plaisir de travailler à plusieurs reprises avec Marc-Antoine chez IBM, sur des projets de cadrage, design thinking et implémentation technique. À chaque mission, il s'est distingué par sa grande expertise, sa proactivité et sa fiabilité. Marc-Antoine est un véritable atout pour une équipe : il s'implique pleinement, trouve toujours des solutions face aux défis et veille au respect des délais. »
+            « J'ai eu le plaisir de travailler à plusieurs reprises avec Marc-Antoine chez IBM, sur des projets de cadrage, design thinking et implémentation technique. À chaque mission, il s'est distingué par sa grande expertise, sa proactivité et sa fiabilité. Marc-Antoine is un véritable atout pour une équipe : il s'implique pleinement, trouve toujours des solutions face aux défis et veille au respect des délais. »
           </div>
           <div class="evo-testimonial-author">Paulina Barbier</div>
           <div class="evo-testimonial-role">Equipe</div>
@@ -414,11 +493,22 @@
       <h3>Envie de collaborer ou d'échanger sur votre feuille de route ?</h3>
       <p>Toujours ouvert pour partager des idées ou explorer de nouvelles opportunités. N'hésitez pas à me contacter.</p>
       <div class="evo-cta-wrapper">
-        <a href="/contact" class="evo-btn">Échanger sur vos enjeux</a>
+        <a href="contact.html" class="evo-btn">Échanger sur vos enjeux</a>
       </div>
     </section>
 
   </div>
+
+  <footer class="evo-footer">
+    <div class="evo-footer-container">
+      <div class="evo-footer-copy">
+        &copy; 2026 evoshifting. Tous droits réservés.
+      </div>
+      <div class="evo-footer-credits">
+        Consultant indépendant par <a href="https://www.linkedin.com/in/ma-clx/" target="_blank">Marc-Antoine Cailloux</a>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
