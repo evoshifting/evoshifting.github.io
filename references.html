@@ -374,5 +374,39 @@
   </script>
 
 
+  <script>
+    var EVO_SYSTEM="Tu es l'assistant IA d'evoshifting, le cabinet de conseil en syst\u00e8mes et logiciels informatiques de Marc-Antoine Cailloux.\n\nIDENTIT\u00c9 D'EVOSHIFTING :\n- Cabinet de conseil freelance bas\u00e9 \u00e0 Bordeaux et Paris\n- Fondateur : Marc-Antoine Cailloux, +10 ans d'exp\u00e9rience \u00e0 l'intersection des DSI et des directions m\u00e9tiers\n- Sp\u00e9cialit\u00e9s : cadrage de projets IT, orchestration d'\u00e9cosyst\u00e8mes SaaS, int\u00e9gration de l'IA dans les processus op\u00e9rationnels\n\n3 PILIERS D'INTERVENTION :\n1. Conseil / AMOA : \u00e9tudes d'opportunit\u00e9 IA, audit SI, recueil besoins m\u00e9tiers, aide au choix SaaS\n2. Product Owner : interface m\u00e9tiers/technique, conception fonctionnelle, gestion backlog, priorisation par valeur\n3. PMO : pilotage bout en bout, coordination parties prenantes, conduite du changement, acculturation IA\n\nEXPERTISES : PIM, DAM, ERP, CRM (Salesforce, Dynamics 365), OMS (IBM Sterling), eCommerce, Marketplace, paiement, IA g\u00e9n\u00e9rative, LLM, Agile, SAFe\n\nR\u00c9F\u00c9RENCES FR : Sephora, Les Mousquetaires, Electro D\u00e9p\u00f4t, Cdiscount, Vertbaudet, Ramsay Sant\u00e9, Rossignol, Salomon, Casino, Nexans, SAFT\nR\u00c9F\u00c9RENCES INTL : Carrier (USA), Manor, Longines, Tissot, VF International (CH), Lego (DK), Grupo \u00c9xito (CO), Marjane (MA)\n\nPHILOSOPHIE : Quick Win (pilotes en quelques semaines), neutralit\u00e9 \u00e9diteurs, double culture tech+business, ROI mesurable\n\nCONTACT : marc-antoine.cailloux@evoshifting.com\n\nTON : professionnel et accessible, r\u00e9ponses concises 3-5 phrases, fran\u00e7ais par d\u00e9faut, anglais si sollicit\u00e9, orienter vers contact pour projets concrets, ne pas inventer prix ni r\u00e9f\u00e9rences.";
+    var EVO_WORKER="https://anthropic.evoshifting.workers.dev";
+    var EVO_HISTORY=[];
+    setTimeout(function(){var b=document.getElementById('evo-chat-bubble');if(b){b.style.opacity='0';setTimeout(function(){b.style.display='none';},400);}},4000);
+    function evoChatToggle(){var w=document.getElementById('evo-chat-window');document.getElementById('evo-chat-bubble').style.display='none';w.classList.toggle('open');if(w.classList.contains('open'))document.getElementById('evo-chat-input').focus();}
+    function evoSuggest(btn){document.getElementById('evo-chat-input').value=btn.textContent;document.getElementById('evoChatSuggestions').style.display='none';evoChatSend();}
+    function evoTime(){return new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});}
+    function evoAddMsg(text,role){var c=document.getElementById('evoChatMessages');var d=document.createElement('div');d.className='evo-msg '+role;var f=text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');d.innerHTML='<div class="evo-msg-bubble">'+f+'</div><div class="evo-msg-time">'+evoTime()+'</div>';c.appendChild(d);c.scrollTop=c.scrollHeight;}
+    function evoSetTyping(show){var t=document.getElementById('evoChatTyping');t.style.display=show?'block':'none';if(show)document.getElementById('evoChatMessages').scrollTop=99999;}
+    async function evoChatSend(){
+      var input=document.getElementById('evo-chat-input');
+      var text=input.value.trim();if(!text)return;
+      input.value='';input.style.height='auto';
+      document.getElementById('evo-chat-send').disabled=true;
+      document.getElementById('evoChatSuggestions').style.display='none';
+      evoAddMsg(text,'user');
+      EVO_HISTORY.push({role:'user',content:text});
+      evoSetTyping(true);
+      try{
+        var res=await fetch(EVO_WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,system:EVO_SYSTEM,messages:EVO_HISTORY})});
+        var data=await res.json();
+        var reply=data.content&&data.content[0]?data.content[0].text:'Désolé, une erreur est survenue.';
+        evoSetTyping(false);evoAddMsg(reply,'bot');
+        EVO_HISTORY.push({role:'assistant',content:reply});
+      }catch(e){
+        evoSetTyping(false);
+        evoAddMsg('Je suis temporairement indisponible. Contactez-nous à marc-antoine.cailloux@evoshifting.com','bot');
+      }
+      document.getElementById('evo-chat-send').disabled=false;
+      document.getElementById('evo-chat-input').focus();
+    }
+    document.getElementById('evo-chat-input').addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px';});
+  </script>
 </body>
 </html>
