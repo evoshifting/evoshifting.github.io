@@ -499,6 +499,46 @@
     });
   </script>
 
+
+  <!-- CHATBOT -->
+  <div id="evo-chat-bubble" style="position:fixed;bottom:98px;right:28px;z-index:999;background:#111;color:#fff;font-family:'Nunito Sans',sans-serif;font-size:.85rem;padding:10px 14px;border-radius:12px 12px 0 12px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.2);transition:opacity .4s;pointer-events:none;">Une question sur nos offres&nbsp;? 💬</div>
+  <button id="evo-chat-btn" aria-label="Assistant evoshifting" onclick="evoChatToggle()" style="position:fixed;bottom:28px;right:28px;z-index:1000;width:58px;height:58px;border-radius:50%;background:#111;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  </button>
+  <div id="evo-chat-window" style="position:fixed;bottom:98px;right:28px;z-index:1000;width:370px;height:520px;max-height:80vh;background:#fff;border-radius:16px;box-shadow:0 12px 48px rgba(0,0,0,.18);display:none;flex-direction:column;overflow:hidden;font-family:'Nunito Sans',sans-serif;">
+    <div style="background:#111;color:#fff;padding:16px 18px;display:flex;align-items:center;gap:12px;flex-shrink:0;">
+      <div style="width:36px;height:36px;border-radius:50%;background:#68A67A;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">⚡</div>
+      <div style="flex:1;">
+        <div style="font-weight:700;font-size:.95rem;">Assistant evoshifting</div>
+        <div style="font-size:.75rem;color:#a0aec0;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:7px;height:7px;background:#68A67A;border-radius:50%;"></span>En ligne</div>
+      </div>
+      <button onclick="evoChatToggle()" style="background:none;border:none;color:#aaa;cursor:pointer;font-size:1.3rem;line-height:1;padding:2px 4px;">✕</button>
+    </div>
+    <div id="evoChatMessages" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth;">
+      <div style="max-width:82%;align-self:flex-start;display:flex;flex-direction:column;gap:3px;">
+        <div style="padding:10px 14px;border-radius:14px 14px 14px 4px;font-size:.9rem;line-height:1.5;background:#f4f4f4;color:#1a1a1a;">Bonjour 👋 Je suis l'assistant d'evoshifting. Posez-moi vos questions sur nos offres, nos références ou notre approche IA.</div>
+        <div style="font-size:.7rem;color:#aaa;padding:0 4px;">maintenant</div>
+      </div>
+    </div>
+    <div id="evoChatTyping" style="align-self:flex-start;background:#f4f4f4;padding:12px 16px;border-radius:14px 14px 14px 4px;display:none;margin:0 16px 8px;">
+      <span style="display:inline-block;width:7px;height:7px;background:#aaa;border-radius:50%;margin:0 2px;animation:evoDot 1.2s infinite;"></span>
+      <span style="display:inline-block;width:7px;height:7px;background:#aaa;border-radius:50%;margin:0 2px;animation:evoDot 1.2s .2s infinite;"></span>
+      <span style="display:inline-block;width:7px;height:7px;background:#aaa;border-radius:50%;margin:0 2px;animation:evoDot 1.2s .4s infinite;"></span>
+    </div>
+    <div id="evoChatSuggestions" style="display:flex;flex-wrap:wrap;gap:6px;padding:8px 16px 12px;">
+      <button onclick="evoSuggest(this)" style="font-size:.78rem;padding:6px 11px;border-radius:20px;border:1px solid #e2e8f0;background:#f8fafc;color:#444;cursor:pointer;font-family:inherit;">Quelles sont vos offres ?</button>
+      <button onclick="evoSuggest(this)" style="font-size:.78rem;padding:6px 11px;border-radius:20px;border:1px solid #e2e8f0;background:#f8fafc;color:#444;cursor:pointer;font-family:inherit;">Intégrer l'IA sans tout refaire ?</button>
+      <button onclick="evoSuggest(this)" style="font-size:.78rem;padding:6px 11px;border-radius:20px;border:1px solid #e2e8f0;background:#f8fafc;color:#444;cursor:pointer;font-family:inherit;">Références clients ?</button>
+      <button onclick="evoSuggest(this)" style="font-size:.78rem;padding:6px 11px;border-radius:20px;border:1px solid #e2e8f0;background:#f8fafc;color:#444;cursor:pointer;font-family:inherit;">Délais &amp; tarifs ?</button>
+    </div>
+    <div style="border-top:1px solid #eaeaea;padding:12px 14px;display:flex;gap:8px;align-items:flex-end;flex-shrink:0;">
+      <textarea id="evo-chat-input" placeholder="Votre question…" rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();evoChatSend();}" style="flex:1;border:1px solid #e2e8f0;border-radius:10px;padding:10px 14px;font-size:.9rem;font-family:inherit;resize:none;outline:none;line-height:1.4;max-height:100px;overflow-y:auto;color:#1a1a1a;"></textarea>
+      <button id="evo-chat-send" onclick="evoChatSend()" style="width:38px;height:38px;border-radius:10px;border:none;background:#111;color:#fff;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+
   <script>
     var EVO_SYSTEM="Tu es l'assistant IA d'evoshifting, le cabinet de conseil en syst\u00e8mes et logiciels informatiques de Marc-Antoine Cailloux.\n\nIDENTIT\u00c9 D'EVOSHIFTING :\n- Cabinet de conseil freelance bas\u00e9 \u00e0 Bordeaux et Paris\n- Fondateur : Marc-Antoine Cailloux, +10 ans d'exp\u00e9rience \u00e0 l'intersection des DSI et des directions m\u00e9tiers\n- Sp\u00e9cialit\u00e9s : cadrage de projets IT, orchestration d'\u00e9cosyst\u00e8mes SaaS, int\u00e9gration de l'IA dans les processus op\u00e9rationnels\n\n3 PILIERS D'INTERVENTION :\n1. Conseil / AMOA : \u00e9tudes d'opportunit\u00e9 IA, audit SI, recueil besoins m\u00e9tiers, aide au choix SaaS\n2. Product Owner : interface m\u00e9tiers/technique, conception fonctionnelle, gestion backlog, priorisation par valeur\n3. PMO : pilotage bout en bout, coordination parties prenantes, conduite du changement, acculturation IA\n\nEXPERTISES : PIM, DAM, ERP, CRM (Salesforce, Dynamics 365), OMS (IBM Sterling), eCommerce, Marketplace, paiement, IA g\u00e9n\u00e9rative, LLM, Agile, SAFe\n\nR\u00c9F\u00c9RENCES FR : Sephora, Les Mousquetaires, Electro D\u00e9p\u00f4t, Cdiscount, Vertbaudet, Ramsay Sant\u00e9, Rossignol, Salomon, Casino, Nexans, SAFT\nR\u00c9F\u00c9RENCES INTL : Carrier (USA), Manor, Longines, Tissot, VF International (CH), Lego (DK), Grupo \u00c9xito (CO), Marjane (MA)\n\nPHILOSOPHIE : Quick Win (pilotes en quelques semaines), neutralit\u00e9 \u00e9diteurs, double culture tech+business, ROI mesurable\n\nCONTACT : marc-antoine.cailloux@evoshifting.com\n\nTON : professionnel et accessible, r\u00e9ponses concises 3-5 phrases, fran\u00e7ais par d\u00e9faut, anglais si sollicit\u00e9, orienter vers contact pour projets concrets, ne pas inventer prix ni r\u00e9f\u00e9rences.";
     var EVO_WORKER="https://anthropic.evoshifting.workers.dev";
@@ -531,7 +571,7 @@
       document.getElementById('evo-chat-send').disabled=false;
       document.getElementById('evo-chat-input').focus();
     }
-    document.getElementById('evo-chat-input').addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px';});
+    var _inp=document.getElementById('evo-chat-input');if(_inp){_inp.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px';});}
   </script>
 </body>
 </html>
