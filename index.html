@@ -3,380 +3,154 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="evoshifting : Conseil en systèmes et logiciels informatiques. Cadrage de projets, écosystèmes SaaS et intégration de l'IA. Consultant freelance basé à Bordeaux et Paris.">
-  <meta name="keywords" content="IA, conseil, bordeaux, paris, freelance, projet, consultant, logiciels, systèmes informatiques, AMOA, Product Owner, PMO">
-  <meta name="author" content="Marc-Antoine Cailloux">
+  <meta name="description" content="evoshifting : Conseil en systèmes et logiciels informatiques. Cadrage de projets, écosystèmes SaaS et intégration de l'IA.">
   <title>evoshifting | Conseil en systèmes et logiciels informatiques</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
   <style>
-    /* ==========================================
-       RESET & BASE
-    ========================================== */
     *, *::before, *::after { box-sizing: border-box; }
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: #1a1a1a;
-      background-color: #ffffff;
-    }
-
-    /* ==========================================
-       HEADER
-    ========================================== */
+    body { margin:0; padding:0; font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:#1a1a1a; background:#fff; }
+    a { font-family: inherit; }
+    
+    /* ── HEADER ── */
     .evo-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: #ffffff;
-      border-bottom: 1px solid #eaeaea;
+      position: sticky; top: 0; z-index: 100;
+      background: #fff; border-bottom: 1px solid #eaeaea;
     }
     .evo-header-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-      height: 70px;
-      display: flex;
+      max-width: 1100px; margin: 0 auto; padding: 0 24px;
+      height: 80px;
+      display: grid;
+      grid-template-columns: 120px 1fr 120px;
       align-items: center;
-      justify-content: space-between;
     }
-    .evo-logo {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-    .evo-logo img {
-      height: 36px;
-      width: auto;
-    }
-    .evo-nav {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-    .evo-nav a {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #333333;
-      text-decoration: none;
-      letter-spacing: 0.3px;
-      transition: color 0.2s;
-    }
-    .evo-nav a:hover { color: #68A67A; }
-    .evo-nav a.active { color: #68A67A; }
-    .evo-nav-contact {
-      display: inline-block;
-      background-color: #111111;
-      color: #ffffff !important;
-      text-decoration: none;
-      padding: 10px 22px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      border-radius: 4px;
-      transition: background 0.2s ease;
-    }
-    .evo-nav-contact:hover { background-color: #68A67A !important; }
-    /* Mobile nav */
+    .evo-header-left  { display: flex; align-items: center; }
+    .evo-header-center { display: flex; justify-content: center; align-items: center; }
+    .evo-header-right { display: flex; justify-content: flex-end; align-items: center; }
+
+    /* Logo centré, 30 % plus grand que 36 px = ~47 px */
+    .evo-logo img { height: 47px; width: auto; display: block; }
+
+    /* Burger */
     .evo-hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-      background: none;
-      border: none;
+      display: flex; flex-direction: column; gap: 6px;
+      cursor: pointer; padding: 6px; background: none; border: none;
     }
     .evo-hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: #111111;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-    .evo-mobile-nav {
-      display: none;
-      flex-direction: column;
-      background: #ffffff;
-      border-top: 1px solid #eaeaea;
-      padding: 20px;
-      gap: 16px;
-    }
-    .evo-mobile-nav.open { display: flex; }
-    .evo-mobile-nav a {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #333333;
-      text-decoration: none;
-      padding: 8px 0;
-      border-bottom: 1px solid #f0f0f0;
-    }
-    .evo-mobile-nav a:last-child { border-bottom: none; }
-    .evo-mobile-nav a:hover { color: #68A67A; }
-
-    @media (max-width: 768px) {
-      .evo-nav { display: none; }
-      .evo-hamburger { display: flex; }
+      display: block; width: 26px; height: 2px;
+      background: #111; border-radius: 2px;
+      transition: all .3s ease;
     }
 
-    /* ==========================================
-       FOOTER
-    ========================================== */
-    .evo-footer {
-      border-top: 1px solid #eaeaea;
-      background: #ffffff;
-      margin-top: 0;
+    /* Bouton Contact */
+    .evo-nav-contact {
+      display: inline-block; background: #111; color: #fff !important;
+      text-decoration: none; padding: 10px 22px;
+      font-weight: 700; font-size: .88rem;
+      border-radius: 4px; transition: background .2s; white-space: nowrap;
     }
-    .evo-footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      text-align: center;
+    .evo-nav-contact:hover { background: #68A67A !important; }
+    .evo-nav-contact.active-page { background: #68A67A !important; }
+
+    /* ── DRAWER ── */
+    .evo-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.35); z-index: 200;
     }
-    .evo-footer-links {
-      display: flex;
-      gap: 24px;
-      align-items: center;
+    .evo-overlay.open { display: block; }
+    .evo-drawer {
+      position: fixed; top: 0; left: 0;
+      width: 280px; height: 100dvh;
+      background: #fff; z-index: 201;
+      transform: translateX(-100%);
+      transition: transform .32s cubic-bezier(.4,0,.2,1);
+      display: flex; flex-direction: column;
+      box-shadow: 4px 0 24px rgba(0,0,0,.10);
     }
-    .evo-footer-links a {
-      color: #555555;
-      text-decoration: none;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: color 0.2s;
+    .evo-drawer.open { transform: translateX(0); }
+    .evo-drawer-head {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px; border-bottom: 1px solid #eaeaea;
     }
+    .evo-drawer-head img { height: 32px; width: auto; }
+    .evo-drawer-close {
+      background: none; border: none; cursor: pointer;
+      font-size: 1.5rem; color: #888; line-height: 1; padding: 2px 6px;
+    }
+    .evo-drawer-close:hover { color: #111; }
+    .evo-drawer-nav { display: flex; flex-direction: column; padding: 10px 0; }
+    .evo-drawer-nav a {
+      font-size: 1.05rem; font-weight: 600; color: #222;
+      text-decoration: none; padding: 15px 24px;
+      border-bottom: 1px solid #f2f2f2;
+      transition: color .2s, background .2s;
+    }
+    .evo-drawer-nav a:last-child { border-bottom: none; }
+    .evo-drawer-nav a:hover,
+    .evo-drawer-nav a.active { color: #68A67A; background: #f7fbf8; }
+
+    
+    /* ── FOOTER ── */
+    .evo-footer { border-top: 1px solid #eaeaea; background: #fff; }
+    .evo-footer-inner { max-width: 1100px; margin: 0 auto; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
+    .evo-footer-links { display: flex; gap: 24px; align-items: center; }
+    .evo-footer-links a { color: #555; text-decoration: none; font-size: .9rem; display: flex; align-items: center; gap: 6px; transition: color .2s; }
     .evo-footer-links a:hover { color: #68A67A; }
-    .evo-footer-legal {
-      font-size: 0.8rem;
-      color: #999999;
-      line-height: 1.5;
+    .evo-footer-legal { font-size: .8rem; color: #999; line-height: 1.5; }
+    @media(max-width:600px){ .evo-footer-links { flex-direction: column; gap: 12px; } }
+
+    
+    .evo-container { max-width:1100px; margin:0 auto; padding:60px 20px; }
+    .evo-divider { border:0; height:1px; background:#e0e0e0; margin:60px auto; width:100%; display:block; }
+    .evo-hero { text-align:center; max-width:850px; margin:0 auto; padding-top:20px; }
+    .evo-lead { font-size:1.45rem; font-weight:500; line-height:1.5; color:#68A67A; margin-bottom:24px; }
+    .evo-cta-wrapper { margin-top:30px; }
+    .evo-btn { display:inline-block; background:#111; color:#fff !important; text-decoration:none; padding:16px 36px; font-weight:700; border-radius:4px; transition:background .2s; font-family:inherit; }
+    .evo-btn:hover { background:#68A67A; }
+    .evo-features h2,.evo-trust h2,.evo-faq-section h2 { text-align:center; font-size:1.9rem; font-weight:700; margin-bottom:45px; color:#111; }
+    .evo-phase-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .evo-phase-card { background:#fff; border:1px solid #eaeaea; border-radius:8px; padding:35px 30px; box-shadow:0 4px 12px rgba(0,0,0,.02); display:flex; flex-direction:column; transition:border-color .3s,box-shadow .3s,background .3s; }
+    .evo-card-top { display:flex; align-items:center; gap:16px; margin-bottom:20px; }
+    .evo-phase-number { font-size:1.1rem; font-weight:700; color:#68A67A; border:1px solid #68A67A; width:38px; height:38px; display:flex; align-items:center; justify-content:center; border-radius:50px; background:#f7fbf8; flex-shrink:0; }
+    .evo-phase-role { font-size:.8rem; text-transform:uppercase; letter-spacing:1px; color:#666; font-weight:600; }
+    .evo-phase-card h3 { font-size:1.35rem; font-weight:700; margin:0 0 14px; color:#111; }
+    .evo-phase-desc { font-size:1rem; line-height:1.6; color:#444; margin:0; }
+    @media(min-width:769px){ .evo-phase-card:hover { border-color:#68A67A; box-shadow:0 10px 25px rgba(104,166,122,.08); background:#fcfdfe; } }
+    .evo-faq-section { max-width:900px; margin:0 auto; }
+    .evo-faq-grid { display:flex; flex-direction:column; gap:24px; }
+    .evo-faq-item { background:#fff; border:1px solid #eaeaea; border-radius:8px; padding:25px 30px; }
+    .evo-faq-item h3 { font-size:1.2rem; font-weight:700; color:#111; margin:0 0 12px; display:flex; align-items:flex-start; gap:10px; }
+    .evo-faq-item h3::before { content:"•"; color:#68A67A; font-size:1.5rem; line-height:1; }
+    .evo-faq-item p { font-size:1rem; line-height:1.6; color:#555; margin:0; padding-left:18px; }
+    .evo-faq-item p strong { color:#68A67A; }
+    .evo-trust-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:40px; }
+    .evo-trust-item h4 { font-size:1.25rem; color:#111; margin:0 0 12px; font-weight:700; }
+    .evo-trust-item p { font-size:1rem; line-height:1.6; color:#555; margin:0; }
+    .evo-bottom-cta { text-align:center; padding:20px 0; }
+    @media(max-width:768px){
+      .evo-container{padding:30px 15px;}
+      .evo-lead{font-size:1.25rem;}
+      .evo-phase-grid{grid-template-columns:1fr;gap:16px;}
+      .evo-phase-card{padding:25px;}
+      .evo-trust-grid{grid-template-columns:1fr;gap:30px;}
+      .evo-faq-item{padding:20px;}
+      .evo-divider{margin:40px auto;}
     }
 
-    /* ==========================================
-       CONTENEUR PRINCIPAL
-    ========================================== */
-    .evo-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 60px 20px;
-    }
-    .evo-divider {
-      border: 0;
-      height: 1px;
-      background: #e0e0e0;
-      margin: 60px auto;
-      width: 100%;
-      display: block;
-    }
-
-    /* ==========================================
-       HERO SECTION
-    ========================================== */
-    .evo-hero {
-      text-align: center;
-      max-width: 850px;
-      margin: 0 auto;
-      padding-top: 20px;
-    }
-    .evo-lead {
-      font-size: 1.45rem;
-      font-weight: 500;
-      line-height: 1.5;
-      color: #68A67A;
-      margin-bottom: 24px;
-    }
-
-    /* ==========================================
-       BOUTONS
-    ========================================== */
-    .evo-cta-wrapper { margin-top: 30px; }
-    .evo-btn {
-      display: inline-block;
-      background-color: #111111;
-      color: #ffffff !important;
-      text-decoration: none;
-      padding: 16px 36px;
-      font-weight: 600;
-      border-radius: 4px;
-      transition: background 0.2s ease;
-      font-family: inherit;
-    }
-    .evo-btn:hover { background-color: #68A67A; }
-
-    /* ==========================================
-       SECTION TRIPTYQUE (3 CARRÉS)
-    ========================================== */
-    .evo-features h2, .evo-trust h2, .evo-faq-section h2 {
-      text-align: center;
-      font-size: 1.9rem;
-      font-weight: 700;
-      margin-bottom: 45px;
-      color: #111111;
-    }
-    .evo-phase-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 24px;
-    }
-    .evo-phase-card {
-      background: #ffffff;
-      border: 1px solid #eaeaea;
-      border-radius: 8px;
-      padding: 35px 30px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-      display: flex;
-      flex-direction: column;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    }
-    .evo-card-top {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-    .evo-phase-number {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #68A67A;
-      border: 1px solid #68A67A;
-      width: 38px;
-      height: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50px;
-      background-color: #f7fbf8;
-      flex-shrink: 0;
-    }
-    .evo-phase-role {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #666666;
-      font-weight: 600;
-    }
-    .evo-phase-card h3 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      margin: 0 0 14px 0;
-      color: #111111;
-    }
-    .evo-phase-desc {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #444444;
-      margin: 0;
-    }
-    @media (min-width: 769px) {
-      .evo-phase-card:hover {
-        border-color: #68A67A;
-        box-shadow: 0 10px 25px rgba(104, 166, 122, 0.08);
-        background-color: #fcfdfe;
-      }
-    }
-
-    /* ==========================================
-       FAQ SECTION
-    ========================================== */
-    .evo-faq-section { max-width: 900px; margin: 0 auto; }
-    .evo-faq-grid { display: flex; flex-direction: column; gap: 24px; }
-    .evo-faq-item {
-      background: #ffffff;
-      border: 1px solid #eaeaea;
-      border-radius: 8px;
-      padding: 25px 30px;
-    }
-    .evo-faq-item h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #111111;
-      margin: 0 0 12px 0;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-    .evo-faq-item h3::before {
-      content: "•";
-      color: #68A67A;
-      font-size: 1.5rem;
-      line-height: 1;
-    }
-    .evo-faq-item p {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #555555;
-      margin: 0;
-      padding-left: 18px;
-    }
-    .evo-faq-item p strong { color: #68A67A; }
-
-    /* ==========================================
-       TRUST SECTION
-    ========================================== */
-    .evo-trust-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-    }
-    .evo-trust-item h4 {
-      font-size: 1.25rem;
-      color: #111111;
-      margin-top: 0;
-      margin-bottom: 12px;
-      font-weight: 700;
-    }
-    .evo-trust-item p {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #555555;
-      margin: 0;
-    }
-
-    /* ==========================================
-       BOTTOM CTA
-    ========================================== */
-    .evo-bottom-cta {
-      text-align: center;
-      padding: 20px 0;
-    }
-
-    /* ==========================================
-       RESPONSIVE
-    ========================================== */
-    @media (max-width: 768px) {
-      .evo-container { padding: 30px 15px; }
-      .evo-lead { font-size: 1.25rem; }
-      .evo-phase-grid { grid-template-columns: 1fr; gap: 16px; }
-      .evo-phase-card { padding: 25px; }
-      .evo-trust-grid { grid-template-columns: 1fr; gap: 30px; }
-      .evo-faq-item { padding: 20px; }
-      .evo-divider { margin: 40px auto; }
-      .evo-footer-links { flex-direction: column; gap: 12px; }
-    }
   </style>
 </head>
 <body>
 
-  <!-- DRAWER OVERLAY -->
-  <div class="evo-drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+  <!-- OVERLAY -->
+  <div class="evo-overlay" id="evoOverlay"></div>
 
-  <!-- DRAWER MENU -->
-  <div class="evo-drawer" id="drawer">
-    <div class="evo-drawer-top">
-      <a href="index.html" class="evo-drawer-logo">
-        <img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting">
-      </a>
-      <button class="evo-drawer-close" onclick="closeDrawer()" aria-label="Fermer">✕</button>
+  <!-- DRAWER -->
+  <div class="evo-drawer" id="evoDrawer">
+    <div class="evo-drawer-head">
+      <a href="index.html"><img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting"></a>
+      <button class="evo-drawer-close" onclick="closeDrawer()">✕</button>
     </div>
     <nav class="evo-drawer-nav">
       <a href="offres.html">offres</a>
@@ -403,97 +177,60 @@
       </div>
     </div>
   </header>
+
+
   <div class="evo-container">
-    
-    <!-- HERO SECTION -->
     <section class="evo-hero">
-      <p class="evo-lead">
-        <strong>evoshifting sécurise le cadrage de vos projets, orchestre vos écosystèmes SaaS et intègre l'IA au cœur de vos processus opérationnels.</strong>
-      </p>
-      <div class="evo-cta-wrapper">
-        <a href="contact.html" class="evo-btn">Échanger sur vos enjeux</a>
-      </div>
+      <p class="evo-lead"><strong>evoshifting sécurise le cadrage de vos projets, orchestre vos écosystèmes SaaS et intègre l'IA au cœur de vos processus opérationnels.</strong></p>
+      <div class="evo-cta-wrapper"><a href="contact.html" class="evo-btn">Échanger sur vos enjeux</a></div>
     </section>
-
     <hr class="evo-divider">
-
-    <!-- TRIPTYQUE SECTION -->
     <section class="evo-features">
       <h2>Une approche de bout en bout pour vos projets IT</h2>
-      
       <div class="evo-phase-grid">
         <div class="evo-phase-card">
-          <div class="evo-card-top">
-            <div class="evo-phase-number">01</div>
-            <div class="evo-phase-role">Posture Conseil / AMOA</div>
-          </div>
+          <div class="evo-card-top"><div class="evo-phase-number">01</div><div class="evo-phase-role">Posture Conseil / AMOA</div></div>
           <h3>Cadrer l'opportunité</h3>
-          <p class="evo-phase-desc">
-            Études d'opportunité IA & Data, audit de maturité des SI complexes, recueil des besoins métiers et aide au choix de solutions SaaS.
-          </p>
+          <p class="evo-phase-desc">Études d'opportunité IA & Data, audit de maturité des SI complexes, recueil des besoins métiers et aide au choix de solutions SaaS.</p>
         </div>
-
         <div class="evo-phase-card">
-          <div class="evo-card-top">
-            <div class="evo-phase-number">02</div>
-            <div class="evo-phase-role">Posture Product Owner</div>
-          </div>
+          <div class="evo-card-top"><div class="evo-phase-number">02</div><div class="evo-phase-role">Posture Product Owner</div></div>
           <h3>Piloter le produit</h3>
-          <p class="evo-phase-desc">
-            Interface fluide entre les directions métiers et les équipes techniques, conception fonctionnelle, gestion du backlog et priorisation par la valeur opérationnelle.
-          </p>
+          <p class="evo-phase-desc">Interface fluide entre les directions métiers et les équipes techniques, conception fonctionnelle, gestion du backlog et priorisation par la valeur opérationnelle.</p>
         </div>
-
         <div class="evo-phase-card">
-          <div class="evo-card-top">
-            <div class="evo-phase-number">03</div>
-            <div class="evo-phase-role">Posture PMO</div>
-          </div>
+          <div class="evo-card-top"><div class="evo-phase-number">03</div><div class="evo-phase-role">Posture PMO</div></div>
           <h3>Sécuriser le déploiement</h3>
-          <p class="evo-phase-desc">
-            Pilotage de projet de bout en bout (délais, budgets, risques), coordination des parties prenantes et des éditeurs, conduite du changement et acculturation IA.
-          </p>
+          <p class="evo-phase-desc">Pilotage de projet de bout en bout (délais, budgets, risques), coordination des parties prenantes et des éditeurs, conduite du changement et acculturation IA.</p>
         </div>
       </div>
-
-      <div class="evo-cta-wrapper" style="text-align: center; margin-top: 40px;">
+      <div class="evo-cta-wrapper" style="text-align:center;margin-top:40px;">
         <a href="offres.html" class="evo-btn">Découvrir nos solutions & cas d'usage</a>
       </div>
     </section>
-
     <hr class="evo-divider">
-
-    <!-- FAQ SECTION -->
     <section class="evo-faq-section">
       <h2>IA & Transformation : les enjeux clés</h2>
       <div class="evo-faq-grid">
-        
         <div class="evo-faq-item">
           <h3>Comment intégrer l'IA sans déstabiliser notre SI existant ?</h3>
           <p><strong>Notre approche :</strong> Pas de refonte globale coûteuse. Nous intervenons sur l'alignement de vos flux en connectant des briques d'IA pragmatiques (LLM, agents d'automatisation) directement sur vos outils SaaS actuels (ERP, CRM, DAM PIM, OMS, WMS...) via des architectures d'API sécurisées.</p>
         </div>
-
         <div class="evo-faq-item">
           <h3>Quels sont les cas d'usage IA prioritaires pour nos équipes ?</h3>
           <p><strong>Notre approche :</strong> Nous ciblons en priorité les tâches manuelles et répétitives qui font perdre un temps précieux à vos collaborateurs. Par exemple : la création et l'adaptation automatique de contenus, le tri et le traitement intelligent de vos documents ou demandes entrantes, ou la mise en place d'assistants internes connectés à vos bases de données.</p>
         </div>
-
         <div class="evo-faq-item">
           <h3>Combien de temps faut-il pour obtenir des résultats concrets avec l'IA ?</h3>
           <p><strong>Notre approche :</strong> Nous privilégions la culture du "Quick Win". Plutôt que de lancer des chantiers interminables, nous concevons un premier pilote sur un périmètre restreint en quelques semaines pour prouver la valeur métier sur le terrain.</p>
         </div>
-
         <div class="evo-faq-item">
           <h3>Pourquoi confier son projet IA à evoshifting plutôt qu'à une ESN classique ?</h3>
           <p><strong>Notre approche :</strong> Parce que l'IA n'est qu'un outil au service d'un processus métier. Grâce à notre double culture technique et business, nous ne vendons pas de la technologie pour la technologie, mais un cadrage AMOA et un pilotage produit orientés exclusivement vers un ROI mesurable.</p>
         </div>
-
       </div>
     </section>
-
     <hr class="evo-divider">
-
-    <!-- TRUST SECTION -->
     <section class="evo-trust">
       <h2>Pourquoi <strong>evo</strong>shifting ?</h2>
       <div class="evo-trust-grid">
@@ -511,17 +248,12 @@
         </div>
       </div>
     </section>
-
     <hr class="evo-divider">
-
-    <!-- BOTTOM CTA -->
     <section class="evo-bottom-cta">
-      <div class="evo-cta-wrapper">
-        <a href="contact.html" class="evo-btn">Échanger sur vos enjeux</a>
-      </div>
+      <div class="evo-cta-wrapper"><a href="contact.html" class="evo-btn">Échanger sur vos enjeux</a></div>
     </section>
-
   </div>
+
 
   <!-- FOOTER -->
   <footer class="evo-footer">
@@ -541,20 +273,14 @@
   </footer>
 
   <script>
-    function openDrawer() {
-      document.getElementById('drawer').classList.add('open');
-      document.getElementById('drawerOverlay').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeDrawer() {
-      document.getElementById('drawer').classList.remove('open');
-      document.getElementById('drawerOverlay').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeDrawer();
-    });
+    const drawer  = document.getElementById('evoDrawer');
+    const overlay = document.getElementById('evoOverlay');
+    function openDrawer()  { drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden'; }
+    function closeDrawer() { drawer.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow=''; }
+    overlay.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', e => { if(e.key==='Escape') closeDrawer(); });
   </script>
+
 
 </body>
 </html>
