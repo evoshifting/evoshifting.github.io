@@ -135,6 +135,144 @@
       .evo-divider{margin:40px auto;}
     }
 
+
+  /* ── CHATBOT FLOTTANT ── */
+  #evo-chat-btn {
+    position: fixed; bottom: 28px; right: 28px; z-index: 1000;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #111111; border: none; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s, transform .2s;
+  }
+  #evo-chat-btn:hover { background: #68A67A; transform: scale(1.07); }
+  #evo-chat-btn svg { width: 26px; height: 26px; }
+
+  #evo-chat-bubble {
+    position: fixed; bottom: 98px; right: 28px; z-index: 999;
+    background: #111; color: #fff; font-family: 'Nunito Sans', sans-serif;
+    font-size: .85rem; padding: 10px 14px; border-radius: 12px 12px 0 12px;
+    white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,.2);
+    animation: evoBubble 0.4s ease forwards;
+    pointer-events: none;
+  }
+  @keyframes evoBubble {
+    from { opacity:0; transform:translateY(6px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  #evo-chat-window {
+    position: fixed; bottom: 98px; right: 28px; z-index: 1000;
+    width: 370px; height: 520px; max-height: 80vh;
+    background: #ffffff; border-radius: 16px;
+    box-shadow: 0 12px 48px rgba(0,0,0,.18);
+    display: none; flex-direction: column; overflow: hidden;
+    font-family: 'Nunito Sans', sans-serif;
+    animation: evoChatOpen .25s cubic-bezier(.4,0,.2,1);
+  }
+  #evo-chat-window.open { display: flex; }
+  @keyframes evoChatOpen {
+    from { opacity:0; transform:translateY(16px) scale(.97); }
+    to   { opacity:1; transform:translateY(0) scale(1); }
+  }
+
+  .evo-chat-header {
+    background: #111111; color: #fff; padding: 16px 18px;
+    display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+  }
+  .evo-chat-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: #68A67A; display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .evo-chat-header-info { flex: 1; }
+  .evo-chat-header-name { font-weight: 700; font-size: .95rem; }
+  .evo-chat-header-status { font-size: .75rem; color: #a0aec0; display: flex; align-items: center; gap: 5px; }
+  .evo-chat-header-status::before { content:''; display:inline-block; width:7px; height:7px; background:#68A67A; border-radius:50%; }
+  .evo-chat-close {
+    background: none; border: none; color: #aaa; cursor: pointer;
+    font-size: 1.3rem; line-height: 1; padding: 2px 4px;
+  }
+  .evo-chat-close:hover { color: #fff; }
+
+  .evo-chat-messages {
+    flex: 1; overflow-y: auto; padding: 16px; display: flex;
+    flex-direction: column; gap: 12px; scroll-behavior: smooth;
+  }
+  .evo-chat-messages::-webkit-scrollbar { width: 4px; }
+  .evo-chat-messages::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
+
+  .evo-msg { max-width: 82%; display: flex; flex-direction: column; gap: 3px; }
+  .evo-msg.bot { align-self: flex-start; }
+  .evo-msg.user { align-self: flex-end; }
+  .evo-msg-bubble {
+    padding: 10px 14px; border-radius: 14px;
+    font-size: .9rem; line-height: 1.5; word-break: break-word;
+  }
+  .evo-msg.bot .evo-msg-bubble {
+    background: #f4f4f4; color: #1a1a1a; border-bottom-left-radius: 4px;
+  }
+  .evo-msg.user .evo-msg-bubble {
+    background: #111111; color: #ffffff; border-bottom-right-radius: 4px;
+  }
+  .evo-msg-time { font-size: .7rem; color: #aaa; padding: 0 4px; }
+  .evo-msg.user .evo-msg-time { text-align: right; }
+
+  .evo-typing {
+    align-self: flex-start; background: #f4f4f4;
+    padding: 12px 16px; border-radius: 14px 14px 14px 4px;
+    display: none;
+  }
+  .evo-typing span {
+    display: inline-block; width: 7px; height: 7px;
+    background: #aaa; border-radius: 50%; margin: 0 2px;
+    animation: evoDot 1.2s infinite;
+  }
+  .evo-typing span:nth-child(2) { animation-delay: .2s; }
+  .evo-typing span:nth-child(3) { animation-delay: .4s; }
+  @keyframes evoDot {
+    0%,80%,100% { transform:translateY(0); opacity:.4; }
+    40% { transform:translateY(-5px); opacity:1; }
+  }
+
+  .evo-chat-suggestions {
+    display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 12px;
+  }
+  .evo-suggestion {
+    font-size: .78rem; padding: 6px 11px; border-radius: 20px;
+    border: 1px solid #e2e8f0; background: #f8fafc; color: #444;
+    cursor: pointer; transition: all .15s; font-family: inherit;
+    white-space: nowrap;
+  }
+  .evo-suggestion:hover { border-color: #68A67A; color: #68A67A; background: #f0f7f2; }
+
+  .evo-chat-input-area {
+    border-top: 1px solid #eaeaea; padding: 12px 14px;
+    display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0;
+  }
+  #evo-chat-input {
+    flex: 1; border: 1px solid #e2e8f0; border-radius: 10px;
+    padding: 10px 14px; font-size: .9rem; font-family: inherit;
+    resize: none; outline: none; line-height: 1.4;
+    max-height: 100px; overflow-y: auto; color: #1a1a1a;
+    transition: border-color .2s;
+  }
+  #evo-chat-input:focus { border-color: #68A67A; }
+  #evo-chat-send {
+    width: 38px; height: 38px; border-radius: 10px; border: none;
+    background: #111; color: #fff; cursor: pointer; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+  }
+  #evo-chat-send:hover { background: #68A67A; }
+  #evo-chat-send:disabled { opacity: .4; cursor: not-allowed; }
+  #evo-chat-send svg { width: 16px; height: 16px; }
+
+  @media (max-width: 480px) {
+    #evo-chat-window { width: calc(100vw - 20px); right: 10px; bottom: 80px; }
+    #evo-chat-btn { bottom: 16px; right: 16px; }
+  }
+
   </style>
 </head>
 <body>
@@ -145,13 +283,13 @@
   <!-- DRAWER -->
   <div class="evo-drawer" id="evoDrawer">
     <div class="evo-drawer-head">
-      <a href="index.html"><img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting"></a>
+      <a href="./index.html" onclick="window.location='./index.html';return false;"><img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting"></a>
       <button class="evo-drawer-close" onclick="closeDrawer()">✕</button>
     </div>
     <nav class="evo-drawer-nav">
-      <a href="offres.html">offres</a>
-      <a href="references.html">références</a>
-      <a href="portrait.html" class="active">portrait</a>
+      <a href="./offres.html">offres</a>
+      <a href="./references.html">références</a>
+      <a href="./portrait.html" class="active">portrait</a>
     </nav>
   </div>
 
@@ -164,12 +302,12 @@
         </button>
       </div>
       <div class="evo-header-center">
-        <a href="index.html" class="evo-logo">
+        <a href="./index.html" class="evo-logo" role="link" onclick="window.location='./index.html';return false;">
           <img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting">
         </a>
       </div>
       <div class="evo-header-right">
-        <a href="contact.html" class="evo-nav-contact">Contact</a>
+        <a href="./contact.html" class="evo-nav-contact">Contact</a>
       </div>
     </div>
   </header>
@@ -222,7 +360,7 @@
     <section class="evo-bottom-cta">
       <h3>Envie de collaborer ou d'échanger sur votre feuille de route ?</h3>
       <p>Toujours ouvert pour partager des idées ou explorer de nouvelles opportunités.</p>
-      <a href="contact.html" class="evo-btn">Échanger sur vos enjeux</a>
+      <a href="./contact.html" class="evo-btn">Échanger sur vos enjeux</a>
     </section>
   </div>
 
