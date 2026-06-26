@@ -113,13 +113,19 @@
     .evo-section-label { display:block; font-size:1.1rem; font-weight:700; color:#1a202c; margin-bottom:20px; }
     .evo-badge-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; }
     .evo-badge-radio { cursor:pointer; position:relative; }
-    .evo-badge-radio input[type="radio"] { position:absolute; opacity:0; width:0; height:0; }
-    .evo-badge-content { display:flex; flex-direction:column; padding:16px; border:2px solid #e2e8f0; border-radius:10px; background:#f8fafc; transition:all .2s; height:100%; }
+    .evo-badge-radio input[type="checkbox"] { position:absolute; opacity:0; width:0; height:0; }
+    .evo-badge-content { display:flex; flex-direction:column; padding:16px; border:2px solid #e2e8f0; border-radius:10px; background:#f8fafc; transition:all .2s; height:100%; position:relative; }
+    .evo-badge-check { position:absolute; top:10px; right:10px; width:18px; height:18px; border:2px solid #cbd5e0; border-radius:4px; background:#fff; transition:all .2s; display:flex; align-items:center; justify-content:center; font-size:.75rem; color:transparent; }
     .evo-badge-icon { font-size:1.4rem; margin-bottom:8px; }
     .evo-badge-content strong { font-size:.95rem; color:#2d3748; margin-bottom:4px; display:block; }
     .evo-badge-content small { font-size:.8rem; color:#718096; line-height:1.3; }
     .evo-badge-radio:hover .evo-badge-content { border-color:#cbd5e0; background:#f1f5f9; }
-    .evo-badge-radio input[type="radio"]:checked + .evo-badge-content { border-color:#68A67A; background:#f0f7f2; box-shadow:0 0 0 1px #68A67A; }
+    .evo-badge-radio input[type="checkbox"]:checked + .evo-badge-content { border-color:#68A67A; background:#f0f7f2; box-shadow:0 0 0 1px #68A67A; }
+    .evo-badge-radio input[type="checkbox"]:checked + .evo-badge-content .evo-badge-check { background:#68A67A; border-color:#68A67A; color:#fff; }
+    /* Validation erreurs */
+    .evo-field-error { font-size:.8rem; color:#e53e3e; margin-top:5px; display:none; }
+    .evo-field-group input.invalid { border-color:#e53e3e; background:#fff5f5; }
+    .evo-field-group input.invalid:focus { box-shadow:0 0 0 3px rgba(229,62,62,.1); }
     .evo-fields-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
     .evo-field-group label { display:block; font-size:.88rem; font-weight:600; color:#4a5568; margin-bottom:6px; }
     .evo-form-card input[type="text"],.evo-form-card input[type="email"],.evo-form-card input[type="tel"],.evo-form-card textarea { width:100%; padding:12px 16px; font-size:.95rem; border:1px solid #cbd5e0; border-radius:8px; color:#2d3748; background:#f8fafc; transition:all .2s; font-family:inherit; }
@@ -158,13 +164,13 @@
   <!-- DRAWER -->
   <div class="evo-drawer" id="evoDrawer">
     <div class="evo-drawer-head">
-      <a href="index.html"><img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting"></a>
+      <a href="./index.html" onclick="window.location='./index.html';return false;"><img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting"></a>
       <button class="evo-drawer-close" onclick="closeDrawer()">✕</button>
     </div>
     <nav class="evo-drawer-nav">
-      <a href="offres.html">offres</a>
-      <a href="references.html">références</a>
-      <a href="portrait.html">portrait</a>
+      <a href="./offres.html">offres</a>
+      <a href="./references.html">références</a>
+      <a href="./portrait.html">portrait</a>
     </nav>
   </div>
 
@@ -177,12 +183,12 @@
         </button>
       </div>
       <div class="evo-header-center">
-        <a href="index.html" class="evo-logo">
+        <a href="./index.html" class="evo-logo" role="link" onclick="window.location='./index.html';return false;">
           <img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting">
         </a>
       </div>
       <div class="evo-header-right">
-        <a href="contact.html" class="evo-nav-contact active-page">Contact</a>
+        <a href="./contact.html" class="evo-nav-contact active-page">Contact</a>
       </div>
     </div>
   </header>
@@ -216,13 +222,15 @@
       <div class="evo-form-card">
         <form id="evoContactForm" action="https://formspree.io/f/xrewpqbb" method="POST">
           <input type="hidden" name="_subject" value="Nouvelle demande — evoshifting">
+          <input type="hidden" name="_replyto" id="replytoField" value="">
+          <input type="hidden" name="enjeu" id="enjeuHidden" value="">
           <div class="evo-form-section">
-            <label class="evo-section-label">1. Quel est votre enjeu principal ?</label>
+            <label class="evo-section-label">1. Quel est votre enjeu principal ? <span style="font-size:.8rem;font-weight:400;color:#718096;">(plusieurs choix possibles)</span></label>
             <div class="evo-badge-grid">
-              <label class="evo-badge-radio"><input type="radio" name="enjeu" value="cadrage"><span class="evo-badge-content"><span class="evo-badge-icon">🎯</span><strong>Cadrage / Audit SI</strong><small>Clarifier l'existant, flux & processus</small></span></label>
-              <label class="evo-badge-radio"><input type="radio" name="enjeu" value="aide-choix"><span class="evo-badge-content"><span class="evo-badge-icon">🛠️</span><strong>Aide au choix, RFI / RFP</strong><small>ERP, E-commerce, CRM, PIM, DAM...</small></span></label>
-              <label class="evo-badge-radio"><input type="radio" name="enjeu" value="product-owner"><span class="evo-badge-content"><span class="evo-badge-icon">🔀</span><strong>Product Ownership</strong><small>Alignement IT/Métier & Delivery</small></span></label>
-              <label class="evo-badge-radio"><input type="radio" name="enjeu" value="pmo"><span class="evo-badge-content"><span class="evo-badge-icon">📊</span><strong>PMO / Pilotage</strong><small>Gouvernance globale & suivi des risques</small></span></label>
+              <label class="evo-badge-radio"><input type="checkbox" name="enjeu[]" value="Cadrage / Audit SI"><span class="evo-badge-content"><span class="evo-badge-check">✓</span><span class="evo-badge-icon">🎯</span><strong>Cadrage / Audit SI</strong><small>Clarifier l'existant, flux & processus</small></span></label>
+              <label class="evo-badge-radio"><input type="checkbox" name="enjeu[]" value="Aide au choix / RFI / RFP"><span class="evo-badge-content"><span class="evo-badge-check">✓</span><span class="evo-badge-icon">🛠️</span><strong>Aide au choix, RFI / RFP</strong><small>ERP, E-commerce, CRM, PIM, DAM...</small></span></label>
+              <label class="evo-badge-radio"><input type="checkbox" name="enjeu[]" value="Product Ownership"><span class="evo-badge-content"><span class="evo-badge-check">✓</span><span class="evo-badge-icon">🔀</span><strong>Product Ownership</strong><small>Alignement IT/Métier & Delivery</small></span></label>
+              <label class="evo-badge-radio"><input type="checkbox" name="enjeu[]" value="PMO / Pilotage"><span class="evo-badge-content"><span class="evo-badge-check">✓</span><span class="evo-badge-icon">📊</span><strong>PMO / Pilotage</strong><small>Gouvernance globale & suivi des risques</small></span></label>
             </div>
           </div>
           <div class="evo-form-section">
@@ -236,7 +244,7 @@
               <div class="evo-field-group"><label for="adv-email">Email *</label><input type="email" id="adv-email" name="email" required placeholder="Ex: a.martin@entreprise.com"></div>
             </div>
             <div class="evo-fields-grid evo-mt-15">
-              <div class="evo-field-group"><label for="adv-phone">Téléphone</label><input type="tel" id="adv-phone" name="phone" placeholder="Ex: 06 00 00 00 00"></div>
+              <div class="evo-field-group"><label for="adv-phone">Téléphone</label><input type="tel" id="adv-phone" name="phone" placeholder="Ex: 06 00 00 00 00 ou +33 6 00 00 00 00"><div class="evo-field-error" id="phoneError">Format invalide — ex: 06 12 34 56 78 ou +33 6 12 34 56 78</div></div>
             </div>
           </div>
           <div class="evo-form-section">
@@ -283,11 +291,52 @@
 
 
   <script>
+    // Validation téléphone : accepte formats FR et internationaux
+    function validatePhone(val) {
+      if (!val) return true; // champ optionnel
+      const clean = val.replace(/[\s\.\-\(\)]/g, '');
+      return /^(\+?\d{7,15})$/.test(clean);
+    }
+
+    const phoneInput = document.getElementById('adv-phone');
+    const phoneError = document.getElementById('phoneError');
+
+    phoneInput.addEventListener('blur', function() {
+      if (this.value && !validatePhone(this.value)) {
+        this.classList.add('invalid');
+        phoneError.style.display = 'block';
+      } else {
+        this.classList.remove('invalid');
+        phoneError.style.display = 'none';
+      }
+    });
+
     document.getElementById('evoContactForm').addEventListener('submit', async function(e) {
       e.preventDefault();
+
+      // Validation téléphone avant envoi
+      if (phoneInput.value && !validatePhone(phoneInput.value)) {
+        phoneInput.classList.add('invalid');
+        phoneError.style.display = 'block';
+        phoneInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      // Remplir _replyto avec l'email du prospect pour qu'il reçoive une confirmation
+      const emailVal = document.getElementById('adv-email').value;
+      document.getElementById('replytoField').value = emailVal;
+
+      // Agréger les checkboxes cochées en une seule valeur lisible
+      const checkboxes = [...document.querySelectorAll('input[name="enjeu[]"]')];
+      const checked = checkboxes.filter(cb => cb.checked).map(cb => cb.value);
+      document.getElementById('enjeuHidden').value = checked.length ? checked.join(' | ') : 'Non précisé';
+      // Désactiver temporairement les checkboxes pour qu'elles ne soient pas envoyées
+      checkboxes.forEach(cb => cb.disabled = true);
+
       const btn = document.getElementById('submitBtn');
       btn.textContent = 'Envoi en cours…';
       btn.disabled = true;
+
       try {
         const res = await fetch(this.action, {
           method: 'POST',
@@ -297,12 +346,15 @@
         if (res.ok) {
           document.getElementById('evoThankYouMessage').style.display = 'flex';
           this.reset();
+          checkboxes.forEach(cb => cb.disabled = false);
           btn.textContent = 'Envoyé ✓';
         } else {
+          checkboxes.forEach(cb => cb.disabled = false);
           btn.textContent = 'Erreur – réessayez';
           btn.disabled = false;
         }
       } catch {
+        checkboxes.forEach(cb => cb.disabled = false);
         btn.textContent = 'Erreur – réessayez';
         btn.disabled = false;
       }
