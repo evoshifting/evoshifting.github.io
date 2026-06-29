@@ -21,8 +21,8 @@
     .evo-header-left { display: flex; align-items: center; flex-shrink: 0; }
     .evo-header-center { display: flex; justify-content: center; align-items: center; flex: 1; }
     .evo-header-right { display: flex; justify-content: flex-end; align-items: center; gap: 8px; flex-shrink: 0; }
-    .evo-logo img { height: 40px; width: auto; display: block; }
-    @media(min-width: 769px) { .evo-header-inner { padding: 0 24px; height: 80px; } .evo-logo img { height: 47px; } }
+    .evo-logo img { height: 48px; width: auto; display: block; }
+    @media(min-width: 769px) { .evo-header-inner { padding: 0 24px; height: 80px; } .evo-logo img { height: 56px; } }
     .evo-hamburger { display: flex; flex-direction: column; gap: 6px; cursor: pointer; padding: 6px; background: none; border: none; }
     .evo-hamburger span { display: block; width: 26px; height: 2px; background: #111; border-radius: 2px; }
     .evo-nav-contact { display: inline-block; background: #111; color: #fff !important; text-decoration: none; padding: 8px 14px; font-weight: 700; font-size: .82rem; border-radius: 4px; transition: background .2s; white-space: nowrap; flex-shrink: 0; }
@@ -107,7 +107,7 @@
     /* ── DIAGNOSTIC PILL ── */
     #evo-diag-pill { position: fixed; bottom: 24px; left: 16px; z-index: 990; display: flex; align-items: center; gap: 8px; background: #111; color: #fff; padding: 12px 18px; border-radius: 50px; cursor: pointer; border: none; font-family: inherit; font-size: .82rem; font-weight: 700; box-shadow: 0 4px 20px rgba(0,0,0,.25); transition: background .2s, transform .2s; animation: evoPulse 2s ease-in-out 3; max-width: calc(50vw - 20px); }
     #evo-diag-pill:hover { background: #68A67A; transform: scale(1.03); }
-    #evo-diag-pill .pill-icon { font-size: 1rem; flex-shrink: 0; }
+    #evo-diag-pill img { height: 20px; width: auto; filter: invert(1); flex-shrink: 0; }
     #evo-diag-pill span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     #evo-chat-btn { position: fixed; bottom: 24px; right: 16px; z-index: 990; width: 52px; height: 52px; border-radius: 50%; background: #111; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,.25); display: flex; align-items: center; justify-content: center; transition: background .2s, transform .2s; }
     #evo-chat-btn:hover { background: #68A67A; transform: scale(1.07); }
@@ -458,7 +458,7 @@
 
   <!-- DIAGNOSTIC PILL -->
   <button id="evo-diag-pill" onclick="window.location='./diagnostic.html'">
-    <span class="pill-icon">⚡</span>
+    <img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting" style="height:20px;width:auto;filter:invert(1);flex-shrink:0;">
     <span>Diagnostic IA gratuit</span>
   </button>
 

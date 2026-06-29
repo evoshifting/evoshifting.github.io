@@ -21,8 +21,8 @@
     .evo-header-left { display: flex; align-items: center; flex-shrink: 0; }
     .evo-header-center { display: flex; justify-content: center; align-items: center; flex: 1; }
     .evo-header-right { display: flex; justify-content: flex-end; align-items: center; gap: 8px; flex-shrink: 0; }
-    .evo-logo img { height: 40px; width: auto; display: block; }
-    @media(min-width: 769px) { .evo-header-inner { padding: 0 24px; height: 80px; } .evo-logo img { height: 47px; } }
+    .evo-logo img { height: 48px; width: auto; display: block; }
+    @media(min-width: 769px) { .evo-header-inner { padding: 0 24px; height: 80px; } .evo-logo img { height: 56px; } }
     .evo-hamburger { display: flex; flex-direction: column; gap: 6px; cursor: pointer; padding: 6px; background: none; border: none; }
     .evo-hamburger span { display: block; width: 26px; height: 2px; background: #111; border-radius: 2px; }
     .evo-nav-contact { display: inline-block; background: #111; color: #fff !important; text-decoration: none; padding: 8px 14px; font-weight: 700; font-size: .82rem; border-radius: 4px; transition: background .2s; white-space: nowrap; flex-shrink: 0; }
@@ -107,7 +107,7 @@
     /* ── DIAGNOSTIC PILL ── */
     #evo-diag-pill { position: fixed; bottom: 24px; left: 16px; z-index: 990; display: flex; align-items: center; gap: 8px; background: #111; color: #fff; padding: 12px 18px; border-radius: 50px; cursor: pointer; border: none; font-family: inherit; font-size: .82rem; font-weight: 700; box-shadow: 0 4px 20px rgba(0,0,0,.25); transition: background .2s, transform .2s; animation: evoPulse 2s ease-in-out 3; max-width: calc(50vw - 20px); }
     #evo-diag-pill:hover { background: #68A67A; transform: scale(1.03); }
-    #evo-diag-pill .pill-icon { font-size: 1rem; flex-shrink: 0; }
+    #evo-diag-pill img { height: 20px; width: auto; filter: invert(1); flex-shrink: 0; }
     #evo-diag-pill span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     #evo-chat-btn { position: fixed; bottom: 24px; right: 16px; z-index: 990; width: 52px; height: 52px; border-radius: 50%; background: #111; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,.25); display: flex; align-items: center; justify-content: center; transition: background .2s, transform .2s; }
     #evo-chat-btn:hover { background: #68A67A; transform: scale(1.07); }
@@ -459,7 +459,8 @@
       </div>
       <div class="diag-field">
         <label>Téléphone</label>
-        <input type="tel" id="diagTel" placeholder="Téléphone (optionnel)">
+        <input type="tel" id="diagTel" placeholder="Téléphone (optionnel)" style="transition:border-color .2s;">
+        <div id="errTel" style="display:none;font-size:.78rem;color:#e53e3e;margin-top:4px;">Format invalide — ex: 06 12 34 56 78 ou +33 6 12 34 56 78</div>
       </div>
     </div>
 
@@ -536,7 +537,7 @@
 
   <!-- DIAGNOSTIC PILL -->
   <button id="evo-diag-pill" onclick="window.location='./diagnostic.html'">
-    <span class="pill-icon">⚡</span>
+    <img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting" style="height:20px;width:auto;filter:invert(1);flex-shrink:0;">
     <span>Diagnostic IA gratuit</span>
   </button>
 
@@ -635,6 +636,12 @@
   }
 
   // ── Generate ──
+  function diagValidTel(v) {
+    if (!v) return true;
+    const c = v.replace(/[\s\.\-\(\)]/g,'');
+    return /^[+]?[0-9]{7,15}$/.test(c);
+  }
+
   async function generateDiag() {
     // Validation coordonnées
     const name = document.getElementById('diagName').value.trim();
@@ -643,6 +650,13 @@
     let valid = true;
     if (!name) { document.getElementById('errName').style.display = 'block'; valid = false; } else { document.getElementById('errName').style.display = 'none'; }
     if (!email || !email.includes('@')) { document.getElementById('errEmail').style.display = 'block'; valid = false; } else { document.getElementById('errEmail').style.display = 'none'; }
+    if (tel && !diagValidTel(tel)) {
+      const et = document.getElementById('errTel'); if (et) et.style.display = 'block';
+      document.getElementById('diagTel').style.borderColor = '#e53e3e'; valid = false;
+    } else {
+      const et = document.getElementById('errTel'); if (et) et.style.display = 'none';
+      document.getElementById('diagTel').style.borderColor = '';
+    }
     if (!valid) return;
 
     const ranges = document.querySelectorAll('input[type=range]');
@@ -694,15 +708,12 @@
       const data = await res.json();
       const raw = (data.content && data.content[0]) ? data.content[0].text : '';
       let diag;
-      const cleanRaw = raw.replace(/```json/gi,'').replace(/```/g,'').trim();
-      const firstBrace = cleanRaw.indexOf('{');
-      const lastBrace = cleanRaw.lastIndexOf('}');
-      const jsonStr = firstBrace >= 0 && lastBrace > firstBrace ? cleanRaw.slice(firstBrace, lastBrace+1) : cleanRaw;
       try {
-        diag = JSON.parse(jsonStr);
+        diag = JSON.parse(raw.replace(/```json/g,'').replace(/```/g,'').trim());
       } catch(e) {
-        console.error('Parse error:', e, 'Raw:', raw.substring(0,300));
-        throw new Error('JSON parse failed: ' + e.message);
+        const m = raw.match(/\{[\s\S]*\}/);
+        if (m) diag = JSON.parse(m[0]);
+        else throw new Error('JSON invalide');
       }
 
       // 3. Envoyer résultat au prospect (via _replyto)
@@ -719,28 +730,7 @@
       diag.cas_usage.forEach((c,i) => fdProspect.append('cas_usage_'+(i+1), c.titre + ' — ' + c.description));
       fetch("https://formspree.io/f/xrewpqbb", {method:'POST', body:fdProspect, headers:{'Accept':'application/json'}}).catch(()=>{});
 
-      try {
-        renderResult(diag, name, email);
-      } catch(renderErr) {
-        console.error('renderResult error:', renderErr);
-        // Affichage de secours minimal si renderResult plante
-        document.getElementById('diagLoading').style.display = 'none';
-        document.getElementById('diagResult').style.display = 'block';
-        document.getElementById('diagResult').classList.add('visible');
-        document.getElementById('resPosture').textContent = '📌 ' + (diag.posture || '—');
-        document.getElementById('resRaison').textContent = diag.posture_raison || '';
-        document.getElementById('resScore').textContent = (diag.score_maturite || '—') + '/10';
-        document.getElementById('resTag').textContent = diag.score_label || '';
-        document.getElementById('resQW').textContent = diag.quick_win || '';
-        document.getElementById('resRisk').textContent = diag.risque_principal || '';
-        document.getElementById('resNext').textContent = diag.prochaine_etape || '';
-        const casHtml = (diag.cas_usage || []).map((c,i) =>
-          '<div class="res-cas-item"><div class="res-cas-body"><div class="res-cas-title">' + c.titre + '</div><div class="res-cas-desc">' + c.description + '</div></div></div>'
-        ).join('');
-        document.getElementById('resCas').innerHTML = casHtml;
-        setTimeout(() => { document.getElementById('resFill').style.width = ((diag.score_maturite||5)/10*100)+'%'; }, 100);
-        window.scrollTo({top:0,behavior:'smooth'});
-      }
+      renderResult(diag, name, email);
     } catch(e) {
       console.error(e);
       document.getElementById('diagLoading').style.display = 'none';
@@ -915,7 +905,7 @@
         EVO_HISTORY.push({role:'assistant', content: reply});
       } catch(e) {
         evoSetTyping(false);
-        evoAddMsg('Je suis temporairement indisponible. Réessayez ou contactez-nous à contact@evoshifting.com', 'bot');
+        evoAddMsg('Service temporairement indisponible. Contactez-nous à contact@evoshifting.com', 'bot');
       }
       document.getElementById('evo-chat-send').disabled = false;
       const inp = document.getElementById('evo-chat-input');
