@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Diagnostic IA gratuit par evoshifting — Obtenez en 2 minutes un diagnostic personnalisé de maturité numérique et vos cas d'usage IA prioritaires.">
+  <title>evoshifting | Diagnostic IA Gratuit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;}
+    body{margin:0;padding:0;font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;background:#fff;}
+    a{font-family:inherit;}
+    
+    .evo-header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #eaeaea;}
+    .evo-header-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:80px;display:grid;grid-template-columns:120px 1fr 120px;align-items:center;}
+    .evo-header-left{display:flex;align-items:center;}
+    .evo-header-center{display:flex;justify-content:center;align-items:center;}
+    .evo-header-right{display:flex;justify-content:flex-end;align-items:center;gap:12px;}
+    .evo-logo img{height:47px;width:auto;display:block;}
+    .evo-hamburger{display:flex;flex-direction:column;gap:6px;cursor:pointer;padding:6px;background:none;border:none;}
+    .evo-hamburger span{display:block;width:26px;height:2px;background:#111;border-radius:2px;}
+    .evo-nav-contact{display:inline-block;background:#111;color:#fff !important;text-decoration:none;padding:10px 22px;font-weight:700;font-size:.88rem;border-radius:4px;transition:background .2s;white-space:nowrap;}
+    .evo-nav-contact:hover{background:#68A67A !important;}
+    .evo-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:200;}
+    .evo-overlay.open{display:block;}
+    .evo-drawer{position:fixed;top:0;left:0;width:280px;height:100dvh;background:#fff;z-index:201;transform:translateX(-100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:4px 0 24px rgba(0,0,0,.10);}
+    .evo-drawer.open{transform:translateX(0);}
+    .evo-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid #eaeaea;}
+    .evo-drawer-head img{height:32px;width:auto;}
+    .evo-drawer-close{background:none;border:none;cursor:pointer;font-size:1.5rem;color:#888;line-height:1;padding:2px 6px;}
+    .evo-drawer-nav{display:flex;flex-direction:column;padding:10px 0;}
+    .evo-drawer-nav a{font-size:1.05rem;font-weight:600;color:#222;text-decoration:none;padding:15px 24px;border-bottom:1px solid #f2f2f2;transition:color .2s,background .2s;}
+    .evo-drawer-nav a:last-child{border-bottom:none;}
+    .evo-drawer-nav a:hover,.evo-drawer-nav a.active{color:#68A67A;background:#f7fbf8;}
+    
+    .evo-footer{border-top:1px solid #eaeaea;background:#fff;}
+    .evo-footer-inner{max-width:1100px;margin:0 auto;padding:40px 20px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;}
+    .evo-footer-links{display:flex;gap:24px;align-items:center;}
+    .evo-footer-links a{color:#555;text-decoration:none;font-size:.9rem;display:flex;align-items:center;gap:6px;transition:color .2s;}
+    .evo-footer-links a:hover{color:#68A67A;}
+    .evo-footer-legal{font-size:.8rem;color:#999;line-height:1.5;}
+
+    /* ── PAGE DIAGNOSTIC ── */
+    .diag-container{max-width:860px;margin:0 auto;padding:60px 24px 80px;}
+
+    /* Hero */
+    .diag-hero{text-align:center;margin-bottom:56px;}
+    .diag-badge{display:inline-flex;align-items:center;gap:8px;background:#f0f7f2;color:#68A67A;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:6px 14px;border-radius:20px;margin-bottom:20px;border:1px solid #d2ebd9;}
+    .diag-hero h1{font-size:2.4rem;font-weight:800;line-height:1.2;color:#111;margin:0 0 16px;letter-spacing:-.5px;}
+    .diag-hero p{font-size:1.15rem;color:#555;line-height:1.6;margin:0 auto;max-width:620px;}
+
+    /* Progress */
+    .diag-progress{display:flex;align-items:center;gap:0;margin-bottom:48px;}
+    .diag-step-dot{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;position:relative;}
+    .diag-step-dot::before{content:'';position:absolute;top:18px;left:calc(50% + 18px);right:calc(-50% + 18px);height:2px;background:#eaeaea;z-index:0;}
+    .diag-step-dot:last-child::before{display:none;}
+    .diag-dot{width:36px;height:36px;border-radius:50%;border:2px solid #eaeaea;background:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:#aaa;position:relative;z-index:1;transition:all .3s;}
+    .diag-dot.active{border-color:#68A67A;background:#68A67A;color:#fff;}
+    .diag-dot.done{border-color:#68A67A;background:#f0f7f2;color:#68A67A;}
+    .diag-step-label{font-size:.72rem;font-weight:600;color:#aaa;text-transform:uppercase;letter-spacing:.5px;text-align:center;}
+    .diag-step-label.active{color:#68A67A;}
+
+    /* Steps */
+    .diag-step{display:none;animation:diagFadeIn .35s ease;}
+    .diag-step.visible{display:block;}
+    @keyframes diagFadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+    .diag-step-title{font-size:1.4rem;font-weight:700;color:#111;margin:0 0 8px;}
+    .diag-step-subtitle{font-size:1rem;color:#666;margin:0 0 32px;}
+
+    /* Cards grille */
+    .diag-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:36px;}
+    .diag-card{cursor:pointer;border:2px solid #eaeaea;border-radius:12px;padding:20px 16px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;transition:all .2s;background:#fff;}
+    .diag-card:hover{border-color:#68A67A;background:#fafdfb;}
+    .diag-card.selected{border-color:#68A67A;background:#f0f7f2;box-shadow:0 0 0 1px #68A67A;}
+    .diag-card-icon{font-size:1.6rem;}
+    .diag-card-label{font-size:.95rem;font-weight:700;color:#111;}
+    .diag-card-sub{font-size:.8rem;color:#777;line-height:1.3;}
+
+    /* Sliders */
+    .diag-slider-group{margin-bottom:28px;}
+    .diag-slider-label{font-size:.95rem;font-weight:700;color:#111;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;}
+    .diag-slider-val{font-size:.85rem;font-weight:700;color:#68A67A;background:#f0f7f2;padding:2px 10px;border-radius:20px;}
+    input[type=range]{width:100%;accent-color:#68A67A;height:4px;border-radius:4px;cursor:pointer;margin:8px 0;}
+    .diag-slider-hints{display:flex;justify-content:space-between;font-size:.75rem;color:#aaa;}
+
+    /* Textarea */
+    .diag-textarea{width:100%;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;font-size:.95rem;font-family:inherit;resize:vertical;min-height:90px;outline:none;color:#1a1a1a;transition:border-color .2s;}
+    .diag-textarea:focus{border-color:#68A67A;box-shadow:0 0 0 3px rgba(104,166,122,.1);}
+
+    /* Nav buttons */
+    .diag-nav{display:flex;justify-content:space-between;align-items:center;margin-top:36px;}
+    .diag-btn-back{background:none;border:1px solid #ddd;color:#555;padding:12px 28px;border-radius:8px;font-size:.95rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;}
+    .diag-btn-back:hover{border-color:#68A67A;color:#68A67A;}
+    .diag-btn-next{background:#111;color:#fff;border:none;padding:14px 36px;border-radius:8px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s;display:flex;align-items:center;gap:8px;}
+    .diag-btn-next:hover{background:#68A67A;}
+    .diag-btn-next:disabled{opacity:.4;cursor:not-allowed;}
+
+    /* Loading */
+    .diag-loading{text-align:center;padding:60px 20px;}
+    .diag-spinner{width:52px;height:52px;border:3px solid #eaeaea;border-top-color:#68A67A;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 24px;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+    .diag-loading-text{font-size:1.1rem;color:#555;}
+    .diag-loading-sub{font-size:.9rem;color:#aaa;margin-top:8px;}
+
+    /* Résultat */
+    .diag-result{display:none;animation:diagFadeIn .5s ease;}
+    .diag-result.visible{display:block;}
+    .diag-result-header{background:linear-gradient(135deg,#111 0%,#2d3748 100%);color:#fff;border-radius:16px;padding:36px;margin-bottom:28px;}
+    .diag-result-title{font-size:.8rem;text-transform:uppercase;letter-spacing:1.5px;color:#a0aec0;margin:0 0 12px;}
+    .diag-posture-badge{display:inline-flex;align-items:center;gap:8px;background:#68A67A;color:#fff;font-size:1.1rem;font-weight:700;padding:8px 20px;border-radius:8px;margin-bottom:16px;}
+    .diag-posture-raison{font-size:1rem;color:#e2e8f0;line-height:1.5;margin:0;}
+    .diag-score-row{display:flex;align-items:center;gap:16px;margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);}
+    .diag-score-label{font-size:.85rem;color:#a0aec0;}
+    .diag-score-bar{flex:1;height:8px;background:rgba(255,255,255,.15);border-radius:4px;overflow:hidden;}
+    .diag-score-fill{height:100%;background:#68A67A;border-radius:4px;transition:width 1s ease;}
+    .diag-score-val{font-size:1.1rem;font-weight:700;color:#68A67A;}
+    .diag-score-tag{font-size:.8rem;background:rgba(104,166,122,.2);color:#68A67A;padding:3px 10px;border-radius:20px;font-weight:600;}
+
+    .diag-section{background:#fff;border:1px solid #eaeaea;border-radius:12px;padding:28px;margin-bottom:20px;}
+    .diag-section-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#68A67A;margin:0 0 20px;display:flex;align-items:center;gap:8px;}
+    .diag-section-title::before{content:'';display:inline-block;width:3px;height:14px;background:#68A67A;border-radius:2px;}
+
+    .diag-cas-grid{display:flex;flex-direction:column;gap:14px;}
+    .diag-cas-item{display:flex;gap:14px;align-items:flex-start;padding:16px;background:#f9f9f9;border-radius:8px;border:1px solid #f0f0f0;}
+    .diag-cas-icon{font-size:1.4rem;flex-shrink:0;}
+    .diag-cas-body{flex:1;}
+    .diag-cas-title{font-size:.95rem;font-weight:700;color:#111;margin:0 0 4px;}
+    .diag-cas-desc{font-size:.88rem;color:#555;margin:0 0 10px;line-height:1.4;}
+    .diag-cas-tags{display:flex;gap:6px;flex-wrap:wrap;}
+    .diag-tag{font-size:.72rem;font-weight:600;padding:3px 8px;border-radius:4px;}
+    .diag-tag.fort{background:#fef3c7;color:#92400e;}
+    .diag-tag.moyen{background:#e0f2fe;color:#0369a1;}
+    .diag-tag.delai{background:#f4f4f4;color:#555;}
+
+    .diag-highlight{background:#f0f7f2;border:1px solid #d2ebd9;border-radius:10px;padding:20px 24px;margin-bottom:20px;}
+    .diag-highlight-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#68A67A;margin:0 0 6px;}
+    .diag-highlight-text{font-size:1rem;color:#1a1a1a;line-height:1.5;margin:0;font-weight:500;}
+
+    .diag-warning{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:16px 20px;margin-bottom:20px;}
+    .diag-warning-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#c2410c;margin:0 0 4px;}
+    .diag-warning-text{font-size:.95rem;color:#7c2d12;line-height:1.5;margin:0;}
+
+    .diag-cta-block{background:linear-gradient(135deg,#111 0%,#1a202c 100%);border-radius:16px;padding:40px;text-align:center;margin-top:28px;}
+    .diag-cta-block h3{font-size:1.5rem;font-weight:700;color:#fff;margin:0 0 10px;}
+    .diag-cta-block p{font-size:1rem;color:#a0aec0;margin:0 0 24px;}
+    .diag-cta-btn{display:inline-block;background:#68A67A;color:#fff !important;text-decoration:none;padding:16px 40px;border-radius:8px;font-weight:700;font-size:1rem;transition:background .2s;font-family:inherit;border:none;cursor:pointer;}
+    .diag-cta-btn:hover{background:#568d66;}
+    .diag-restart{background:none;border:1px solid rgba(255,255,255,.2);color:#a0aec0;padding:10px 20px;border-radius:6px;font-size:.85rem;cursor:pointer;font-family:inherit;margin-top:14px;transition:all .2s;display:inline-block;}
+    .diag-restart:hover{border-color:rgba(255,255,255,.4);color:#fff;}
+
+    @media(max-width:768px){
+      .diag-hero h1{font-size:1.8rem;}
+      .diag-cards{grid-template-columns:1fr 1fr;}
+      .diag-container{padding:40px 16px 60px;}
+    }
+    @media(max-width:480px){
+      .diag-cards{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- OVERLAY + DRAWER -->
+  <div class="evo-overlay" id="evoOverlay"></div>
+  <div class="evo-drawer" id="evoDrawer">
+    <div class="evo-drawer-head">
+      <a href="./index.html"><img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting"></a>
+      <button class="evo-drawer-close" onclick="closeDrawer()">✕</button>
+    </div>
+    <nav class="evo-drawer-nav">
+      <a href="./offres.html">offres</a>
+      <a href="./references.html">références</a>
+      <a href="./portrait.html">portrait</a>
+    </nav>
+  </div>
+
+  <!-- HEADER -->
+  <header class="evo-header">
+    <div class="evo-header-inner">
+      <div class="evo-header-left">
+        <button class="evo-hamburger" onclick="openDrawer()"><span></span><span></span><span></span></button>
+      </div>
+      <div class="evo-header-center">
+        <a href="./index.html" class="evo-logo"><img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting"></a>
+      </div>
+      <div class="evo-header-right">
+        <a href="./contact.html" class="evo-nav-contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- DIAGNOSTIC -->
+  <div class="diag-container">
+
+    <!-- HERO -->
+    <div class="diag-hero">
+      <div class="diag-badge">⚡ Propulsé par Claude AI</div>
+      <h1>Votre diagnostic IA<br>en 2 minutes</h1>
+      <p>Répondez à 3 questions sur votre contexte et obtenez un diagnostic personnalisé : posture recommandée, cas d'usage prioritaires et premier Quick Win actionnable.</p>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="diag-progress" id="diagProgress">
+      <div class="diag-step-dot">
+        <div class="diag-dot active" id="dot1">1</div>
+        <div class="diag-step-label active" id="lbl1">Contexte</div>
+      </div>
+      <div class="diag-step-dot">
+        <div class="diag-dot" id="dot2">2</div>
+        <div class="diag-step-label" id="lbl2">Maturité</div>
+      </div>
+      <div class="diag-step-dot">
+        <div class="diag-dot" id="dot3">3</div>
+        <div class="diag-step-label" id="lbl3">Enjeux</div>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 1 : SECTEUR -->
+    <div class="diag-step visible" id="step1">
+      <div class="diag-step-title">Votre secteur d'activité</div>
+      <div class="diag-step-subtitle">Sélectionnez le secteur le plus proche de votre activité.</div>
+      <div class="diag-cards" id="secteurCards">
+        <div class="diag-card" onclick="selectCard(this,'secteur','Retail & E-commerce')"><div class="diag-card-icon">🛒</div><div class="diag-card-label">Retail & E-commerce</div><div class="diag-card-sub">Distribution, vente en ligne, omnicanal</div></div>
+        <div class="diag-card" onclick="selectCard(this,'secteur','Industrie & B2B')"><div class="diag-card-icon">⚙️</div><div class="diag-card-label">Industrie & B2B</div><div class="diag-card-sub">Fabrication, distribution industrielle</div></div>
+        <div class="diag-card" onclick="selectCard(this,'secteur','Services & Conseil')"><div class="diag-card-icon">💼</div><div class="diag-card-label">Services & Conseil</div><div class="diag-card-sub">Consulting, services professionnels</div></div>
+        <div class="diag-card" onclick="selectCard(this,'secteur','Santé & Sciences')"><div class="diag-card-icon">🏥</div><div class="diag-card-label">Santé & Sciences</div><div class="diag-card-sub">Médical, pharma, biotech</div></div>
+        <div class="diag-card" onclick="selectCard(this,'secteur','Finance & Assurance')"><div class="diag-card-icon">🏦</div><div class="diag-card-label">Finance & Assurance</div><div class="diag-card-sub">Banque, assurance, fintech</div></div>
+        <div class="diag-card" onclick="selectCard(this,'secteur','Tourisme & Loisirs')"><div class="diag-card-icon">✈️</div><div class="diag-card-label">Tourisme & Loisirs</div><div class="diag-card-sub">Hôtellerie, voyages, événementiel</div></div>
+        <div class="diag-card" onclick="selectCard(this,'secteur','Énergie & Utilities')"><div class="diag-card-icon">⚡</div><div class="diag-card-label">Énergie & Utilities</div><div class="diag-card-sub">Énergie, eau, infrastructure</div></div>
+        <div class="diag-card" onclick="selectCard(this,'secteur','Autre secteur')"><div class="diag-card-icon">🔷</div><div class="diag-card-label">Autre secteur</div><div class="diag-card-sub">Secteur non listé ci-dessus</div></div>
+      </div>
+      <div class="diag-nav">
+        <span></span>
+        <button class="diag-btn-next" id="btn1" onclick="goStep(2)" disabled>Étape suivante →</button>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 2 : MATURITÉ -->
+    <div class="diag-step" id="step2">
+      <div class="diag-step-title">Votre maturité numérique actuelle</div>
+      <div class="diag-step-subtitle">Évaluez votre situation sur chaque axe.</div>
+
+      <div class="diag-slider-group">
+        <div class="diag-slider-label">Digitalisation des processus métiers<span class="diag-slider-val" id="v1">5/10</span></div>
+        <input type="range" min="1" max="10" value="5" oninput="updateSlider('v1',this.value+'/10')">
+        <div class="diag-slider-hints"><span>Processus manuels</span><span>Tout digitalisé</span></div>
+      </div>
+
+      <div class="diag-slider-group">
+        <div class="diag-slider-label">Intégration de vos outils SaaS (ERP, CRM, etc.)<span class="diag-slider-val" id="v2">5/10</span></div>
+        <input type="range" min="1" max="10" value="5" oninput="updateSlider('v2',this.value+'/10')">
+        <div class="diag-slider-hints"><span>Outils en silos</span><span>Écosystème intégré</span></div>
+      </div>
+
+      <div class="diag-slider-group">
+        <div class="diag-slider-label">Exploitation de la donnée & Analytics<span class="diag-slider-val" id="v3">5/10</span></div>
+        <input type="range" min="1" max="10" value="5" oninput="updateSlider('v3',this.value+'/10')">
+        <div class="diag-slider-hints"><span>Peu de data utilisée</span><span>Data-driven avancé</span></div>
+      </div>
+
+      <div class="diag-slider-group">
+        <div class="diag-slider-label">Budget & ressources disponibles pour un projet<span class="diag-slider-val" id="v4">Moyen</span></div>
+        <input type="range" min="1" max="3" value="2" oninput="updateSlider('v4',['','Limité','Moyen','Conséquent'][this.value])">
+        <div class="diag-slider-hints"><span>Limité</span><span>Moyen</span><span>Conséquent</span></div>
+      </div>
+
+      <div class="diag-nav">
+        <button class="diag-btn-back" onclick="goStep(1)">← Retour</button>
+        <button class="diag-btn-next" onclick="goStep(3)">Étape suivante →</button>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 3 : ENJEUX -->
+    <div class="diag-step" id="step3">
+      <div class="diag-step-title">Vos enjeux principaux</div>
+      <div class="diag-step-subtitle">Décrivez votre situation en quelques mots (optionnel mais enrichit le diagnostic).</div>
+
+      <div style="margin-bottom:20px;">
+        <div class="diag-step-subtitle" style="margin-bottom:12px;font-weight:600;color:#111;">Quel est votre principal défi aujourd'hui ?</div>
+        <div class="diag-cards" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr));" id="defiCards">
+          <div class="diag-card" onclick="selectCard(this,'defi','Accélérer ma transformation numérique')"><div class="diag-card-icon">🚀</div><div class="diag-card-label">Accélérer la transformation</div></div>
+          <div class="diag-card" onclick="selectCard(this,'defi','Réduire les coûts opérationnels')"><div class="diag-card-icon">📉</div><div class="diag-card-label">Réduire les coûts</div></div>
+          <div class="diag-card" onclick="selectCard(this,'defi','Améliorer l'expérience client')"><div class="diag-card-icon">⭐</div><div class="diag-card-label">Améliorer l'expérience client</div></div>
+          <div class="diag-card" onclick="selectCard(this,'defi','Intégrer l'IA dans mes processus')"><div class="diag-card-icon">🤖</div><div class="diag-card-label">Intégrer l'IA</div></div>
+          <div class="diag-card" onclick="selectCard(this,'defi','Choisir et déployer un nouvel outil SaaS')"><div class="diag-card-icon">🛠️</div><div class="diag-card-label">Déployer un outil SaaS</div></div>
+          <div class="diag-card" onclick="selectCard(this,'defi','Structurer ma gouvernance IT')"><div class="diag-card-icon">🏗️</div><div class="diag-card-label">Structurer la gouvernance IT</div></div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:12px;font-weight:600;color:#111;font-size:.95rem;">Précisez votre contexte (facultatif)</div>
+      <textarea class="diag-textarea" id="contexteLibre" placeholder="Ex : Nous avons un ERP Dynamics 365 mais nos équipes commerciales travaillent encore sur Excel. Nous voulons automatiser nos rapports et explorer l'IA générative..."></textarea>
+
+      <div class="diag-nav">
+        <button class="diag-btn-back" onclick="goStep(2)">← Retour</button>
+        <button class="diag-btn-next" id="btnGenerate" onclick="generateDiagnostic()">
+          <span>Générer mon diagnostic</span>
+          <span>⚡</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- LOADING -->
+    <div class="diag-loading" id="diagLoading" style="display:none;">
+      <div class="diag-spinner"></div>
+      <div class="diag-loading-text">Analyse de votre contexte en cours…</div>
+      <div class="diag-loading-sub">Claude analyse votre profil et identifie vos priorités</div>
+    </div>
+
+    <!-- RÉSULTAT -->
+    <div class="diag-result" id="diagResult">
+
+      <div class="diag-result-header" id="resultHeader">
+        <div class="diag-result-title">POSTURE RECOMMANDÉE</div>
+        <div class="diag-posture-badge" id="resultPosture">—</div>
+        <p class="diag-posture-raison" id="resultRaison">—</p>
+        <div class="diag-score-row">
+          <div class="diag-score-label">Score de maturité numérique</div>
+          <div class="diag-score-bar"><div class="diag-score-fill" id="scoreFill" style="width:0%"></div></div>
+          <div class="diag-score-val" id="scoreVal">—</div>
+          <div class="diag-score-tag" id="scoreTag">—</div>
+        </div>
+      </div>
+
+      <div class="diag-section">
+        <div class="diag-section-title">Cas d'usage IA prioritaires</div>
+        <div class="diag-cas-grid" id="casGrid"></div>
+      </div>
+
+      <div class="diag-highlight">
+        <div class="diag-highlight-label">⚡ Quick Win recommandé</div>
+        <p class="diag-highlight-text" id="quickWin">—</p>
+      </div>
+
+      <div class="diag-warning">
+        <div class="diag-warning-label">⚠️ Risque principal identifié</div>
+        <p class="diag-warning-text" id="risque">—</p>
+      </div>
+
+      <div class="diag-section">
+        <div class="diag-section-title">Prochaine étape recommandée</div>
+        <p style="margin:0;font-size:1rem;color:#333;line-height:1.6;" id="prochaine">—</p>
+      </div>
+
+      <div class="diag-cta-block">
+        <h3>Ce diagnostic vous parle ?</h3>
+        <p>Échangeons 20 minutes pour affiner ces axes et définir ensemble votre trajectoire.</p>
+        <a href="./contact.html" class="diag-cta-btn" id="ctaContact">Prendre contact avec Marc-Antoine</a>
+        <br>
+        <button class="diag-restart" onclick="restartDiag()">↩ Refaire le diagnostic</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="evo-footer">
+    <div class="evo-footer-inner">
+      <div class="evo-footer-links">
+        <a href="http://wa.me/33625544444" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</a>
+        <a href="https://www.linkedin.com/in/ma-clx/" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="#0077B5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+      </div>
+      <p class="evo-footer-legal">evoshifting – SASU au capital de 1 500 € – RCS Bordeaux 992 753 632 – Conseil en systèmes et logiciels informatiques (APE 6202A)</p>
+    </div>
+  </footer>
+
+  <script>
+    // ── Drawer ──
+    const drawer=document.getElementById('evoDrawer');
+    const overlay=document.getElementById('evoOverlay');
+    function openDrawer(){drawer.classList.add('open');overlay.classList.add('open');document.body.style.overflow='hidden';}
+    function closeDrawer(){drawer.classList.remove('open');overlay.classList.remove('open');document.body.style.overflow='';}
+    overlay.addEventListener('click',closeDrawer);
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+
+    // ── State ──
+    const state = { secteur:'', defi:'', sliders:{} };
+
+    // ── Cards ──
+    function selectCard(el, key, val) {
+      const group = el.closest('.diag-cards');
+      group.querySelectorAll('.diag-card').forEach(c=>c.classList.remove('selected'));
+      el.classList.add('selected');
+      state[key] = val;
+      if(key==='secteur') document.getElementById('btn1').disabled = false;
+    }
+
+    // ── Sliders ──
+    function updateSlider(id, val) {
+      document.getElementById(id).textContent = val;
+    }
+
+    // ── Steps ──
+    function goStep(n) {
+      [1,2,3].forEach(i=>{
+        document.getElementById('step'+i).classList.remove('visible');
+        document.getElementById('dot'+i).classList.remove('active','done');
+        document.getElementById('lbl'+i).classList.remove('active');
+      });
+      document.getElementById('step'+n).classList.add('visible');
+      for(let i=1;i<n;i++){
+        document.getElementById('dot'+i).classList.add('done');
+        document.getElementById('dot'+i).textContent='✓';
+      }
+      document.getElementById('dot'+n).classList.add('active');
+      document.getElementById('lbl'+n).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    // ── Generate ──
+    async function generateDiagnostic() {
+      const sliders = {
+        digitalisation: document.querySelectorAll('input[type=range]')[0].value,
+        integration: document.querySelectorAll('input[type=range]')[1].value,
+        data: document.querySelectorAll('input[type=range]')[2].value,
+        budget: ['','Limité','Moyen','Conséquent'][document.querySelectorAll('input[type=range]')[3].value]
+      };
+      const contexte = document.getElementById('contexteLibre').value;
+
+      const prompt = `Génère un diagnostic pour cette entreprise :
+- Secteur : ${state.secteur || 'Non précisé'}
+- Défi principal : ${state.defi || 'Non précisé'}
+- Digitalisation des processus : ${sliders.digitalisation}/10
+- Intégration SaaS : ${sliders.integration}/10
+- Exploitation data : ${sliders.data}/10
+- Budget disponible : ${sliders.budget}
+- Contexte libre : ${contexte || 'Aucun'}`;
+
+      // Hide steps, show loading
+      document.getElementById('step3').classList.remove('visible');
+      document.getElementById('diagProgress').style.display='none';
+      document.getElementById('diagLoading').style.display='block';
+
+      try {
+        const res = await fetch("https://anthropic.evoshifting.workers.dev", {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({
+            model:'claude-sonnet-4-6',
+            max_tokens:1500,
+            system:"Tu es l'expert en diagnostic de transformation num\u00e9rique d'evoshifting. Tu analyses le contexte d'une entreprise et g\u00e9n\u00e8res un diagnostic structur\u00e9, concis et percutant.\n\n\u00c0 partir des informations fournies, tu g\u00e9n\u00e8res UNIQUEMENT un objet JSON valide avec cette structure exacte (pas de texte avant ou apr\u00e8s) :\n\n{\n  \"posture\": \"AMOA\" | \"Product Owner\" | \"PMO\" | \"AMOA + Product Owner\" | \"Product Owner + PMO\" | \"AMOA + PMO\",\n  \"posture_raison\": \"1 phrase expliquant pourquoi cette posture\",\n  \"score_maturite\": 1-10,\n  \"score_label\": \"Initiale\" | \"En d\u00e9veloppement\" | \"Avanc\u00e9e\" | \"Leader\",\n  \"cas_usage\": [\n    {\"titre\": \"Titre court\", \"description\": \"1 phrase\", \"impact\": \"Fort\" | \"Moyen\", \"delai\": \"2-4 semaines\" | \"1-2 mois\" | \"2-3 mois\"},\n    {\"titre\": \"Titre court\", \"description\": \"1 phrase\", \"impact\": \"Fort\" | \"Moyen\", \"delai\": \"2-4 semaines\" | \"1-2 mois\" | \"2-3 mois\"},\n    {\"titre\": \"Titre court\", \"description\": \"1 phrase\", \"impact\": \"Fort\" | \"Moyen\", \"delai\": \"2-4 semaines\" | \"1-2 mois\" | \"2-3 mois\"}\n  ],\n  \"quick_win\": \"Description d'un premier pilote concret r\u00e9alisable en 3-4 semaines\",\n  \"risque_principal\": \"Le principal risque ou frein identifi\u00e9 en 1 phrase\",\n  \"prochaine_etape\": \"Action concr\u00e8te recommand\u00e9e pour d\u00e9marrer\"\n}\n\nAdapte pr\u00e9cis\u00e9ment \u00e0 chaque contexte. Sois direct, op\u00e9rationnel, sans jargon inutile.",
+            messages:[{role:'user',content:prompt}]
+          })
+        });
+        const data = await res.json();
+        const text = data.content&&data.content[0]?data.content[0].text:'';
+        const clean = text.replace(/```json|```/g,'').trim();
+        const diag = JSON.parse(clean);
+        renderResult(diag, sliders);
+      } catch(e) {
+        document.getElementById('diagLoading').style.display='none';
+        document.getElementById('diagProgress').style.display='flex';
+        document.getElementById('step3').classList.add('visible');
+        alert('Une erreur est survenue. Vérifiez votre connexion et réessayez.');
+        console.error(e);
+      }
+    }
+
+    // ── Render ──
+    function renderResult(d, sliders) {
+      document.getElementById('diagLoading').style.display='none';
+      document.getElementById('resultPosture').textContent='📌 ' + d.posture;
+      document.getElementById('resultRaison').textContent = d.posture_raison;
+      const pct = (d.score_maturite/10)*100;
+      setTimeout(()=>{ document.getElementById('scoreFill').style.width=pct+'%'; },100);
+      document.getElementById('scoreVal').textContent = d.score_maturite+'/10';
+      document.getElementById('scoreTag').textContent = d.score_label;
+
+      const icons = ['🎯','🔧','⚡'];
+      const casHtml = d.cas_usage.map((c,i)=>`
+        <div class="diag-cas-item">
+          <div class="diag-cas-icon">${icons[i]||'▶️'}</div>
+          <div class="diag-cas-body">
+            <div class="diag-cas-title">${c.titre}</div>
+            <div class="diag-cas-desc">${c.description}</div>
+            <div class="diag-cas-tags">
+              <span class="diag-tag ${c.impact==='Fort'?'fort':'moyen'}">${c.impact==='Fort'?'🔴 Impact fort':'🟡 Impact moyen'}</span>
+              <span class="diag-tag delai">⏱ ${c.delai}</span>
+            </div>
+          </div>
+        </div>`).join('');
+      document.getElementById('casGrid').innerHTML = casHtml;
+      document.getElementById('quickWin').textContent = d.quick_win;
+      document.getElementById('risque').textContent = d.risque_principal;
+      document.getElementById('prochaine').textContent = d.prochaine_etape;
+
+      // CTA pré-rempli
+      const enjeu = encodeURIComponent(d.posture);
+      document.getElementById('ctaContact').href = './contact.html';
+
+      document.getElementById('diagResult').classList.add('visible');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function restartDiag() {
+      state.secteur=''; state.defi='';
+      document.querySelectorAll('.diag-card').forEach(c=>c.classList.remove('selected'));
+      document.querySelectorAll('input[type=range]').forEach(r=>{
+        r.value = r.max==='3'?'2':'5';
+      });
+      document.getElementById('v1').textContent='5/10';
+      document.getElementById('v2').textContent='5/10';
+      document.getElementById('v3').textContent='5/10';
+      document.getElementById('v4').textContent='Moyen';
+      document.getElementById('contexteLibre').value='';
+      document.getElementById('btn1').disabled=true;
+      document.getElementById('diagResult').classList.remove('visible');
+      document.getElementById('diagProgress').style.display='flex';
+      goStep(1);
+    }
+  </script>
+
+</body>
+</html>
