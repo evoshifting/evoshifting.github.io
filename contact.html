@@ -17,14 +17,16 @@
 
     /* ── HEADER ── */
     .evo-header { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 1px solid #eaeaea; }
-    .evo-header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 80px; display: grid; grid-template-columns: 120px 1fr 120px; align-items: center; }
-    .evo-header-left { display: flex; align-items: center; }
-    .evo-header-center { display: flex; justify-content: center; align-items: center; }
-    .evo-header-right { display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
-    .evo-logo img { height: 47px; width: auto; display: block; }
+    .evo-header-inner { max-width: 1100px; margin: 0 auto; padding: 0 16px; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .evo-header-left { display: flex; align-items: center; flex-shrink: 0; }
+    .evo-header-center { display: flex; justify-content: center; align-items: center; flex: 1; }
+    .evo-header-right { display: flex; justify-content: flex-end; align-items: center; gap: 8px; flex-shrink: 0; }
+    .evo-logo img { height: 40px; width: auto; display: block; }
+    @media(min-width: 769px) { .evo-header-inner { padding: 0 24px; height: 80px; } .evo-logo img { height: 47px; } }
     .evo-hamburger { display: flex; flex-direction: column; gap: 6px; cursor: pointer; padding: 6px; background: none; border: none; }
     .evo-hamburger span { display: block; width: 26px; height: 2px; background: #111; border-radius: 2px; }
-    .evo-nav-contact { display: inline-block; background: #111; color: #fff !important; text-decoration: none; padding: 10px 22px; font-weight: 700; font-size: .88rem; border-radius: 4px; transition: background .2s; white-space: nowrap; }
+    .evo-nav-contact { display: inline-block; background: #111; color: #fff !important; text-decoration: none; padding: 8px 14px; font-weight: 700; font-size: .82rem; border-radius: 4px; transition: background .2s; white-space: nowrap; flex-shrink: 0; }
+    @media(min-width: 769px) { .evo-nav-contact { padding: 10px 22px; font-size: .88rem; } }
     .evo-nav-contact:hover { background: #68A67A !important; }
     .evo-nav-contact.active-page { background: #68A67A !important; }
 
@@ -45,8 +47,8 @@
     .evo-drawer-nav a.diag-link:hover { background: #f0f7f2; }
 
     /* ── LANG TOGGLE ── */
-    .evo-lang-toggle { display: flex; align-items: center; gap: 2px; background: #f4f4f4; border-radius: 6px; padding: 3px; }
-    .evo-lang-btn { font-size: .78rem; font-weight: 700; padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer; background: transparent; color: #666; transition: all .2s; font-family: inherit; letter-spacing: .3px; }
+    .evo-lang-toggle { display: flex; align-items: center; gap: 2px; background: #f4f4f4; border-radius: 6px; padding: 3px; flex-shrink: 0; }
+    .evo-lang-btn { font-size: .75rem; font-weight: 700; padding: 4px 8px; border: none; border-radius: 4px; cursor: pointer; background: transparent; color: #666; transition: all .2s; font-family: inherit; letter-spacing: .3px; }
     .evo-lang-btn.active { background: #111; color: #fff; }
     .evo-lang-btn:hover:not(.active) { color: #111; }
 
@@ -60,10 +62,6 @@
     @media(max-width: 600px) { .evo-footer-links { flex-direction: column; gap: 12px; } }
 
     /* ── CHATBOT ── */
-    #evo-chat-btn { position: fixed; bottom: 28px; right: 28px; z-index: 1000; width: 58px; height: 58px; border-radius: 50%; background: #111; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,.25); display: flex; align-items: center; justify-content: center; transition: background .2s, transform .2s; }
-    #evo-chat-btn:hover { background: #68A67A; transform: scale(1.07); }
-    #evo-chat-btn svg { width: 26px; height: 26px; }
-    #evo-chat-window { position: fixed; bottom: 98px; right: 28px; z-index: 1000; width: 370px; height: 560px; max-height: 82vh; background: #fff; border-radius: 16px; box-shadow: 0 12px 48px rgba(0,0,0,.18); display: none; flex-direction: column; overflow: hidden; font-family: 'Nunito Sans', sans-serif; }
     .evo-chat-header { background: #111; color: #fff; padding: 14px 18px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
     .evo-chat-avatar { width: 36px; height: 36px; border-radius: 50%; background: #68A67A; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
     .evo-chat-header-info { flex: 1; }
@@ -107,15 +105,15 @@
     #evo-chat-send svg { width: 14px; height: 14px; }
 
     /* ── DIAGNOSTIC PILL ── */
-    #evo-diag-pill { position: fixed; bottom: 28px; left: 28px; z-index: 1000; display: flex; align-items: center; gap: 10px; background: #111; color: #fff; padding: 14px 20px; border-radius: 50px; cursor: pointer; border: none; font-family: inherit; font-size: .88rem; font-weight: 700; box-shadow: 0 4px 20px rgba(0,0,0,.25); transition: background .2s, transform .2s; animation: evoPulse 2s ease-in-out 3; }
-    #evo-diag-pill:hover { background: #68A67A; transform: scale(1.04); }
-    #evo-diag-pill .pill-icon { font-size: 1.1rem; }
+    #evo-diag-pill { position: fixed; bottom: 24px; left: 16px; z-index: 990; display: flex; align-items: center; gap: 8px; background: #111; color: #fff; padding: 12px 18px; border-radius: 50px; cursor: pointer; border: none; font-family: inherit; font-size: .82rem; font-weight: 700; box-shadow: 0 4px 20px rgba(0,0,0,.25); transition: background .2s, transform .2s; animation: evoPulse 2s ease-in-out 3; max-width: calc(50vw - 20px); }
+    #evo-diag-pill:hover { background: #68A67A; transform: scale(1.03); }
+    #evo-diag-pill .pill-icon { font-size: 1rem; flex-shrink: 0; }
+    #evo-diag-pill span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    #evo-chat-btn { position: fixed; bottom: 24px; right: 16px; z-index: 990; width: 52px; height: 52px; border-radius: 50%; background: #111; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,.25); display: flex; align-items: center; justify-content: center; transition: background .2s, transform .2s; }
+    #evo-chat-btn:hover { background: #68A67A; transform: scale(1.07); }
+    #evo-chat-btn svg { width: 24px; height: 24px; }
+    #evo-chat-window { position: fixed; bottom: 88px; right: 16px; z-index: 995; width: min(370px, calc(100vw - 24px)); height: min(520px, calc(100dvh - 110px)); background: #fff; border-radius: 16px; box-shadow: 0 12px 48px rgba(0,0,0,.18); display: none; flex-direction: column; overflow: hidden; font-family: 'Nunito Sans', sans-serif; }
     @keyframes evoPulse { 0%,100%{ box-shadow:0 4px 20px rgba(0,0,0,.25); } 50%{ box-shadow:0 4px 28px rgba(104,166,122,.5); } }
-    @media(max-width: 480px) {
-      #evo-chat-window { width: calc(100vw - 20px); right: 10px; bottom: 80px; }
-      #evo-chat-btn { bottom: 16px; right: 16px; }
-      #evo-diag-pill { bottom: 16px; left: 10px; font-size: .78rem; padding: 11px 14px; }
-    }
 
 
     .evo-container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
@@ -247,20 +245,34 @@
       .evo-form-card { padding: 24px; }
     }
     @media(max-width: 768px) {
-      .evo-container { padding: 36px 15px; }
-      .evo-phase-grid { grid-template-columns: 1fr; gap: 14px; }
-      .evo-phase-card { padding: 24px; }
-      .evo-trust-grid { grid-template-columns: 1fr; gap: 24px; }
-      .evo-faq-item { padding: 18px; }
-      .evo-divider { margin: 40px auto; }
-      .evo-section-h2 { font-size: 1.65rem; }
-      .evo-proj-grid { grid-template-columns: 1fr; }
-      .evo-profile-grid { grid-template-columns: 1fr; gap: 28px; }
-      .evo-avatar { max-width: 220px; margin: 0 auto; }
-      .evo-skills-grid, .evo-testi-grid { grid-template-columns: 1fr; }
-      .evo-phase-block { grid-column: span 1; }
+      .evo-container { padding: 32px 14px; }
+      .evo-phase-grid { grid-template-columns: 1fr !important; gap: 14px; }
+      .evo-phase-card { padding: 22px 18px; }
+      .evo-trust-grid { grid-template-columns: 1fr; gap: 22px; }
+      .evo-faq-item { padding: 16px; }
+      .evo-divider { margin: 36px auto; }
+      .evo-section-h2 { font-size: 1.55rem; margin-bottom: 30px; }
+      .evo-proj-grid { grid-template-columns: 1fr; gap: 16px; }
+      .evo-profile-grid { grid-template-columns: 1fr; gap: 24px; text-align: center; }
+      .evo-avatar { max-width: 200px; margin: 0 auto; }
+      .evo-skills-grid { grid-template-columns: 1fr; gap: 16px; }
+      .evo-testi-grid { grid-template-columns: 1fr; gap: 16px; }
+      /* Offres : 1 colonne, contenu visible */
+      [style*="grid-template-columns:repeat(3"] { grid-template-columns: 1fr !important; }
+      .evo-phase-block { width: 100%; }
+      .evo-phase-header { min-height: auto !important; padding: 22px 18px !important; }
       .evo-phase-content { max-height: none !important; opacity: 1 !important; visibility: visible !important; border-top: 1px solid #eaeaea; }
-      .evo-phase-indicator { display: none; }
+      .evo-phase-indicator { display: none !important; }
+      .evo-sub-col { padding: 16px 14px !important; gap: 14px !important; }
+      /* Pill et chatbot : espace en bas de page */
+      body { padding-bottom: 90px; }
+      /* Contact layout */
+      .evo-contact-layout { grid-template-columns: 1fr !important; }
+      .evo-fields-grid { grid-template-columns: 1fr !important; gap: 12px; }
+      .evo-badge-grid { grid-template-columns: 1fr 1fr !important; }
+    }
+    @media(max-width: 480px) {
+      .evo-badge-grid { grid-template-columns: 1fr !important; }
     }
 
   </style>
