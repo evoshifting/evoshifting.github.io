@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portrait of Marc-Antoine Cailloux, digital transformation expert, freelance AI and IT consultant."><title>evoshifting | About</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;}
+    body{margin:0;padding:0;font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;background:#fff;}
+    a{font-family:inherit;}
+    
+    .evo-header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #eaeaea;}
+    .evo-header-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:80px;display:grid;grid-template-columns:120px 1fr 120px;align-items:center;}
+    .evo-header-left{display:flex;align-items:center;}
+    .evo-header-center{display:flex;justify-content:center;align-items:center;}
+    .evo-header-right{display:flex;justify-content:flex-end;align-items:center;gap:12px;}
+    .evo-logo img{height:47px;width:auto;display:block;}
+    .evo-hamburger{display:flex;flex-direction:column;gap:6px;cursor:pointer;padding:6px;background:none;border:none;}
+    .evo-hamburger span{display:block;width:26px;height:2px;background:#111;border-radius:2px;}
+    .evo-nav-contact{display:inline-block;background:#111;color:#fff !important;text-decoration:none;padding:10px 22px;font-weight:700;font-size:.88rem;border-radius:4px;transition:background .2s;white-space:nowrap;}
+    .evo-nav-contact:hover{background:#68A67A !important;}
+    .evo-nav-contact.active-page{background:#68A67A !important;}
+    .evo-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:200;}
+    .evo-overlay.open{display:block;}
+    .evo-drawer{position:fixed;top:0;left:0;width:280px;height:100dvh;background:#fff;z-index:201;transform:translateX(-100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:4px 0 24px rgba(0,0,0,.10);}
+    .evo-drawer.open{transform:translateX(0);}
+    .evo-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid #eaeaea;}
+    .evo-drawer-head img{height:32px;width:auto;}
+    .evo-drawer-close{background:none;border:none;cursor:pointer;font-size:1.5rem;color:#888;line-height:1;padding:2px 6px;}
+    .evo-drawer-nav{display:flex;flex-direction:column;padding:10px 0;}
+    .evo-drawer-nav a{font-size:1.05rem;font-weight:600;color:#222;text-decoration:none;padding:15px 24px;border-bottom:1px solid #f2f2f2;transition:color .2s,background .2s;}
+    .evo-drawer-nav a:last-child{border-bottom:none;}
+    .evo-drawer-nav a:hover,.evo-drawer-nav a.active{color:#68A67A;background:#f7fbf8;}
+    .evo-lang-toggle{display:flex;align-items:center;gap:2px;background:#f4f4f4;border-radius:6px;padding:3px;}
+    .evo-lang-btn{font-size:.78rem;font-weight:700;padding:5px 10px;border:none;border-radius:4px;cursor:pointer;background:transparent;color:#666;transition:all .2s;font-family:inherit;letter-spacing:.3px;}
+    .evo-lang-btn.active{background:#111;color:#fff;}
+    .evo-lang-btn:hover:not(.active){color:#111;}
+    .evo-footer{border-top:1px solid #eaeaea;background:#fff;}
+    .evo-footer-inner{max-width:1100px;margin:0 auto;padding:40px 20px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;}
+    .evo-footer-links{display:flex;gap:24px;align-items:center;}
+    .evo-footer-links a{color:#555;text-decoration:none;font-size:.9rem;display:flex;align-items:center;gap:6px;transition:color .2s;}
+    .evo-footer-links a:hover{color:#68A67A;}
+    .evo-footer-legal{font-size:.8rem;color:#999;line-height:1.5;}
+    @media(max-width:600px){.evo-footer-links{flex-direction:column;gap:12px;}}
+    .evo-container{{max-width:1100px;margin:0 auto;padding:60px 20px;}}
+    .evo-divider{{border:0;height:1px;background:#e0e0e0;margin:60px auto;width:100%;display:block;}}
+    .evo-profile-layout{{display:grid;grid-template-columns:280px 1fr;gap:50px;align-items:start;margin-top:40px;}}
+    .evo-avatar-box{{width:100%;aspect-ratio:1/1;border-radius:12px;background:#f4f4f4;overflow:hidden;border:1px solid #eaeaea;}}
+    .evo-avatar-box img{{width:100%;height:100%;object-fit:cover;}}
+    .evo-bio-text h2{{font-size:.85rem;text-transform:uppercase;letter-spacing:1.5px;color:#68A67A;margin:0 0 8px;}}
+    .evo-bio-text p{{font-size:1.1rem;line-height:1.65;color:#444;margin:0 0 20px;}}
+    .evo-section-title{{text-align:center;font-size:1.9rem;font-weight:700;margin-bottom:10px;color:#111;}}
+    .evo-section-subtitle{{text-align:center;font-size:1.05rem;color:#666;margin-bottom:45px;text-transform:uppercase;letter-spacing:1px;}}
+    .evo-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;}}
+    .evo-card{{background:#f9f9f9;padding:35px 30px;border-radius:8px;border:1px solid #eaeaea;}}
+    .evo-card h4{{font-size:1.3rem;font-weight:700;color:#111;margin:0 0 15px;}}
+    .evo-card p{{font-size:1rem;line-height:1.6;color:#444;margin:0;}}
+    .evo-card ul{{margin:0;padding-left:20px;color:#444;line-height:1.6;font-size:1rem;}}
+    .evo-card ul li{{margin-bottom:8px;}}
+    .evo-testimonials-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:30px;}}
+    .evo-testimonial-card{{background:#fff;padding:35px 30px;border-radius:8px;border:1px solid #eaeaea;box-shadow:0 4px 15px rgba(0,0,0,.03);display:flex;flex-direction:column;}}
+    .evo-testimonial-text{{font-size:.95rem;line-height:1.6;color:#555;font-style:italic;margin-bottom:25px;flex-grow:1;}}
+    .evo-testimonial-author{{font-weight:700;color:#111;font-size:1.05rem;margin-bottom:4px;}}
+    .evo-testimonial-role{{font-size:.75rem;color:#68A67A;text-transform:uppercase;letter-spacing:.5px;font-weight:600;}}
+    .evo-bottom-cta{{text-align:center;padding:20px 0;}}
+    .evo-bottom-cta h3{{font-size:1.6rem;font-weight:700;margin-bottom:12px;color:#111;}}
+    .evo-bottom-cta p{{font-size:1.1rem;color:#555;margin-bottom:30px;}}
+    .evo-btn{{display:inline-block;background:#111;color:#fff !important;text-decoration:none;padding:16px 36px;font-weight:700;border-radius:4px;transition:background .2s;font-family:inherit;}}
+    .evo-btn:hover{{background:#68A67A;}}
+    @media(max-width:768px){{.evo-container{{padding:30px 15px;}}.evo-profile-layout{{grid-template-columns:1fr;gap:30px;text-align:center;}}.evo-avatar-box{{max-width:240px;margin:0 auto;}}.evo-grid,.evo-testimonials-grid{{grid-template-columns:1fr;gap:20px;}}.evo-divider{{margin:40px auto;}}}}
+    @keyframes evoDot{0%,80%,100%{transform:translateY(0);opacity:.4;}40%{transform:translateY(-5px);opacity:1;}}
+  </style>
+</head>
+<body>
+  <div class="evo-overlay" id="evoOverlay"></div>
+  <div class="evo-drawer" id="evoDrawer">
+    <div class="evo-drawer-head"><a href="./index-en.html"><img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting"></a><button class="evo-drawer-close" onclick="closeDrawer()">✕</button></div>
+    <nav class="evo-drawer-nav">
+      <a href="./offres-en.html">Offers</a>
+      <a href="./references-en.html">References</a>
+      <a href="./portrait-en.html" class="active">About</a>
+    </nav>
+  </div>
+  <header class="evo-header">
+    <div class="evo-header-inner">
+      <div class="evo-header-left"><button class="evo-hamburger" onclick="openDrawer()"><span></span><span></span><span></span></button></div>
+      <div class="evo-header-center"><a href="./index-en.html" class="evo-logo"><img src="https://www.hebergeur-image.fr/uploads/20260625/14082cc3184cfd15824880898d5f27cfcb7aaa6d.png" alt="evoshifting"></a></div>
+      <div class="evo-header-right"><div class="evo-lang-toggle"><button class="evo-lang-btn" onclick="window.location='./portrait.html'">FR</button><button class="evo-lang-btn active">EN</button></div><a href="./contact-en.html" class="evo-nav-contact">Contact</a></div>
+    </div>
+  </header>
+
+  <div class="evo-container">
+    <section class="evo-profile-layout">
+      <div class="evo-avatar-box"><img src="https://www.hebergeur-image.fr/uploads/20260604/ba5840dfa0e815ce86508552b633b605e99d9fd7.png" alt="Marc-Antoine Cailloux"></div>
+      <div class="evo-bio-text">
+        <h2>Marc-Antoine Cailloux</h2>
+        <p>Operating for over 10 years at the intersection of business units and IT departments. My approach prioritizes aligning business processes with technical solutions to deliver concrete, operational answers.</p>
+        <p>With experience spanning PXM, e-commerce, customer data and order management, I bridge business challenges and technical capabilities. I enable my international clients to harness the full potential of their platforms while simplifying complex concepts into clear, actionable strategies.</p>
+      </div>
+    </section>
+    <hr class="evo-divider">
+    <section>
+      <h2 class="evo-section-title">Skills & Mindset</h2>
+      <p class="evo-section-subtitle">Turning complexity into measurable results</p>
+      <div class="evo-grid">
+        <div class="evo-card"><h4>Strategic Vision</h4><p>As a digital transformation expert, I help organizations turn complex challenges into scalable outcomes. I design and deploy tailored software solutions that improve performance, optimize processes and drive growth.</p></div>
+        <div class="evo-card"><h4>Core Expertise</h4><ul><li>PIM & DAM implementation</li><li>E-commerce, Marketplace, OMS, CRM & CDP</li><li>UX/UI optimization, Search & Discovery, Payment solutions & Checkout</li><li>Agile & SAFe methodologies, Digital strategy, Business Development</li><li>Sales cycle, project management & Customer Success</li></ul></div>
+        <div class="evo-card"><h4>Mindset</h4><p>Curious, proactive and collaborative, I thrive in multicultural environments where innovation and trust drive success. I place great value on open dialogue, structured thinking and continuous learning.</p></div>
+      </div>
+    </section>
+    <hr class="evo-divider">
+    <section>
+      <h2 class="evo-section-title">Recommendations</h2>
+      <p class="evo-section-subtitle">What professionals who worked with me say</p>
+      <div class="evo-testimonials-grid">
+        <div class="evo-testimonial-card"><div class="evo-testimonial-text">« I had the pleasure of working alongside Marco at inriver. What sets Marco apart is his exceptional ability to truly understand a customer's unique challenges and translate complex product capabilities into clear, compelling business value. »</div><div class="evo-testimonial-author">Killian Jackson</div><div class="evo-testimonial-role">Colleague</div></div>
+        <div class="evo-testimonial-card"><div class="evo-testimonial-text">« J'ai le plaisir de recommander Marc Antoine avec qui j'ai eu l'opportunité de travailler au sein du même programme de transformation. Il sait allier vision stratégique et pragmatisme opérationnel, ce qui en fait un atout précieux dans des contextes de transformation. »</div><div class="evo-testimonial-author">Dominique LIN</div><div class="evo-testimonial-role">Colleague</div></div>
+        <div class="evo-testimonial-card"><div class="evo-testimonial-text">« I had the pleasure of managing Marc-Antoine during his nearly two years as a Senior Sales Engineer at inriver. Marco consistently stood out for his strong work ethic, attention to detail, and thorough preparation. »</div><div class="evo-testimonial-author">David Copeland</div><div class="evo-testimonial-role">Manager</div></div>
+        <div class="evo-testimonial-card"><div class="evo-testimonial-text">« J'ai eu la chance de travailler avec Marc-Antoine durant nos années chez Octopia. Il allie parfaitement rigueur technique et esprit commercial : toujours précis, réactif et orienté solution. »</div><div class="evo-testimonial-author">Loïc Anslot</div><div class="evo-testimonial-role">Colleague</div></div>
+        <div class="evo-testimonial-card"><div class="evo-testimonial-text">« Marco was a pleasure to work with at inriver. He has a great blend of technical knowledge combined with ability to translate it to the business teams. Strongly recommend him. »</div><div class="evo-testimonial-author">Brad Habansky</div><div class="evo-testimonial-role">Manager</div></div>
+        <div class="evo-testimonial-card"><div class="evo-testimonial-text">« Dans un contexte de création d'équipe et de produit, Marc-Antoine a su s'imposer comme un élément majeur du dispositif avant-vente. Sa double compétence business et techno est un atout précieux. »</div><div class="evo-testimonial-author">Lionel Marcouire</div><div class="evo-testimonial-role">Manager</div></div>
+        <div class="evo-testimonial-card"><div class="evo-testimonial-text">« Je recommande vivement Marc-Antoine avec qui j'ai eu le plaisir de collaborer sur deux belles avant-vente victorieuses. Sa capacité à comprendre les enjeux et à élaborer des stratégies efficaces a été cruciale. »</div><div class="evo-testimonial-author">Régis Mongrédien</div><div class="evo-testimonial-role">Partner</div></div>
+        <div class="evo-testimonial-card"><div class="evo-testimonial-text">« I had the pleasure of working with Marc-Antoine at inriver. Marco is a team player who added a lot of value to our pre-sales organisation. He takes a consultative approach with customers. »</div><div class="evo-testimonial-author">Jake Branchett</div><div class="evo-testimonial-role">Colleague</div></div>
+        <div class="evo-testimonial-card"><div class="evo-testimonial-text">« I'm very happy to recommend Marc-Antoine. From day one, he stood out for his strong technical expertise, great communication skills, and genuine ability to understand customer needs. »</div><div class="evo-testimonial-author">Jérôme Letourneux</div><div class="evo-testimonial-role">Colleague</div></div>
+      </div>
+    </section>
+    <hr class="evo-divider">
+    <section class="evo-bottom-cta">
+      <h3>Want to collaborate or discuss your roadmap?</h3>
+      <p>Always open to sharing ideas or exploring new opportunities.</p>
+      <a href="./contact-en.html" class="evo-btn">Discuss your challenges</a>
+    </section>
+  </div>
+  <footer class="evo-footer">
+    <div class="evo-footer-inner">
+      <div class="evo-footer-links">
+        <a href="http://wa.me/33625544444" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</a>
+        <a href="https://www.linkedin.com/in/ma-clx/" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="#0077B5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+      </div>
+      <p class="evo-footer-legal">evoshifting – Simplified joint-stock company (SASU), capital €1,500 – RCS Bordeaux 992 753 632 – IT systems & software consulting (APE 6202A)</p>
+    </div>
+  </footer>
+
+  <div id="evo-chat-bubble" style="position:fixed;bottom:98px;right:28px;z-index:999;background:#111;color:#fff;font-family:'Nunito Sans',sans-serif;font-size:.85rem;padding:10px 14px;border-radius:12px 12px 0 12px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.2);transition:opacity .4s;pointer-events:none;">Any questions about our services?&nbsp;💬</div>
+  <button id="evo-chat-btn" onclick="evoChatToggle()" style="position:fixed;bottom:28px;right:28px;z-index:1000;width:58px;height:58px;border-radius:50%;background:#111;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  </button>
+  <div id="evo-chat-window" style="position:fixed;bottom:98px;right:28px;z-index:1000;width:370px;height:520px;max-height:80vh;background:#fff;border-radius:16px;box-shadow:0 12px 48px rgba(0,0,0,.18);display:none;flex-direction:column;overflow:hidden;font-family:'Nunito Sans',sans-serif;">
+    <div style="background:#111;color:#fff;padding:16px 18px;display:flex;align-items:center;gap:12px;flex-shrink:0;">
+      <div style="width:36px;height:36px;border-radius:50%;background:#68A67A;display:flex;align-items:center;justify-content:center;font-size:1rem;">⚡</div>
+      <div style="flex:1;"><div style="font-weight:700;font-size:.95rem;">evoshifting assistant</div><div style="font-size:.75rem;color:#a0aec0;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:7px;height:7px;background:#68A67A;border-radius:50%;"></span>Online</div></div>
+      <button onclick="evoChatToggle()" style="background:none;border:none;color:#aaa;cursor:pointer;font-size:1.3rem;line-height:1;">✕</button>
+    </div>
+    <div id="evoChatMessages" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth;">
+      <div style="max-width:82%;align-self:flex-start;display:flex;flex-direction:column;gap:3px;">
+        <div style="padding:10px 14px;border-radius:14px 14px 14px 4px;font-size:.9rem;line-height:1.5;background:#f4f4f4;color:#1a1a1a;">Hello 👋 I'm the evoshifting assistant. Ask me anything about our services, client references or our AI approach.</div>
+        <div style="font-size:.7rem;color:#aaa;padding:0 4px;">now</div>
+      </div>
+    </div>
+    <div id="evoChatTyping" style="align-self:flex-start;background:#f4f4f4;padding:12px 16px;border-radius:14px 14px 14px 4px;display:none;margin:0 16px 8px;"><span style="display:inline-block;width:7px;height:7px;background:#aaa;border-radius:50%;margin:0 2px;animation:evoDot 1.2s infinite;"></span><span style="display:inline-block;width:7px;height:7px;background:#aaa;border-radius:50%;margin:0 2px;animation:evoDot 1.2s .2s infinite;"></span><span style="display:inline-block;width:7px;height:7px;background:#aaa;border-radius:50%;margin:0 2px;animation:evoDot 1.2s .4s infinite;"></span></div>
+    <div id="evoChatSuggestions" style="display:flex;flex-wrap:wrap;gap:6px;padding:8px 16px 12px;">
+      <button onclick="evoSuggest(this)" style="font-size:.78rem;padding:6px 11px;border-radius:20px;border:1px solid #e2e8f0;background:#f8fafc;color:#444;cursor:pointer;font-family:inherit;">What are your services?</button>
+      <button onclick="evoSuggest(this)" style="font-size:.78rem;padding:6px 11px;border-radius:20px;border:1px solid #e2e8f0;background:#f8fafc;color:#444;cursor:pointer;font-family:inherit;">Integrate AI without rebuilding?</button>
+      <button onclick="evoSuggest(this)" style="font-size:.78rem;padding:6px 11px;border-radius:20px;border:1px solid #e2e8f0;background:#f8fafc;color:#444;cursor:pointer;font-family:inherit;">Client references?</button>
+      <button onclick="evoSuggest(this)" style="font-size:.78rem;padding:6px 11px;border-radius:20px;border:1px solid #e2e8f0;background:#f8fafc;color:#444;cursor:pointer;font-family:inherit;">Timelines & fees?</button>
+    </div>
+    <div style="border-top:1px solid #eaeaea;padding:12px 14px;display:flex;gap:8px;align-items:flex-end;flex-shrink:0;">
+      <textarea id="evo-chat-input" placeholder="Your question…" rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();evoChatSend();}" style="flex:1;border:1px solid #e2e8f0;border-radius:10px;padding:10px 14px;font-size:.9rem;font-family:inherit;resize:none;outline:none;line-height:1.4;max-height:100px;overflow-y:auto;color:#1a1a1a;"></textarea>
+      <button id="evo-chat-send" onclick="evoChatSend()" style="width:38px;height:38px;border-radius:10px;border:none;background:#111;color:#fff;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+  <script>
+    const drawer=document.getElementById('evoDrawer');
+    const overlay=document.getElementById('evoOverlay');
+    function openDrawer(){drawer.classList.add('open');overlay.classList.add('open');document.body.style.overflow='hidden';}
+    function closeDrawer(){drawer.classList.remove('open');overlay.classList.remove('open');document.body.style.overflow='';}
+    overlay.addEventListener('click',closeDrawer);
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+  </script>
+  <script>
+    var EVO_SYSTEM="You are the AI assistant for evoshifting, the IT systems and software consulting firm of Marc-Antoine Cailloux. Based in Bordeaux and Paris. 10+ years experience. 3 pillars: 1) Consulting/AMOA: AI opportunity studies, IT audit, SaaS selection. 2) Product Owner: functional design, backlog, business/tech bridge. 3) PMO: end-to-end project management, change management. Expertise: PIM, DAM, ERP, CRM (Salesforce, Dynamics 365), OMS (IBM Sterling), eCommerce, AI/LLM, Agile. References: Sephora, Cdiscount, Rossignol, Lego, Longines, Tissot, Carrier (USA) and many more. Philosophy: Quick Win, vendor neutrality, measurable ROI. Contact: contact@evoshifting.com. Tone: professional, concise 3-5 sentences, English by default, no invented prices.";var EVO_WORKER="https://anthropic.evoshifting.workers.dev";var EVO_HISTORY=[];
+    setTimeout(function(){var b=document.getElementById('evo-chat-bubble');if(b){b.style.opacity='0';setTimeout(function(){b.style.display='none';},400);}},4000);
+    function evoChatToggle(){var w=document.getElementById('evo-chat-window');var b=document.getElementById('evo-chat-bubble');if(!w)return;if(b)b.style.display='none';if(w.style.display==='flex'){w.style.display='none';}else{w.style.display='flex';var inp=document.getElementById('evo-chat-input');if(inp)inp.focus();}}
+    function evoSuggest(btn){document.getElementById('evo-chat-input').value=btn.textContent;document.getElementById('evoChatSuggestions').style.display='none';evoChatSend();}
+    function evoTime(){return new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});}
+    function evoAddMsg(text,role){var c=document.getElementById('evoChatMessages');var d=document.createElement('div');d.className='evo-msg '+role;var f=text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');d.innerHTML='<div class="evo-msg-bubble">'+f+'</div><div class="evo-msg-time">'+evoTime()+'</div>';c.appendChild(d);c.scrollTop=c.scrollHeight;}
+    function evoSetTyping(show){var t=document.getElementById('evoChatTyping');t.style.display=show?'block':'none';if(show)document.getElementById('evoChatMessages').scrollTop=99999;}
+    async function evoChatSend(){var input=document.getElementById('evo-chat-input');var text=input.value.trim();if(!text)return;input.value='';input.style.height='auto';document.getElementById('evo-chat-send').disabled=true;document.getElementById('evoChatSuggestions').style.display='none';evoAddMsg(text,'user');EVO_HISTORY.push({role:'user',content:text});evoSetTyping(true);try{var res=await fetch(EVO_WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,system:EVO_SYSTEM,messages:EVO_HISTORY})});var data=await res.json();var reply=data.content&&data.content[0]?data.content[0].text:'Sorry, an error occurred.';evoSetTyping(false);evoAddMsg(reply,'bot');EVO_HISTORY.push({role:'assistant',content:reply});}catch(e){evoSetTyping(false);evoAddMsg('Temporarily unavailable. Contact us at contact@evoshifting.com','bot');}document.getElementById('evo-chat-send').disabled=false;var i=document.getElementById('evo-chat-input');if(i)i.focus();}
+    var _i=document.getElementById('evo-chat-input');if(_i)_i.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px';});
+  </script>
+</body>
+</html>
