@@ -37,7 +37,7 @@
     .evo-drawer.open { transform: translateX(0); }
     .evo-drawer-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid #eaeaea; }
     .evo-drawer-head a { display: block; line-height: 0; }
-    .evo-drawer-close { background: none; border: none; cursor: pointer; font-size: 1.5rem; color: #888; line-height: 1; padding: 2px 6px; }
+    .evo-drawer-close { background: none; border: none; cursor: pointer; font-size: 1.5rem; color: #444; line-height: 1; padding: 2px 6px; }
     .evo-drawer-close:hover { color: #111; }
     .evo-drawer-nav { display: flex; flex-direction: column; padding: 10px 0; }
     .evo-drawer-nav a { font-size: 1.05rem; font-weight: 600; color: #222; text-decoration: none; padding: 15px 24px; border-bottom: 1px solid #f2f2f2; transition: color .2s, background .2s; }
@@ -105,9 +105,10 @@
     #evo-chat-send svg { width: 14px; height: 14px; }
 
     /* ── DIAGNOSTIC PILL ── */
-    #evo-diag-pill { position: fixed; bottom: 24px; left: 16px; z-index: 990; display: flex; align-items: center; gap: 8px; background: #111; color: #fff; padding: 12px 18px; border-radius: 50px; cursor: pointer; border: none; font-family: inherit; font-size: .82rem; font-weight: 700; box-shadow: 0 4px 20px rgba(0,0,0,.25); transition: background .2s, transform .2s; animation: evoPulse 2s ease-in-out 3; max-width: calc(50vw - 20px); }
-    #evo-diag-pill:hover { background: #68A67A; transform: scale(1.03); }
-    #evo-diag-pill img { height: 22px; width: auto; flex-shrink: 0; }
+    #evo-diag-pill { position: fixed; bottom: 24px; left: 16px; z-index: 990; display: flex; align-items: center; gap: 9px; background: #fff; color: #111; padding: 10px 16px 10px 12px; border-radius: 50px; cursor: pointer; border: 2px solid #111; font-family: 'Nunito Sans', sans-serif; font-size: .82rem; font-weight: 700; letter-spacing: .2px; box-shadow: 0 4px 16px rgba(0,0,0,.15); transition: border-color .2s, color .2s, box-shadow .2s, transform .2s; animation: evoPulse 2s ease-in-out 3; white-space: nowrap; }
+    #evo-diag-pill:hover { border-color: #68A67A; color: #68A67A; box-shadow: 0 4px 20px rgba(104,166,122,.25); transform: scale(1.03); }
+    #evo-diag-pill svg { flex-shrink: 0; }
+    @media(max-width: 480px) { #evo-diag-pill { padding: 9px 13px 9px 10px; font-size: .76rem; } }
     #evo-diag-pill span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     #evo-chat-btn { position: fixed; bottom: 24px; right: 16px; z-index: 990; width: 52px; height: 52px; border-radius: 50%; background: #111; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,.25); display: flex; align-items: center; justify-content: center; transition: background .2s, transform .2s; }
     #evo-chat-btn:hover { background: #68A67A; transform: scale(1.07); }
@@ -248,7 +249,7 @@
   <div class="evo-overlay" id="evoOverlay"></div>
   <div class="evo-drawer" id="evoDrawer">
     <div class="evo-drawer-head">
-      <a href="./index.html" style="display:block;line-height:0;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="755 346 460 370" width="130" height="93" aria-label="evoshifting">
+      <a href="./index.html" style="display:block;line-height:0;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="755 340 460 420" width="130" height="98" aria-label="evoshifting">
   <path fill="#111" d="M960,356.28c63.45,0,114.88,51.43,114.88,114.88s-51.43,114.88-114.88,114.88-114.88-51.43-114.88-114.88,51.43-114.88,114.88-114.88M960,346.28c-33.36,0-64.72,12.99-88.31,36.58-23.59,23.59-36.58,54.95-36.58,88.31s12.99,64.72,36.58,88.31c23.59,23.59,54.95,36.58,88.31,36.58s64.72-12.99,88.31-36.58c23.59-23.59,36.58-54.95,36.58-88.31s-12.99-64.72-36.58-88.31c-23.59-23.59-54.95-36.58-88.31-36.58h0Z"/>
   <path fill="#52a876" d="M878.09,475.01c-.17,0-.34-.04-.5-.13-.48-.28-.64-.89-.37-1.37l43.42-75.21c.28-.48.89-.64,1.37-.37.48.28.64.89.37,1.37l-43.42,75.21c-.19.32-.52.5-.87.5Z"/>
   <path fill="#52a876" d="M894.28,517.47c-.34,0-.68-.09-1-.27-.96-.55-1.28-1.78-.73-2.73l71.23-123.37c.55-.96,1.77-1.29,2.73-.73.96.55,1.28,1.78.73,2.73l-71.23,123.37c-.37.64-1.04,1-1.73,1Z"/>
