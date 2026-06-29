@@ -196,7 +196,7 @@
 
     <!-- HERO -->
     <div class="diag-hero">
-      <div class="diag-badge">⚡ Propulsé par Claude AI</div>
+      <div class="diag-badge">⚡ Diagnostic propulsé par l'IA</div>
       <h1>Votre diagnostic IA<br>en 2 minutes</h1>
       <p>Répondez à 3 questions sur votre contexte et obtenez un diagnostic personnalisé : posture recommandée, cas d'usage prioritaires et premier Quick Win actionnable.</p>
     </div>
@@ -292,6 +292,7 @@
       <div style="margin-bottom:12px;font-weight:600;color:#111;font-size:.95rem;">Précisez votre contexte (facultatif)</div>
       <textarea class="diag-textarea" id="contexteLibre" placeholder="Ex : Nous avons un ERP Dynamics 365 mais nos équipes commerciales travaillent encore sur Excel. Nous voulons automatiser nos rapports et explorer l'IA générative..."></textarea>
 
+      <div id="diagErrorMsg" style="display:none;background:#fff1f0;border:1px solid #fca5a5;border-radius:8px;padding:12px 16px;font-size:.9rem;color:#b91c1c;margin-bottom:16px;"></div>
       <div class="diag-nav">
         <button class="diag-btn-back" onclick="goStep(2)">← Retour</button>
         <button class="diag-btn-next" id="btnGenerate" onclick="generateDiagnostic()">
@@ -305,7 +306,7 @@
     <div class="diag-loading" id="diagLoading" style="display:none;">
       <div class="diag-spinner"></div>
       <div class="diag-loading-text">Analyse de votre contexte en cours…</div>
-      <div class="diag-loading-sub">Claude analyse votre profil et identifie vos priorités</div>
+      <div class="diag-loading-sub">Analyse de votre profil et identification de vos priorités…</div>
     </div>
 
     <!-- RÉSULTAT -->
@@ -411,50 +412,93 @@
 
     // ── Generate ──
     async function generateDiagnostic() {
+      const ranges = document.querySelectorAll('input[type=range]');
       const sliders = {
-        digitalisation: document.querySelectorAll('input[type=range]')[0].value,
-        integration: document.querySelectorAll('input[type=range]')[1].value,
-        data: document.querySelectorAll('input[type=range]')[2].value,
-        budget: ['','Limité','Moyen','Conséquent'][document.querySelectorAll('input[type=range]')[3].value]
+        digitalisation: ranges[0].value,
+        integration: ranges[1].value,
+        data: ranges[2].value,
+        budget: ['','Limité','Moyen','Conséquent'][ranges[3].value]
       };
       const contexte = document.getElementById('contexteLibre').value;
 
-      const prompt = `Génère un diagnostic pour cette entreprise :
-- Secteur : ${state.secteur || 'Non précisé'}
-- Défi principal : ${state.defi || 'Non précisé'}
-- Digitalisation des processus : ${sliders.digitalisation}/10
-- Intégration SaaS : ${sliders.integration}/10
-- Exploitation data : ${sliders.data}/10
-- Budget disponible : ${sliders.budget}
-- Contexte libre : ${contexte || 'Aucun'}`;
+      const prompt = 'Génère un diagnostic pour cette entreprise :\n'
+        + '- Secteur : ' + (state.secteur || 'Non précisé') + '\n'
+        + '- Défi principal : ' + (state.defi || 'Non précisé') + '\n'
+        + '- Digitalisation des processus : ' + sliders.digitalisation + '/10\n'
+        + '- Intégration SaaS : ' + sliders.integration + '/10\n'
+        + '- Exploitation data : ' + sliders.data + '/10\n'
+        + '- Budget disponible : ' + sliders.budget + '\n'
+        + '- Contexte libre : ' + (contexte || 'Aucun');
 
-      // Hide steps, show loading
       document.getElementById('step3').classList.remove('visible');
       document.getElementById('diagProgress').style.display='none';
       document.getElementById('diagLoading').style.display='block';
 
       try {
         const res = await fetch("https://anthropic.evoshifting.workers.dev", {
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
-            model:'claude-sonnet-4-6',
-            max_tokens:1500,
-            system:"Tu es l'expert en diagnostic de transformation num\u00e9rique d'evoshifting. Tu analyses le contexte d'une entreprise et g\u00e9n\u00e8res un diagnostic structur\u00e9, concis et percutant.\n\n\u00c0 partir des informations fournies, tu g\u00e9n\u00e8res UNIQUEMENT un objet JSON valide avec cette structure exacte (pas de texte avant ou apr\u00e8s) :\n\n{\n  \"posture\": \"AMOA\" | \"Product Owner\" | \"PMO\" | \"AMOA + Product Owner\" | \"Product Owner + PMO\" | \"AMOA + PMO\",\n  \"posture_raison\": \"1 phrase expliquant pourquoi cette posture\",\n  \"score_maturite\": 1-10,\n  \"score_label\": \"Initiale\" | \"En d\u00e9veloppement\" | \"Avanc\u00e9e\" | \"Leader\",\n  \"cas_usage\": [\n    {\"titre\": \"Titre court\", \"description\": \"1 phrase\", \"impact\": \"Fort\" | \"Moyen\", \"delai\": \"2-4 semaines\" | \"1-2 mois\" | \"2-3 mois\"},\n    {\"titre\": \"Titre court\", \"description\": \"1 phrase\", \"impact\": \"Fort\" | \"Moyen\", \"delai\": \"2-4 semaines\" | \"1-2 mois\" | \"2-3 mois\"},\n    {\"titre\": \"Titre court\", \"description\": \"1 phrase\", \"impact\": \"Fort\" | \"Moyen\", \"delai\": \"2-4 semaines\" | \"1-2 mois\" | \"2-3 mois\"}\n  ],\n  \"quick_win\": \"Description d'un premier pilote concret r\u00e9alisable en 3-4 semaines\",\n  \"risque_principal\": \"Le principal risque ou frein identifi\u00e9 en 1 phrase\",\n  \"prochaine_etape\": \"Action concr\u00e8te recommand\u00e9e pour d\u00e9marrer\"\n}\n\nAdapte pr\u00e9cis\u00e9ment \u00e0 chaque contexte. Sois direct, op\u00e9rationnel, sans jargon inutile.",
-            messages:[{role:'user',content:prompt}]
+            model: 'claude-sonnet-4-6',
+            max_tokens: 1500,
+            system: "Tu es l'expert en diagnostic de transformation num\u00e9rique d'evoshifting. G\u00e9n\u00e8re UNIQUEMENT un objet JSON valide, sans texte avant ou apr\u00e8s, sans balises markdown. Structure exacte : {\"posture\": \"AMOA|Product Owner|PMO|AMOA + Product Owner|Product Owner + PMO|AMOA + PMO\", \"posture_raison\": \"1 phrase\", \"score_maturite\": 1-10, \"score_label\": \"Initiale|En d\u00e9veloppement|Avanc\u00e9e|Leader\", \"cas_usage\": [{\"titre\": \"court\", \"description\": \"1 phrase\", \"impact\": \"Fort|Moyen\", \"delai\": \"2-4 semaines|1-2 mois|2-3 mois\"}], \"quick_win\": \"pilote concret\", \"risque_principal\": \"1 phrase\", \"prochaine_etape\": \"action concr\u00e8te\"}. R\u00e9ponds UNIQUEMENT avec le JSON brut.",
+            messages: [{role: 'user', content: prompt}]
           })
         });
+
+        if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
-        const text = data.content&&data.content[0]?data.content[0].text:'';
-        const clean = text.replace(/```json|```/g,'').trim();
-        const diag = JSON.parse(clean);
+        const rawText = (data.content && data.content[0] && data.content[0].text) ? data.content[0].text : '';
+
+        // Parse JSON robuste : extraire le premier objet JSON trouvé
+        let diag;
+        try {
+          const clean = rawText.replace(/```json/g,'').replace(/```/g,'').trim();
+          diag = JSON.parse(clean);
+        } catch(parseErr) {
+          // Fallback : extraire avec regex
+          const match = rawText.match(/\{[\s\S]*\}/);
+          if (match) {
+            diag = JSON.parse(match[0]);
+          } else {
+            throw new Error('JSON invalide : ' + rawText.substring(0,200));
+          }
+        }
+
+        // Envoyer les données vers Formspree
+        const formData = new FormData();
+        formData.append('_subject', 'Nouveau diagnostic IA — evoshifting');
+        formData.append('secteur', state.secteur || 'Non précisé');
+        formData.append('defi', state.defi || 'Non précisé');
+        formData.append('digitalisation', sliders.digitalisation + '/10');
+        formData.append('integration_saas', sliders.integration + '/10');
+        formData.append('exploitation_data', sliders.data + '/10');
+        formData.append('budget', sliders.budget);
+        formData.append('contexte_libre', contexte || 'Aucun');
+        formData.append('posture_recommandee', diag.posture);
+        formData.append('score_maturite', diag.score_maturite + '/10 — ' + diag.score_label);
+        formData.append('quick_win', diag.quick_win);
+
+        // Envoi silencieux Formspree (pas bloquant)
+        fetch('https://formspree.io/f/xrewpqbb', {
+          method: 'POST',
+          body: formData,
+          headers: {'Accept': 'application/json'}
+        }).catch(()=>{});
+
         renderResult(diag, sliders);
+
       } catch(e) {
+        console.error('Erreur diagnostic:', e);
         document.getElementById('diagLoading').style.display='none';
         document.getElementById('diagProgress').style.display='flex';
         document.getElementById('step3').classList.add('visible');
-        alert('Une erreur est survenue. Vérifiez votre connexion et réessayez.');
-        console.error(e);
+        // Afficher erreur inline sans alert()
+        const errDiv = document.getElementById('diagErrorMsg');
+        if (errDiv) {
+          errDiv.style.display = 'block';
+          errDiv.textContent = 'Une erreur est survenue. Vérifiez votre connexion et réessayez.';
+        }
       }
     }
 
