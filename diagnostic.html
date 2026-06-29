@@ -634,36 +634,6 @@
     goStep(2);
   }
 
-  function goStep(n) {
-    [1,2,3].forEach(i => {
-      document.getElementById('step'+i).classList.remove('visible');
-      const dot = document.getElementById('dot'+i);
-      dot.classList.remove('active','done');
-      dot.textContent = i;
-      document.getElementById('lbl'+i).classList.remove('active');
-      document.getElementById('sdot'+i).classList.remove('done');
-    });
-    document.getElementById('step'+n).classList.add('visible');
-    for (let i=1; i<n; i++) {
-      document.getElementById('dot'+i).classList.add('done');
-      document.getElementById('dot'+i).textContent = '✓';
-      document.getElementById('sdot'+i).classList.add('done');
-    }
-    document.getElementById('dot'+n).classList.add('active');
-    document.getElementById('lbl'+n).classList.add('active');
-    window.scrollTo({top:0, behavior:'smooth'});
-  }
-
-  function goStep2() {
-    const err = document.getElementById('err1');
-    if (state.secteurs.length === 0 || state.defis.length === 0) {
-      err.style.display = 'block';
-      return;
-    }
-    err.style.display = 'none';
-    goStep(2);
-  }
-
   // ── Generate ──
   async function generateDiag() {
     // Validation coordonnées
@@ -749,7 +719,28 @@
       diag.cas_usage.forEach((c,i) => fdProspect.append('cas_usage_'+(i+1), c.titre + ' — ' + c.description));
       fetch("https://formspree.io/f/xrewpqbb", {method:'POST', body:fdProspect, headers:{'Accept':'application/json'}}).catch(()=>{});
 
-      renderResult(diag, name, email);
+      try {
+        renderResult(diag, name, email);
+      } catch(renderErr) {
+        console.error('renderResult error:', renderErr);
+        // Affichage de secours minimal si renderResult plante
+        document.getElementById('diagLoading').style.display = 'none';
+        document.getElementById('diagResult').style.display = 'block';
+        document.getElementById('diagResult').classList.add('visible');
+        document.getElementById('resPosture').textContent = '📌 ' + (diag.posture || '—');
+        document.getElementById('resRaison').textContent = diag.posture_raison || '';
+        document.getElementById('resScore').textContent = (diag.score_maturite || '—') + '/10';
+        document.getElementById('resTag').textContent = diag.score_label || '';
+        document.getElementById('resQW').textContent = diag.quick_win || '';
+        document.getElementById('resRisk').textContent = diag.risque_principal || '';
+        document.getElementById('resNext').textContent = diag.prochaine_etape || '';
+        const casHtml = (diag.cas_usage || []).map((c,i) =>
+          '<div class="res-cas-item"><div class="res-cas-body"><div class="res-cas-title">' + c.titre + '</div><div class="res-cas-desc">' + c.description + '</div></div></div>'
+        ).join('');
+        document.getElementById('resCas').innerHTML = casHtml;
+        setTimeout(() => { document.getElementById('resFill').style.width = ((diag.score_maturite||5)/10*100)+'%'; }, 100);
+        window.scrollTo({top:0,behavior:'smooth'});
+      }
     } catch(e) {
       console.error(e);
       document.getElementById('diagLoading').style.display = 'none';
@@ -924,7 +915,7 @@
         EVO_HISTORY.push({role:'assistant', content: reply});
       } catch(e) {
         evoSetTyping(false);
-        evoAddMsg('Service temporairement indisponible. Contactez-nous à contact@evoshifting.com', 'bot');
+        evoAddMsg('Je suis temporairement indisponible. Réessayez ou contactez-nous à contact@evoshifting.com', 'bot');
       }
       document.getElementById('evo-chat-send').disabled = false;
       const inp = document.getElementById('evo-chat-input');
