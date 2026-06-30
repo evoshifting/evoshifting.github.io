@@ -21,8 +21,8 @@
     .evo-header-left { display: flex; align-items: center; flex-shrink: 0; }
     .evo-header-center { display: flex; justify-content: center; align-items: center; flex: 1; }
     .evo-header-right { display: flex; justify-content: flex-end; align-items: center; gap: 8px; flex-shrink: 0; }
-    .evo-logo img { height: 48px; width: auto; display: block; }
-    @media(min-width: 769px) { .evo-header-inner { padding: 0 24px; height: 80px; } .evo-logo img { height: 56px; } }
+    .evo-logo img { height: 58px; width: auto; display: block; }
+    @media(min-width: 769px) { .evo-header-inner { padding: 0 24px; height: 88px; } .evo-logo img { height: 67px; } }
     .evo-hamburger { display: flex; flex-direction: column; gap: 6px; cursor: pointer; padding: 6px; background: none; border: none; }
     .evo-hamburger span { display: block; width: 26px; height: 2px; background: #111; border-radius: 2px; }
     .evo-nav-contact { display: inline-block; background: #111; color: #fff !important; text-decoration: none; padding: 8px 14px; font-weight: 700; font-size: .82rem; border-radius: 4px; transition: background .2s; white-space: nowrap; flex-shrink: 0; }
@@ -105,10 +105,10 @@
     #evo-chat-send svg { width: 14px; height: 14px; }
 
     /* ── DIAGNOSTIC PILL ── */
-    #evo-diag-pill { position: fixed; bottom: 24px; left: 16px; z-index: 990; display: flex; align-items: center; gap: 9px; background: #fff; color: #111; padding: 10px 16px 10px 12px; border-radius: 50px; cursor: pointer; border: 2px solid #111; font-family: 'Nunito Sans', sans-serif; font-size: .82rem; font-weight: 700; letter-spacing: .2px; box-shadow: 0 4px 16px rgba(0,0,0,.15); transition: border-color .2s, color .2s, box-shadow .2s, transform .2s; animation: evoPulse 2s ease-in-out 3; white-space: nowrap; }
-    #evo-diag-pill:hover { border-color: #68A67A; color: #68A67A; box-shadow: 0 4px 20px rgba(104,166,122,.25); transform: scale(1.03); }
-    #evo-diag-pill svg { flex-shrink: 0; }
-    @media(max-width: 480px) { #evo-diag-pill { padding: 9px 13px 9px 10px; font-size: .76rem; } }
+    #evo-diag-pill { position: fixed; bottom: 24px; left: 16px; z-index: 990; display: inline-flex; align-items: center; gap: 8px; background: #f0f7f2; color: #68A67A; padding: 10px 18px; border-radius: 50px; cursor: pointer; border: 1.5px solid #68A67A; font-family: 'Nunito Sans', sans-serif; font-size: .78rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 2px 12px rgba(104,166,122,.15); transition: background .2s, box-shadow .2s, transform .2s; animation: evoPulse 2s ease-in-out 3; white-space: nowrap; }
+    #evo-diag-pill:hover { background: #e4f2e9; box-shadow: 0 4px 20px rgba(104,166,122,.3); transform: scale(1.03); }
+    #evo-diag-pill img { height: 20px; width: 20px; object-fit: contain; flex-shrink: 0; }
+    @media(max-width: 480px) { #evo-diag-pill { font-size: .72rem; padding: 9px 14px; } }
     #evo-diag-pill span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     #evo-chat-btn { position: fixed; bottom: 24px; right: 16px; z-index: 990; width: 52px; height: 52px; border-radius: 50%; background: #111; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,.25); display: flex; align-items: center; justify-content: center; transition: background .2s, transform .2s; }
     #evo-chat-btn:hover { background: #68A67A; transform: scale(1.07); }
@@ -283,7 +283,7 @@
   <div class="evo-overlay" id="evoOverlay"></div>
   <div class="evo-drawer" id="evoDrawer">
     <div class="evo-drawer-head">
-      <a href="./index-en.html" style="display:block;line-height:0;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="755 340 460 420" width="130" height="98" aria-label="evoshifting">
+      <a href="./index-en.html" style="display:block;line-height:0;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="755 330 460 460" width="130" height="103" aria-label="evoshifting">
   <path fill="#111" d="M960,356.28c63.45,0,114.88,51.43,114.88,114.88s-51.43,114.88-114.88,114.88-114.88-51.43-114.88-114.88,51.43-114.88,114.88-114.88M960,346.28c-33.36,0-64.72,12.99-88.31,36.58-23.59,23.59-36.58,54.95-36.58,88.31s12.99,64.72,36.58,88.31c23.59,23.59,54.95,36.58,88.31,36.58s64.72-12.99,88.31-36.58c23.59-23.59,36.58-54.95,36.58-88.31s-12.99-64.72-36.58-88.31c-23.59-23.59-54.95-36.58-88.31-36.58h0Z"/>
   <path fill="#52a876" d="M878.09,475.01c-.17,0-.34-.04-.5-.13-.48-.28-.64-.89-.37-1.37l43.42-75.21c.28-.48.89-.64,1.37-.37.48.28.64.89.37,1.37l-43.42,75.21c-.19.32-.52.5-.87.5Z"/>
   <path fill="#52a876" d="M894.28,517.47c-.34,0-.68-.09-1-.27-.96-.55-1.28-1.78-.73-2.73l71.23-123.37c.55-.96,1.77-1.29,2.73-.73.96.55,1.28,1.78.73,2.73l-71.23,123.37c-.37.64-1.04,1-1.73,1Z"/>
@@ -459,14 +459,7 @@
 
   <!-- DIAGNOSTIC PILL -->
   <button id="evo-diag-pill" onclick="window.location='./diagnostic-en.html'" aria-label="quick diagnostic">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="845 346 230 230" width="24" height="24" aria-hidden="true">
-  <path fill="currentColor" d="M960,356.28c63.45,0,114.88,51.43,114.88,114.88s-51.43,114.88-114.88,114.88-114.88-51.43-114.88-114.88,51.43-114.88,114.88-114.88M960,346.28c-33.36,0-64.72,12.99-88.31,36.58-23.59,23.59-36.58,54.95-36.58,88.31s12.99,64.72,36.58,88.31c23.59,23.59,54.95,36.58,88.31,36.58s64.72-12.99,88.31-36.58c23.59-23.59,36.58-54.95,36.58-88.31s-12.99-64.72-36.58-88.31c-23.59-23.59-54.95-36.58-88.31-36.58h0Z"/>
-  <path fill="#52a876" d="M878.09,475.01c-.17,0-.34-.04-.5-.13-.48-.28-.64-.89-.37-1.37l43.42-75.21c.28-.48.89-.64,1.37-.37.48.28.64.89.37,1.37l-43.42,75.21c-.19.32-.52.5-.87.5Z"/>
-  <path fill="#52a876" d="M894.28,517.47c-.34,0-.68-.09-1-.27-.96-.55-1.28-1.78-.73-2.73l71.23-123.37c.55-.96,1.77-1.29,2.73-.73.96.55,1.28,1.78.73,2.73l-71.23,123.37c-.37.64-1.04,1-1.73,1Z"/>
-  <path fill="#52a876" d="M910.48,559.93c-.51,0-1.02-.13-1.5-.4-1.44-.83-1.93-2.66-1.1-4.1l99.04-171.54c.83-1.43,2.66-1.93,4.1-1.1,1.43.83,1.93,2.66,1.1,4.1l-99.04,171.54c-.56.96-1.56,1.5-2.6,1.5Z"/>
-  <path fill="#52a876" d="M954.48,552.22c-.34,0-.68-.09-1-.27-.96-.55-1.28-1.78-.73-2.73l71.23-123.37c.55-.96,1.77-1.29,2.73-.73.96.55,1.28,1.78.73,2.73l-71.23,123.37c-.37.64-1.04,1-1.73,1Z"/>
-  <path fill="#52a876" d="M998.49,544.52c-.17,0-.34-.04-.5-.13-.48-.28-.64-.89-.37-1.37l43.42-75.21c.28-.48.89-.64,1.37-.37.48.28.64.89.37,1.37l-43.42,75.21c-.19.32-.52.5-.87.5Z"/>
-</svg>
+    <img src="https://i.postimg.cc/JzTQSTR3/evoshifting-G-5-lines-round.png" alt="">
     <span>quick diagnostic</span>
   </button>
 
